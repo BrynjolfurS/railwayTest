@@ -1,6 +1,5 @@
 package is.hi.hbv501g.hugbunadarverkefni1;
 
-// Ólafur Pálsson
 // Jökull
 // Ólafur Pálsson - olp10@hi.is
 
