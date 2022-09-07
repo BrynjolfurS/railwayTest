@@ -2,6 +2,7 @@ package is.hi.hbv501g.hugbunadarverkefni1;
 
 // Ólafur Pálsson
 // Jökull
+// Ólafur Pálsson - olp10@hi.is
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
