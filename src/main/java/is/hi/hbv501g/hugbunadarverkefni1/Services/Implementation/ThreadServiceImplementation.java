@@ -9,9 +9,6 @@ import java.util.List;
 
 public class ThreadServiceImplementation implements ThreadService {
 
-    private List<Thread> threads = new ArrayList<>();
-    private int id_counter = 0;
-
     @Autowired
     public ThreadServiceImplementation() {
 
