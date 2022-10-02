@@ -8,7 +8,7 @@ public class Event {
         ARCHERY,
         BOWLING,
         DARTS,
-        BADMINGTON,
+        BADMINTON,
         FENCING;
     }
 
