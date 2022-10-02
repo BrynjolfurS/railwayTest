@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class Event {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long ID;
     private String eventName;
     private String eventDescription;

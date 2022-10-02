@@ -12,7 +12,7 @@ import java.util.List;
 public class Thread {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long ID;
     private User user;
     private boolean isPinned;
