@@ -2,23 +2,143 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/color.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Title</title>
 </head>
 
 <body>
-    <header class="header" style="text-align: center; ">
+    <header class="header light-blue text-yellow" style="text-align: center; ">
         <h1>Íþróttasíðan</h1>
     </header>
 
-    <div class="left-sidebar">
-        left-sidebar
-    </div>
+
     <div class="main">
-        main
+
+        <div class="sidebar-left light-gray">
+            <menu class="nav">
+                <li class="nav-item nav-icon">
+                    <button class="nav-button">Home</button>
+                </li>
+                <li>
+                    <button class="nav-button" onclick="accordion()">Sports  <i class="fa fa-caret-down"></i></button>
+                        <menu id="sports-accordion" class="hide nav white">
+                            <li><button class="nav-button">Sport1</button></li>
+                            <li><button class="nav-button">Sport2</button></li>
+                            <li><button class="nav-button">Sport3</button></li>
+                            <li><button class="nav-button">Sport4</button></li>
+                        </menu>
+                </li>
+                <li ><button class="nav-button">SOMETHING</button></li>
+                <li ><button class="nav-button">SOMETHING</button></li>
+                <li ><button class="nav-button">SOMETHING</button></li>
+                <li ><button class="nav-button">SOMETHING</button></li>
+            </menu>
+        </div>
+
+        <div class="forum-container light-gray">
+            <div class="forum-title">
+                <h1>Top threads</h1>
+            </div>
+            <div class="thread-table">
+                <div class="thread-table-head gray">
+                    <div class="post-icon"></div>
+                    <div class="post-subject">Subject</div>
+                    <div class="post-comments">Comments</div>
+                    <div class="post-info">Information</div>
+                </div>
+
+                <div class="thread-table-row">
+                    <div class="post-icon"><i class="fa fa-cart-plus"></i></div>
+                    <div class="post-subject">
+                        <a href="">This is a random thread asdasdasdasdasdadasd</a>
+                    </div>
+                    <div class="post-comments">
+                        16 comments
+                    </div>
+                    <div class="post-info">
+                        September 8 2022 <br> Posted by: Username
+                    </div>
+                </div>
+
+                <div class="thread-table-row">
+                    <div class="post-icon"><i class="fa fa-compass"></i></div>
+                    <div class="post-subject">
+                        <a href="">This is a random thread</a>
+                    </div>
+                    <div class="post-comments">
+                        16 comments
+                    </div>
+                    <div class="post-info">
+                        September 8 2022 <br> Posted by: Username
+                    </div>
+                </div>
+
+                <div class="thread-table-row">
+                    <div class="post-icon"><i class="fa fa-cogs"></i></div>
+                    <div class="post-subject">
+                        <a href="">This is a random thread</a>
+                    </div>
+                    <div class="post-comments">
+                        16 comments
+                    </div>
+                    <div class="post-info">
+                        September 8 2022 <br> Posted by: Username
+                    </div>
+                </div>
+
+                <div class="thread-table-row">
+                    <div class="post-icon"><i class="fa fa-eye"></i></div>
+                    <div class="post-subject">
+                        <a href="">This is a random thread</a>
+                    </div>
+                    <div class="post-comments">
+                        16 comments
+                    </div>
+                    <div class="post-info">
+                        September 8 2022 <br> Posted by: Username
+                    </div>
+                </div>
+
+                <div class="thread-table-row">
+                    <div class="post-icon"><i class="fa fa-briefcase"></i></div>
+                    <div class="post-subject">
+                        <a href="">This is a random thread</a>
+                    </div>
+                    <div class="post-comments">
+                        16 comments
+                    </div>
+                    <div class="post-info">
+                        September 8 2022 <br> Posted by: Username
+                    </div>
+                </div>
+
+                <div class="thread-table-row">
+                    <div class="post-icon"><i class="fa fa-bullhorn"></i></div>
+                    <div class="post-subject">
+                        <a href="">This is a random thread</a>
+                    </div>
+                    <div class="post-comments">
+                        16 comments
+                    </div>
+                    <div class="post-info">
+                        September 8 2022 <br> Posted by: Username
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-right light-gray">
+            <div class="events">
+                <div class="events-title">
+                    <h1>Events</h1>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="right-sidebar">
-        right-sidebar
-    </div>
+
+    <script src="../static/home.js"></script>
 
     <footer class="footer">
 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/color.css">
+    <title>Title</title>
+</head>
+<body>
+<header class="header light-blue text-yellow" style="text-align: center; ">
+    <h1>Íþróttasíðan</h1>
+</header>
+
+
+<div class="main">
+
+    <div class="sidebar-left light-gray">
+        <menu class="nav">
+            <li class="nav-item nav-icon">
+                <button class="nav-button">Home</button>
+            </li>
+            <li>
+                <button class="nav-button" onclick="accordion()">Sports  <i class="fa fa-caret-down"></i></button>
+                <menu id="sports-accordion" class="hide nav white">
+                    <li><button class="nav-button">Sport1</button></li>
+                    <li><button class="nav-button">Sport2</button></li>
+                    <li><button class="nav-button">Sport3</button></li>
+                    <li><button class="nav-button">Sport4</button></li>
+                </menu>
+            </li>
+            <li ><button class="nav-button">SOMETHING</button></li>
+            <li ><button class="nav-button">SOMETHING</button></li>
+            <li ><button class="nav-button">SOMETHING</button></li>
+            <li ><button class="nav-button">SOMETHING</button></li>
+        </menu>
+    </div>
+
+    <div class="thread-container">
+        <div class="thread-header">
+            <div class="thread-topic">This is the topic of this thread!</div>
+            <div class="thread-author">Author</div>
+        </div>
+
+
+    </div>
+
+    <div class="sidebar-right light-gray">
+        <div class="events">
+            <div class="events-title">
+                <h1>Events</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../static/home.js"></script>
+
+<footer class="footer">
+
+</footer>
+</body>
+</html>
