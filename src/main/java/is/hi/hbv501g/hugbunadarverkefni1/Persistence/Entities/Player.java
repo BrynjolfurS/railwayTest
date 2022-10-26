@@ -14,6 +14,9 @@ public class Player {
     private int wins;
     private int losses;
 
+    public Player() {
+    }
+
     public String getPlayerName() {
         return playerName;
     }

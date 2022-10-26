@@ -11,23 +11,30 @@ public class Comment {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long ID;
-    private User user;
+    private String user;
     private LocalDate dateCommented;
-    private Thread thread; // Thread ID Betra? Dno
     private String comment;
+    private Long threadID; // Thread ID Betra? Dno
 
-    public Comment(User user, LocalDate dateCommented, Thread thread, String comment) {
+//--------------test--------------------------------
+    public Comment(String comment) {
+        this.comment=comment;
+    }
+    //-------------------------------------------
+    public Comment() {
+    }
+
+    public Comment(String user, String comment) {
         this.user = user;
-        this.dateCommented = dateCommented;
-        this.thread = thread;
+        //this.dateCommented = new LocalDate;
         this.comment = comment;
     }
 
-    public User getUser() {
+    public String getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(String user) {
         this.user = user;
     }
 
@@ -37,14 +44,6 @@ public class Comment {
 
     public void setDateCommented(LocalDate dateCommented) {
         this.dateCommented = dateCommented;
-    }
-
-    public Thread getThread() {
-        return thread;
-    }
-
-    public void setThread(Thread thread) {
-        this.thread = thread;
     }
 
     public String getComment() {

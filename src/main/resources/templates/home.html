@@ -7,14 +7,19 @@
 
 <body>
     <header class="header" style="text-align: center; ">
-        <h1>Íþróttasíðan</h1>
+        <h1>Heimasíða</h1>
     </header>
 
     <div class="left-sidebar">
         left-sidebar
     </div>
     <div class="main">
-        main
+        <tr th:each="sport : ${sports}">
+            <a th:href="@{/home/{s}(s=${sport})}"><p th:text="${sport}"></p></a>
+
+        </tr>
+
+
     </div>
     <div class="right-sidebar">
         right-sidebar

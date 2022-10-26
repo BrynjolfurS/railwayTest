@@ -13,31 +13,52 @@ public class Thread {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long ID;
-    private User user;
+    private String username;
     private boolean isPinned;
 
-    @OneToMany(mappedBy = "thread", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "threadID", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
     private String header;
     private String body;
     private LocalDate date;
 
-    public Thread(User user, boolean isPinned, List<Comment> comments, String header, String body, LocalDate date) {
-        this.user = user;
+
+    //þarf að fjarlægja ----------------------
+    private long fakeid;
+    //--------------------------------------
+
+
+    public Thread() {
+    }
+
+
+
+    public Thread(long fakeid, String user, boolean isPinned, List<Comment> comments, String header, String body) {
+        //-------------test-------------------------
+        this.fakeid = fakeid;
+        //--------------------------------------
+
+        this.username = user;
         this.isPinned = isPinned;
         this.comments = comments;
         this.header = header;
         this.body = body;
-        this.date = date;
+        //this.date = new LocalDate();
+    }
+    //----------------test----------------------
+    public long getFakeid() {
+        return fakeid;
     }
 
-    public User getUser() {
-        return user;
+    //--------------------------------------
+
+    public String getUser() {
+        return username;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(String user) {
+        this.username = user;
     }
 
     public boolean isPinned() {

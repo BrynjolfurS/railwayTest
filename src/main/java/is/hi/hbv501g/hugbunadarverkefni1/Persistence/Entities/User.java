@@ -16,6 +16,9 @@ public class User {
     private boolean isAdmin;
     private List<Comment> comments;
 
+    public User() {
+    }
+
     public String getUsername() {
         return username;
     }

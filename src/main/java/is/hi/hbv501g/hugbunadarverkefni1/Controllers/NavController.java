@@ -1,68 +1,99 @@
 package is.hi.hbv501g.hugbunadarverkefni1.Controllers;
 
+import is.hi.hbv501g.hugbunadarverkefni1.Services.SportService;
+import is.hi.hbv501g.hugbunadarverkefni1.Services.ThreadService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 @Controller
 public class NavController {
 
-    @RequestMapping()
-    public String sportPageController() {
-        return "";
+    private final SportService sportService;
+    private final ThreadService threadService;
+
+
+    @Autowired
+    public NavController(SportService sportService, ThreadService threadService){
+        this.sportService = sportService;
+        this.threadService = threadService;
     }
 
-    @RequestMapping()
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String goToHome(Model model) {
-
-        return "";
+        List<String> sports = sportService.findAllSports();
+        model.addAttribute("sports", sports);
+        return "home";
     }
 
-    @RequestMapping()
-    public String goToSport(String sport) {
+    @RequestMapping(value = "/home/{sport}", method = RequestMethod.GET)
+    public String goToSport(@PathVariable("sport") String sport, Model model) {
+        //add threds from {sport} to model
+        model.addAttribute("threads", threadService.findAllThreadsBySport(sport));
+        model.addAttribute("sport", sport);
 
-        return "";
+        return "sport";
     }
 
-    @RequestMapping()
-    public String goToAboutSport(Model model) {
-
-        return "";
+    @RequestMapping(value = "/home/{sport}/about", method = RequestMethod.GET)
+    public String goToAboutSport(@PathVariable("sport") String sport) {
+        //done
+        return "about"+sport;
     }
 
-    @RequestMapping()
-    public String goToEvents(Model model) {
-
-        return "";
+    @RequestMapping(value = "/home/{sport}/events", method = RequestMethod.GET)
+    public String goToEvents(@PathVariable("sport") String sport, Model model) {
+        model.addAttribute("events", sportService.findAllEventsBySport(sport));
+        return "events";
     }
 
-    @RequestMapping()
-    public String goToClubs(Model model) {
-
-        return "";
+    @RequestMapping(value = "/home/{sport}/clubs", method = RequestMethod.GET)
+    public String goToClubs(@PathVariable("sport") String sport, Model model) {
+        model.addAttribute("clubs", sportService.findAllClubsBySport(sport));
+        return "clubs";
     }
 
-    @RequestMapping()
+    @RequestMapping(value = "/home/{sport}/players", method = RequestMethod.GET)
     public String goToTopPlayers(Model model) {
-
-        return "";
+        // add players from {sport} to model
+        return "players";
     }
 
-    @RequestMapping()
+    @RequestMapping(value = "/home/{sport}/editInformation", method = RequestMethod.GET)
+    public String goToEditInformation(Model model) {
+        //duno
+        return "editInformation";
+    }
+
+    @RequestMapping(value = "/home/{sport}/createThread", method = RequestMethod.GET)
     public String goToCreateThread(Model model) {
-
-        return "";
+        //done?
+        return "createThread";
     }
 
-    @RequestMapping()
-    public String goToCreateEvent(Model model) {
-
-        return "";
+    @RequestMapping(value = "/home/{sport}/thread/{id}", method = RequestMethod.GET)
+    public String goToThread(@PathVariable("id") Long id,Model model) {
+        //add thred með {id} i model
+        model.addAttribute("thread", threadService.findThreadById(id));
+        return "thread";
     }
 
-    @RequestMapping("/login")
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String goToLogin() {
+        //done
+        return "login";
+    }
 
-        return "";
+    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
+    public String goToSignUp() {
+        //done
+        return "signUp";
     }
 }

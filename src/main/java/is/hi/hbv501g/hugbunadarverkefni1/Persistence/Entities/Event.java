@@ -15,6 +15,16 @@ public class Event {
     private String eventDescription;
     private LocalDate eventDate;
 
+//------------------test-------------------------------
+    public Event(String eventName, String eventDescription ) {
+        this.eventName = eventName;
+        this.eventDescription = eventDescription+" og "+eventDescription;
+    }
+    //------------------test end-------------------------------
+
+    public Event() {
+    }
+
     public String getEventName() {
         return eventName;
     }
