@@ -2,9 +2,13 @@ package is.hi.hbv501g.hugbunadarverkefni1.Services;
 
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.User;
 
+import java.util.List;
+
 public interface UserService {
 
-    public User login(String username, String userPass);
-    public void logout();
-    public User save(String username, String userPass);
+    void logout();
+    User findByUsername(String username);
+    List<User> findAll();
+    User login(User user);
+    User save(User user);
 }

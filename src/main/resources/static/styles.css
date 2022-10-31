@@ -26,16 +26,18 @@ button {
 }
 
 .header {
+    display: flex;
+    justify-content: space-between;
     padding: 20px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
-/* Left sidebar */
-.sidebar-left {
-    flex: 20%;
-    height: 100%;
+.header>div {
+    flex: 33%;
 }
 
+/* Navigation */
 .nav-button {
     width: 100%;
     margin: 1em 0;
@@ -58,23 +60,46 @@ button {
     display:block!important;
 }
 
+/* Left sidebar */
+.sidebar-left {
+    flex: 15%;
+    height: 100%;
+}
+
 /* Right sidebar */
 
 .sidebar-right {
-    flex: 20%;
+    flex: 15%;
 }
 
 .events-title {
     text-align: center;
 }
 
-/* Forum/Thread container */
+/* Page content */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 70%;
+    margin: 0 1em 0 1em;
+    padding: 20px;
+}
+
+/* Sport page */
+.sport-subpage-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+
+/* Forum/Thread */
 
 .forum-container {
     flex: 60%;
-    margin: 0 1em 0 1em;
-    padding: 20px;
-    width: 50%;
+    width: 100%;
 }
 
 .forum-title {
