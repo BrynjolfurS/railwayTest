@@ -11,10 +11,18 @@ public class Comment {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long ID;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private LocalDate dateCommented;
+
+    @OneToMany(fetch = FetchType.LAZY)
     private Thread thread; // Thread ID Betra? Dno
     private String comment;
+
+
 
     public Comment(User user, LocalDate dateCommented, Thread thread, String comment) {
         this.user = user;

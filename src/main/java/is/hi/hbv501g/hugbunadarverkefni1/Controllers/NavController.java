@@ -7,54 +7,54 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class NavController {
 
-    @RequestMapping()
+    @RequestMapping("1")
     public String sportPageController() {
         return "";
     }
 
-    @RequestMapping()
+    @RequestMapping("2")
     public String goToHome(Model model) {
 
         return "";
     }
 
-    @RequestMapping()
+    @RequestMapping("3")
     public String goToSport(String sport) {
 
         return "";
     }
 
-    @RequestMapping()
+    @RequestMapping("4")
     public String goToAboutSport(Model model) {
 
         return "";
     }
 
-    @RequestMapping()
+    @RequestMapping("5")
     public String goToEvents(Model model) {
 
         return "";
     }
 
-    @RequestMapping()
+    @RequestMapping("6")
     public String goToClubs(Model model) {
 
         return "";
     }
 
-    @RequestMapping()
+    @RequestMapping("7")
     public String goToTopPlayers(Model model) {
 
         return "";
     }
 
-    @RequestMapping()
+    @RequestMapping("8")
     public String goToCreateThread(Model model) {
 
         return "";
     }
 
-    @RequestMapping()
+    @RequestMapping("9")
     public String goToCreateEvent(Model model) {
 
         return "";

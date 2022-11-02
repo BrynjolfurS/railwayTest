@@ -14,6 +14,7 @@ public class User {
     private String username;
     private String userPassword;
     private boolean isAdmin;
+    @ManyToOne(fetch = FetchType.LAZY)
     private List<Comment> comments;
 
     public String getUsername() {

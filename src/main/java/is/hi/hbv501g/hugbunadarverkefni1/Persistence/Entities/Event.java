@@ -13,6 +13,7 @@ public class Event {
     private long ID;
     private String eventName;
     private String eventDescription;
+    @ManyToOne(fetch = FetchType.LAZY)
     private LocalDate eventDate;
 
     public String getEventName() {

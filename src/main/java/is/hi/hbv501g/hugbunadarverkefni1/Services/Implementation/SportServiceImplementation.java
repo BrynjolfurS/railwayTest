@@ -6,6 +6,7 @@ import is.hi.hbv501g.hugbunadarverkefni1.Services.SportService;
 import java.util.List;
 
 public class SportServiceImplementation implements SportService {
+    private SportService sportService; // vantar ekki constructor?
 
     @Override
     public List<String> findAll() {
