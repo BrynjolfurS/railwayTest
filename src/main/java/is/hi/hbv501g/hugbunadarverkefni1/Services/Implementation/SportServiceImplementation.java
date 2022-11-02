@@ -3,7 +3,9 @@ package is.hi.hbv501g.hugbunadarverkefni1.Services.Implementation;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Club;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Event;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.User;
+import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.SportRepository;
 import is.hi.hbv501g.hugbunadarverkefni1.Services.SportService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -13,8 +15,12 @@ import java.util.List;
 
 @Service
 public class SportServiceImplementation implements SportService {
-    private SportService sportService; // vantar ekki constructor?
+    private SportRepository sportRepository; // vantar ekki constructor?
 
+    /*@Autowired
+    public SportServiceImplementation(SportRepository sportRepository){
+        this.sportRepository = sportRepository;
+    }*/
     @Override
     public List<String> findAllSports() {
         List<String> sport = new ArrayList<String>();

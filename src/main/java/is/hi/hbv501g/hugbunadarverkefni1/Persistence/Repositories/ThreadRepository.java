@@ -2,6 +2,7 @@ package is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories;
 
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Thread;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

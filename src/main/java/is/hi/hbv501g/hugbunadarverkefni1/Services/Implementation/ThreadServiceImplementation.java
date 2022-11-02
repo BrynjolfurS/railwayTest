@@ -1,26 +1,25 @@
 package is.hi.hbv501g.hugbunadarverkefni1.Services.Implementation;
 
-import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Club;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Comment;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Thread;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.ThreadRepository;
-import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Thread;
 import is.hi.hbv501g.hugbunadarverkefni1.Services.ThreadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.ArrayList;
 
 
 @Service
 public class ThreadServiceImplementation implements ThreadService {
     private ThreadRepository threadRepository;
 
-    @Autowired
+    /*@Autowired
     public ThreadServiceImplementation(ThreadRepository threadRepository) {
         this.threadRepository = threadRepository;
 
-    }
+    }*/
 
 
     @Override
@@ -29,14 +28,14 @@ public class ThreadServiceImplementation implements ThreadService {
     }
 
     @Override
-    public Thread save(Thread thread) {
-        return threadRepository.save(thread);
+    public Thread save(Thread thread){
+
+        return null;
     }
 
-    @Override
-    public List<Thread> findThreadsBySport(String sportName) {
-        return threadRepository.findThreadsBySport(sportName);
 
+
+    @Override
     public List<Thread> findAllThreadsBySport(String sport) {
         //String user, boolean isPinned, List<Comment> comments, String header, String body
         List<Thread> threads = new ArrayList<Thread>();
@@ -54,8 +53,9 @@ public class ThreadServiceImplementation implements ThreadService {
 
     @Override
     public void delete(Thread thread) {
-        threadRepository.delete(thread);
+
     }
+
 
     @Override
     public void deleteComment(Comment comment) {
@@ -64,11 +64,8 @@ public class ThreadServiceImplementation implements ThreadService {
 
     @Override
     public Thread findThreadById(Long id) {
-        List<Comment> a = new ArrayList<Comment>();
-        a.add(new Comment("comment1"));
-        a.add(new Comment("comment2"));
-        a.add(new Comment("comment3"));
-        return new Thread(5,"mr stuff1",false,a,"thread header5"+" thread1","sædlkfjælsakdjfæls this is the body slifjsælkfkm");
+
+        return null;
     }
 
 
