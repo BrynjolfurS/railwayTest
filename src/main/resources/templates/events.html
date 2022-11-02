@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Events</title>
+</head>
+
+<body>
+<header class="header" style="text-align: center; ">
+  <h1>Íþróttasíðan</h1>
+</header>
+
+<div class="left-sidebar">
+  left-sidebar
+</div>
+<div class="main">
+
+  <tr th:each="event : ${events}">
+      <h3 th:text="${event.eventName}"></h3>
+      <p th:text="${event.eventDescription}"></p>
+
+  </tr>
+
+</div>
+<div class="right-sidebar">
+  right-sidebar
+</div>
+
+<footer class="footer">
+
+</footer>
+</body>
+</html>

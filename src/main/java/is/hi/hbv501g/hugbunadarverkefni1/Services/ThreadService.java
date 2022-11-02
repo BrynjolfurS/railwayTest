@@ -1,7 +1,6 @@
 package is.hi.hbv501g.hugbunadarverkefni1.Services;
 
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Comment;
-import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Thread;
 
 import java.util.List;
 

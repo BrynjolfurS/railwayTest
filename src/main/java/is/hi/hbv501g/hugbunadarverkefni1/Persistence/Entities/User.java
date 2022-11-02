@@ -17,6 +17,9 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     private List<Comment> comments;
 
+    public User() {
+    }
+
     public String getUsername() {
         return username;
     }
