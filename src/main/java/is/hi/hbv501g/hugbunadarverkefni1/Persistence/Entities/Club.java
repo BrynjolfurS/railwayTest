@@ -12,6 +12,9 @@ public class Club {
     private String clubUrl;
     private String description;
 
+    public Club() {
+
+    }
     public Club(String clubName, String clubUrl, String description) {
         this.clubName = clubName;
         this.clubUrl = clubUrl;

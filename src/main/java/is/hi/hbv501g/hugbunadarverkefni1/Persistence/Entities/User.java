@@ -8,12 +8,10 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long ID;
     private String username;
     private String userPassword;
-    private boolean isAdmin;
+//    private boolean isAdmin;
     private List<Comment> comments;
 
     public User() {
@@ -21,6 +19,16 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    @Id
+    @Column(name = "UserID")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    public long getID() {
+        return ID;
+    }
+    public void setID(long id) {
+        this.ID = id;
     }
 
     public void setUsername(String username) {
@@ -35,14 +43,22 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    public User(String username, String userPassword, List<Comment> comments) {
+        this.username = username;
+        this.userPassword = userPassword;
+        this.comments = comments;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
+//    public boolean isAdmin() {
+//        return isAdmin;
+//    }
 
+
+//    public void setAdmin(boolean admin) {
+//        isAdmin = admin;
+//    }
+//
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     public List<Comment> getComments() {
         return comments;
     }
@@ -51,10 +67,10 @@ public class User {
         this.comments = comments;
     }
 
-    public User(String username, String userPassword, boolean isAdmin, List<Comment> comments) {
-        this.username = username;
-        this.userPassword = userPassword;
-        this.isAdmin = isAdmin;
-        this.comments = comments;
-    }
+//    public User(String username, String userPassword, boolean isAdmin, List<Comment> comments) {
+//        this.username = username;
+//        this.userPassword = userPassword;
+//        this.isAdmin = isAdmin;
+//        this.comments = comments;
+//    }
 }

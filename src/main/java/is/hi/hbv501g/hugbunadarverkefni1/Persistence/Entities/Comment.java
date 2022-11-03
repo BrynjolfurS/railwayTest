@@ -8,35 +8,50 @@ import java.time.LocalDate;
 @Table(name = "comments")
 public class Comment {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long ID;
-    private String user;
+    private User user;
     private LocalDate dateCommented;
     private String comment;
-    private Long threadID; // Thread ID Betra? Dno
+    private Thread thread; // Thread ID Betra? Dno
 
 //--------------test--------------------------------
-    public Comment(String comment) {
-        this.comment=comment;
-    }
+//    public Comment(String comment) {
+//        this.comment=comment;
+//    }
     //-------------------------------------------
     public Comment() {
     }
 
-    public Comment(String user, String comment) {
+    public Comment(User user, String comment) {
         this.user = user;
         //this.dateCommented = new LocalDate;
         this.comment = comment;
     }
 
-    public String getUser() {
+    @Id
+    @Column(name = "CommentId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long getID() {
+        return ID;
+    }
+    public void setID(Long id) {
+        this.ID = id;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "UserID")
+    public User getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(User user) {
         this.user = user;
     }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ThreadID")
+    public Thread getThread() {return thread;}
+    public void setThread(Thread thread) {this.thread = thread;}
 
     public LocalDate getDateCommented() {
         return dateCommented;

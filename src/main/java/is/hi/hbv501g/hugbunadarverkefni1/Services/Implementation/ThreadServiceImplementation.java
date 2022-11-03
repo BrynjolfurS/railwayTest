@@ -49,14 +49,14 @@ public class ThreadServiceImplementation implements ThreadService {
 
     }
 
-    @Override
-    public Thread findThreadById(Long id) {
-        List<Comment> a = new ArrayList<Comment>();
-        a.add(new Comment("comment1"));
-        a.add(new Comment("comment2"));
-        a.add(new Comment("comment3"));
-        return new Thread(5,"mr stuff1",false,a,"thread header5"+" thread1","sædlkfjælsakdjfæls this is the body slifjsælkfkm");
-    }
+//    @Override
+//    public Thread findThreadById(Long id) {
+//        List<Comment> a = new ArrayList<Comment>();
+//        a.add(new Comment("comment1"));
+//        a.add(new Comment("comment2"));
+//        a.add(new Comment("comment3"));
+//        return new Thread(5,"mr stuff1",false,a,"thread header5"+" thread1","sædlkfjælsakdjfæls this is the body slifjsælkfkm");
+//    }
 
 
 }

@@ -4,7 +4,10 @@ import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.User;
 
 public interface UserService {
 
-    public User login(String username, String userPass);
-    public void logout();
-    public User save(String username, String userPass);
+
+    User findByUsername(String username);
+
+    User save(User user);
+
+    User login(User user);
 }

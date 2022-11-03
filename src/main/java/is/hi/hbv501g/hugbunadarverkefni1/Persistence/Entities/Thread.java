@@ -16,12 +16,14 @@ public class Thread {
     private String username;
     private boolean isPinned;
 
-    @OneToMany(mappedBy = "threadID", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "thread", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
     private String header;
     private String body;
     private LocalDate date;
+
+    private String sport;
 
 
     //þarf að fjarlægja ----------------------
