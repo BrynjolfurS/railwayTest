@@ -65,8 +65,6 @@ public class ThreadServiceImplementation implements ThreadService {
 
     @Override
     public Thread findThreadById(Long id) {
-        List<Comment> a = new ArrayList<Comment>();
-
         return  threadRepository.findByID(id);
     }
 
