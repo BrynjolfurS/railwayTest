@@ -21,10 +21,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value="/signup", method= RequestMethod.POST)
+    @RequestMapping(value="/signUp", method= RequestMethod.POST)
     public String signupPOST(User user, BindingResult result, Model model) {
         if(result.hasErrors()) {
-            return "redirect:/signup";
+            return "redirect:/signUp";
         }
         User exists = userService.findByUsername(user.getUsername());
         if(exists == null) {
@@ -33,10 +33,10 @@ public class UserController {
         return "redirect:/";
     }
 
-    @RequestMapping(value="/login", method = RequestMethod.GET)
-    public String loginGET(User user) {
-        return "login";
-    }
+//    @RequestMapping(value="/login", method = RequestMethod.GET)
+//    public String loginGET(User user) {
+//        return "login";
+//    }
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public String loginPOST(User user, BindingResult result, Model model, HttpSession session) {

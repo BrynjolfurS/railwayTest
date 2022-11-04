@@ -7,37 +7,26 @@
 </head>
 
 <body>
-    <header class="header" style="text-align: center; ">
-        <h1>Heimasíða</h1>
-        <!--
-        <div>
-            <form action="#" th:action="@{/login}" th:object="${user}" method="post">
-                <p>Username: <input type="text" th:field="*{username}" /></p>
-                <p>Password: <input type="text" th:field="*{userPassword}" /></p>
-                <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-                <button class="nav-button"><a href="/signup" ></a></button>
-            </form>
-        </div>
-        -->
-    </header>
+<header class="header" style="text-align: center; ">
+    <h1>Heimasíða</h1>
+    <a th:href="@{signUp}">Sign Up</a>
 
-    <div class="left-sidebar">
-        left-sidebar
-    </div>
-    <div class="main">
-        <tr th:each="sport : ${sports}">
-            <a th:href="@{/home/{s}(s=${sport})}"><p th:text="${sport}"></p></a>
+</header>
 
-        </tr>
+<div class="left-sidebar">
+    left-sidebar
+</div>
+<div class="main">
+    <tr th:each="sport : ${sports}">
+        <a th:href="@{/home/{s}(s=${sport})}"><p th:text="${sport}"></p></a>
+    </tr>
+</div>
+<div class="right-sidebar">
+    right-sidebar
+</div>
 
+<footer class="footer">
 
-    </div>
-    <div class="right-sidebar">
-        right-sidebar
-    </div>
-
-    <footer class="footer">
-
-    </footer>
+</footer>
 </body>
 </html>

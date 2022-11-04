@@ -25,5 +25,4 @@ public class Hugbunadarverkefni1Application extends SpringBootServletInitializer
         SpringApplication.run(Hugbunadarverkefni1Application.class, args);
     }
 
-
 }

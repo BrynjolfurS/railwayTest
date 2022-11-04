@@ -1,5 +1,6 @@
 package is.hi.hbv501g.hugbunadarverkefni1.Controllers;
 
+import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.User;
 import is.hi.hbv501g.hugbunadarverkefni1.Services.SportService;
 import is.hi.hbv501g.hugbunadarverkefni1.Services.ThreadService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,9 +92,9 @@ public class NavController {
 //        return "login";
 //    }
 
-//    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
-//    public String goToSignUp() {
-//        //done
-//        return "signUp";
-//    }
+    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
+    public String goToSignUp(Model model) {
+        model.addAttribute("user", new User());
+        return "signUp";
+    }
 }
