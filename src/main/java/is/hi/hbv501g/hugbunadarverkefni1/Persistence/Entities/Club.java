@@ -11,6 +11,7 @@ public class Club {
     private String clubName;
     private String clubUrl;
     private String description;
+    private String sport;
 
     public Club() {
 
@@ -44,4 +45,7 @@ public class Club {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getSport(){return sport;}
+    public void setSport(String sport){this.sport=sport;}
 }

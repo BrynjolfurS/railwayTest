@@ -21,8 +21,7 @@
   <h2>Threads</h2>
   <tr th:each="thread : ${threads}">
     <td th:text="${thread.user}"></td>
-
-    <a th:href="@{./{s}/thread/{id}(s=${sport},id=${thread.fakeid})}">
+    <a th:href="@{./{s}/thread/{id}(s=${sport},id=${thread.ID})}">
       <p th:text="${thread.header}"></p>
     </a>
 

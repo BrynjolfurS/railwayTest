@@ -416,3 +416,7 @@ $RECYCLE.BIN/
 *_BASE_*.txt
 *_LOCAL_*.txt
 *_REMOTE_*.txt
+
+
+#database stuff
+src/main/resources/application.properties

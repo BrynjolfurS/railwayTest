@@ -13,5 +13,5 @@ public interface ThreadService {
     public void delete(Thread thread);
     public void deleteComment(Comment comment);
 
-//    Thread findThreadById(Long id);
+    Thread findThreadById(Long id);
 }

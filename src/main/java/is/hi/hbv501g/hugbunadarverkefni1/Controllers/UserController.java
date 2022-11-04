@@ -33,10 +33,6 @@ public class UserController {
         return "redirect:/";
     }
 
-//    @RequestMapping(value="/login", method = RequestMethod.GET)
-//    public String loginGET(User user) {
-//        return "login";
-//    }
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public String loginPOST(User user, BindingResult result, Model model, HttpSession session) {

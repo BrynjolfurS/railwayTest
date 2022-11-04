@@ -26,9 +26,7 @@ public class Thread {
     private String sport;
 
 
-    //þarf að fjarlægja ----------------------
-    private long fakeid;
-    //--------------------------------------
+
 
 
     public Thread() {
@@ -36,24 +34,24 @@ public class Thread {
 
 
 
-    public Thread(long fakeid, String user, boolean isPinned, List<Comment> comments, String header, String body) {
-        //-------------test-------------------------
-        this.fakeid = fakeid;
-        //--------------------------------------
+    public Thread(String user, boolean isPinned, List<Comment> comments, String header, String body, String sport) {
+
 
         this.username = user;
         this.isPinned = isPinned;
         this.comments = comments;
         this.header = header;
         this.body = body;
+        this.sport=sport;
         //this.date = new LocalDate();
     }
-    //----------------test----------------------
-    public long getFakeid() {
-        return fakeid;
-    }
 
-    //--------------------------------------
+    public long getID() {
+        return ID;
+    }
+    public void setID(long id) {
+        this.ID = id;
+    }
 
     public String getUser() {
         return username;
@@ -94,6 +92,9 @@ public class Thread {
     public void setBody(String body) {
         this.body = body;
     }
+
+    public String getSport(){return sport;}
+    public void setSport(String sport){this.sport=sport;}
 
     public LocalDate getDate() {
         return date;

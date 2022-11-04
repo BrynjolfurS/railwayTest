@@ -14,8 +14,9 @@ public class Event {
     private String eventName;
     private String eventDescription;
     private LocalDate eventDate;
+    private String sport;
 
-//------------------test-------------------------------
+    //------------------test-------------------------------
     public Event(String eventName, String eventDescription ) {
         this.eventName = eventName;
         this.eventDescription = eventDescription+" og "+eventDescription;
@@ -48,6 +49,9 @@ public class Event {
     public void setEventDate(LocalDate eventDate) {
         this.eventDate = eventDate;
     }
+
+    public String getSport(){return sport;}
+    public void setSport(String sport){this.sport=sport;}
 
     public Event(String eventName, String eventDescription, LocalDate eventDate) {
         this.eventName = eventName;
