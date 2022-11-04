@@ -16,10 +16,11 @@ public class Club {
     public Club() {
 
     }
-    public Club(String clubName, String clubUrl, String description) {
+    public Club(String clubName, String clubUrl, String description,String sport) {
         this.clubName = clubName;
         this.clubUrl = clubUrl;
         this.description = description;
+        this.sport = sport;
     }
 
     public String getClubName() {

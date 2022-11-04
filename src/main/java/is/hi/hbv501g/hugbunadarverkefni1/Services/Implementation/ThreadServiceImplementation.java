@@ -22,6 +22,16 @@ public class ThreadServiceImplementation implements ThreadService {
         this.threadRepository = threadRepository;
     }
 
+//--------------------------------------------------------------
+
+    @Override
+    public void dev(String sport) {
+        List<Comment> a = new ArrayList<Comment>();
+
+        save(new Thread("mr stuff1",false,a,sport+" thread1",sport+sport+sport,sport));
+    }
+
+    //----------------------------------------
 
     @Override
     public void addComment(String comment) {
@@ -35,14 +45,6 @@ public class ThreadServiceImplementation implements ThreadService {
 
     @Override
     public List<Thread> findAllThreadsBySport(String sport) {
-        //String user, boolean isPinned, List<Comment> comments, String header, String body
-        //List<Thread> threads = new ArrayList<Thread>();
-        List<Comment> a = new ArrayList<Comment>();
-      /*  threads.add(new Thread("mr stuff1",false,a,sport+" thread1",sport+sport+sport,sport));
-        threads.add(new Thread("mr stuff2",false,a,sport+" thread2",sport+sport+sport+sport,sport));
-        threads.add(new Thread("mr stuff3",false,a,sport+" thread3",sport+sport+sport+sport+sport,sport));
-        */
-        save(new Thread("mr stuff1",false,a,sport+" thread1",sport+sport+sport,sport));
         return threadRepository.findBySport(sport);
     }
 
@@ -65,7 +67,7 @@ public class ThreadServiceImplementation implements ThreadService {
     public Thread findThreadById(Long id) {
         List<Comment> a = new ArrayList<Comment>();
 
-        return new Thread("mr stuff1",false,a,"thread header5"+" thread1","sædlkfjælsakdjfæls this is the body slifjsælkfkm","sdsd");
+        return  threadRepository.findByID(id);
     }
 
 

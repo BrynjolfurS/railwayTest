@@ -7,12 +7,10 @@ import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.User;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.ClubRepository;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.EventRepository;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.PlayerRepository;
-import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.UserRepository;
 import is.hi.hbv501g.hugbunadarverkefni1.Services.SportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,31 +30,44 @@ public class SportServiceImplementation implements SportService {
 
 
     @Override
+    public void dev(String sport) {
+        eventRepository.save(new Event(sport+"---1---     ",sport,sport));
+        eventRepository.save(new Event(sport+"---2---     ",sport,sport));
+        eventRepository.save(new Event(sport+"---3---     ",sport,sport));
+
+
+        clubRepository.save(new Club(sport+"---1---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport,sport));
+        clubRepository.save(new Club(sport+"---2---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport,sport));
+        clubRepository.save(new Club(sport+"---3---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport,sport));
+
+
+
+    }
+
+    @Override
     public List<String> findAllSports() {
         List<String> sport = new ArrayList<String>();
         sport.add("badminton");
-        sport.add("pílukast");
+        sport.add("pilukast");
         sport.add("Extreme Ironing");
+
 
         return sport;
     }
 
     @Override
     public List<Event> findAllEventsBySport(String sport) {
-        List<Event> events = new ArrayList<Event>();
-        events.add(new Event(sport+"---1---     ",sport));
-        events.add(new Event(sport+"---2---     ",sport));
-        events.add(new Event(sport+"---3---     ",sport));
-        return events;
+        return eventRepository.findBySport(sport);
+    }
+
+    @Override
+    public List<Player> findAllPlayersBySport(String sport) {
+        return playerRepository.findBySport(sport);
     }
 
     @Override
     public List<Club> findAllClubsBySport(String sport) {
-        List<Club> clubs = new ArrayList<Club>();
-        clubs.add(new Club(sport+"---1---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport));
-        clubs.add(new Club(sport+"---2---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport));
-        clubs.add(new Club(sport+"---3---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport));
-        return clubs;
+        return clubRepository.findBySport(sport);
     }
 
 

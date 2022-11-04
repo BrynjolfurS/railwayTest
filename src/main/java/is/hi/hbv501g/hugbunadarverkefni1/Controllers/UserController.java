@@ -30,7 +30,7 @@ public class UserController {
         if(exists == null) {
             userService.save(user);
         }
-        return "redirect:/";
+        return "redirect:/home";
     }
 
 
@@ -45,7 +45,7 @@ public class UserController {
             model.addAttribute("LoggedInUser", exists);
             return "LoggedInUser";
         }
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @RequestMapping(value="/loggedin", method = RequestMethod.GET)
@@ -55,6 +55,6 @@ public class UserController {
             model.addAttribute("LoggedInUser", sessionUser);
             return "loggedInUser";
         }
-        return "redirect:/";
+        return "redirect:/home";
     }
 }

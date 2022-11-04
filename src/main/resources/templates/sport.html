@@ -14,9 +14,11 @@
   left-sidebar
 </div>
 <div class="main">
+  <p th:text="${sport}"></p>
+  <a th:href="@{/dev/{s}(s=${sport})}"><h1>dev</h1></a>
 
-  <a th:href="@{./{s}/events(s=${sport})}">events</a>
-  <a th:href="@{./{s}/clubs(s=${sport})}">clubs</a>
+  <a th:href="@{./{s}/events(s=${sport})}"><p>events</p></a>
+  <a th:href="@{./{s}/clubs(s=${sport})}"><p>clubs</p></a>
 
   <h2>Threads</h2>
   <tr th:each="thread : ${threads}">

@@ -17,9 +17,10 @@ public class Event {
     private String sport;
 
     //------------------test-------------------------------
-    public Event(String eventName, String eventDescription ) {
+    public Event(String eventName, String eventDescription ,String sport) {
         this.eventName = eventName;
         this.eventDescription = eventDescription+" og "+eventDescription;
+        this.sport = sport;
     }
     //------------------test end-------------------------------
 

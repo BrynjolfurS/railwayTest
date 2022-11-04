@@ -25,8 +25,24 @@ public class NavController {
         this.threadService = threadService;
     }
 
+    //----------------Test stuff----------------------------------------------------
+    @RequestMapping(value = "/dev/{sport}", method = RequestMethod.GET)
+    public String dev(@PathVariable("sport") String sport, Model model) {
+        sportService.dev(sport);
+        threadService.dev(sport);
+        return "redirect:/home/"+sport;
+    }
+
+//-------------------------------------------------
+
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String goToRoot() {
+        return "redirect:/home";
+    }
+
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String goToHome(Model model) {
         List<String> sports = sportService.findAllSports();
         model.addAttribute("sports", sports);

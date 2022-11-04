@@ -12,6 +12,6 @@ public interface ThreadService {
     public List<Thread> sortThreads();
     public void delete(Thread thread);
     public void deleteComment(Comment comment);
-
+    public void dev(String sport);
     Thread findThreadById(Long id);
 }
