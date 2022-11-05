@@ -14,11 +14,6 @@ public class Comment {
     private String comment;
     private Thread thread; // Thread ID Betra? Dno
 
-//--------------test--------------------------------
-//    public Comment(String comment) {
-//        this.comment=comment;
-//    }
-    //-------------------------------------------
     public Comment() {
     }
 

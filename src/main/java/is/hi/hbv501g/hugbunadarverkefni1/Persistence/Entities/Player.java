@@ -9,6 +9,7 @@ public class Player {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long ID;
+    private  String sport;
     private String playerName;
     private String playerInfo;
     private int wins;
@@ -49,10 +50,14 @@ public class Player {
         this.losses = losses;
     }
 
-    public Player(String playerName, String playerInfo, int wins, int losses) {
+    public String getSport(){return sport;}
+    public void setSport(String sport){this.sport=sport;}
+
+    public Player(String playerName, String playerInfo, int wins, int losses, String sport) {
         this.playerName = playerName;
         this.playerInfo = playerInfo;
         this.wins = wins;
         this.losses = losses;
+        this.sport = sport;
     }
 }
