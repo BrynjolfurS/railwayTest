@@ -1,0 +1,71 @@
+package is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities;
+
+
+import javax.persistence.*;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "comments")
+public class Comment {
+
+    private long ID;
+    private User user;
+    private LocalDate dateCommented;
+    private String comment;
+    private Thread thread; // Thread ID Betra? Dno
+
+//--------------test--------------------------------
+//    public Comment(String comment) {
+//        this.comment=comment;
+//    }
+    //-------------------------------------------
+    public Comment() {
+    }
+
+    public Comment(User user, String comment) {
+        this.user = user;
+        //this.dateCommented = new LocalDate;
+        this.comment = comment;
+    }
+
+    @Id
+    @Column(name = "CommentId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long getID() {
+        return ID;
+    }
+    public void setID(Long id) {
+        this.ID = id;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "UserID")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ThreadID")
+    public Thread getThread() {return thread;}
+    public void setThread(Thread thread) {this.thread = thread;}
+
+    public LocalDate getDateCommented() {
+        return dateCommented;
+    }
+
+    public void setDateCommented(LocalDate dateCommented) {
+        this.dateCommented = dateCommented;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+}

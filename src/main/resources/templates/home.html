@@ -6,5 +6,34 @@
 </head>
 <body>
     Halló heimur!
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <title>Title</title>
+</head>
+
+<body>
+<header class="header" style="text-align: center; ">
+    <h1>Heimasíða</h1>
+    <a th:href="@{signUp}">Sign Up</a>
+
+</header>
+
+<div class="left-sidebar">
+    left-sidebar
+</div>
+<div class="main">
+    <tr th:each="sport : ${sports}">
+        <a th:href="@{/home/{s}(s=${sport})}"><p th:text="${sport}"></p></a>
+    </tr>
+</div>
+<div class="right-sidebar">
+    right-sidebar
+</div>
+
+<footer class="footer">
+
+</footer>
 </body>
 </html>

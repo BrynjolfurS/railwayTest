@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+<header class="header" style="text-align: center; ">
+  <h1 th:text="${sport}"></h1>
+</header>
+
+<div class="left-sidebar">
+  left-sidebar
+</div>
+<div class="main">
+
+  <a th:href="@{./{s}/events(s=${sport})}">events</a>
+  <a th:href="@{./{s}/clubs(s=${sport})}">clubs</a>
+
+  <h2>Threads</h2>
+  <tr th:each="thread : ${threads}">
+    <td th:text="${thread.user}"></td>
+
+    <a th:href="@{./{s}/thread/{id}(s=${sport},id=${thread.fakeid})}">
+      <p th:text="${thread.header}"></p>
+    </a>
+
+  </tr>
+
+
+
+</div>
+<div class="right-sidebar">
+  right-sidebar
+</div>
+
+<footer class="footer">
+
+</footer>
+</body>
+</html>
