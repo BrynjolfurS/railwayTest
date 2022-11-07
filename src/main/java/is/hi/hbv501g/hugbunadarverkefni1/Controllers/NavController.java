@@ -92,9 +92,9 @@ public class NavController {
 //        return "login";
 //    }
 
-    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
-    public String goToSignUp(Model model) {
-        model.addAttribute("user", new User());
-        return "signUp";
-    }
+//    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
+//    public String goToSignUp(Model model) {
+//        model.addAttribute("user", new User());
+//        return "signUp";
+//    }
 }

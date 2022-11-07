@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/styles.css}" />
@@ -9,6 +9,7 @@
 <body>
 <header class="header" style="text-align: center; ">
     <h1>Heimasíða</h1>
+    <a th:href="@{login}">Login</a>
     <a th:href="@{signUp}">Sign Up</a>
 
 </header>
