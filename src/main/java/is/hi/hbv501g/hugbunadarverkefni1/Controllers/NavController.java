@@ -25,8 +25,24 @@ public class NavController {
         this.threadService = threadService;
     }
 
+    //----------------Test stuff----------------------------------------------------
+    @RequestMapping(value = "/dev/{sport}", method = RequestMethod.GET)
+    public String dev(@PathVariable("sport") String sport, Model model) {
+        sportService.dev(sport);
+        threadService.dev(sport);
+        return "redirect:/home/"+sport;
+    }
+
+//-------------------------------------------------
+
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String goToRoot() {
+        return "redirect:/home";
+    }
+
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String goToHome(Model model) {
         List<String> sports = sportService.findAllSports();
         model.addAttribute("sports", sports);
@@ -78,19 +94,19 @@ public class NavController {
         return "createThread";
     }
 
-//    @RequestMapping(value = "/home/{sport}/thread/{id}", method = RequestMethod.GET)
-//    public String goToThread(@PathVariable("id") Long id,Model model) {
-//        //add thred með {id} i model
-//        model.addAttribute("thread", threadService.findThreadById(id));
-//        return "thread";
-//    }
+    @RequestMapping(value = "/home/{sport}/thread/{id}", method = RequestMethod.GET)
+    public String goToThread(@PathVariable("id") Long id,Model model) {
+        //add thred með {id} i model
+        model.addAttribute("thread", threadService.findThreadById(id));
+        return "thread";
+    }
 
 
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    public String goToLogin() {
-//        //done
-//        return "login";
-//    }
+   @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String goToLogin() {
+        //done
+        return "login";
+    }
 
 //    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
 //    public String goToSignUp(Model model) {

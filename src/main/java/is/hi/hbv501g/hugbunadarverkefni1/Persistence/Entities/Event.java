@@ -14,11 +14,13 @@ public class Event {
     private String eventName;
     private String eventDescription;
     private LocalDate eventDate;
+    private String sport;
 
-//------------------test-------------------------------
-    public Event(String eventName, String eventDescription ) {
+    //------------------test-------------------------------
+    public Event(String eventName, String eventDescription ,String sport) {
         this.eventName = eventName;
         this.eventDescription = eventDescription+" og "+eventDescription;
+        this.sport = sport;
     }
     //------------------test end-------------------------------
 
@@ -48,6 +50,9 @@ public class Event {
     public void setEventDate(LocalDate eventDate) {
         this.eventDate = eventDate;
     }
+
+    public String getSport(){return sport;}
+    public void setSport(String sport){this.sport=sport;}
 
     public Event(String eventName, String eventDescription, LocalDate eventDate) {
         this.eventName = eventName;
