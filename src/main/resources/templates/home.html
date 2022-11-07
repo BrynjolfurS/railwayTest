@@ -7,26 +7,157 @@
 </head>
 
 <body>
-<header class="header" style="text-align: center; ">
-    <h1>Heimasíða</h1>
-    <a th:href="@{signUp}">Sign Up</a>
+    <header class="header light-blue text-yellow" style="text-align: center; ">
+        <div> </div>
 
-</header>
+        <h1>Íþróttasíðan</h1>
 
-<div class="left-sidebar">
-    left-sidebar
-</div>
-<div class="main">
-    <tr th:each="sport : ${sports}">
-        <a th:href="@{/home/{s}(s=${sport})}"><p th:text="${sport}"></p></a>
-    </tr>
-</div>
-<div class="right-sidebar">
-    right-sidebar
-</div>
+        <form th:hidden="${session.LoggedInUser != null}" action="#" th:action="@{login}" th:object="${user}"  method="post">
+            <table><tr>
+                <td>Username:</td><td><input type="text" th:field="*{username}" /></td>
+            </tr><tr>
+                <td>Password</td><td><input type="text" th:field="*{userPassword}" /></td>
+            </tr></table>
+            <input type="submit" value="Login" />
+            <a th:href="@{signUp}">Sign Up</a>
+        </form>
 
-<footer class="footer">
+        <div class="userInfo" th:if="${session.LoggedInUser != null}">
+            <p>User: <span th:text="*{session.LoggedInUser.username}"></span></p>
+        </div>
+    </header>
 
-</footer>
+    <div class="main">
+        <div class="sidebar-left light-gray">
+            <menu class="nav">
+                <li class="nav-item nav-icon">
+                    <button class="nav-button"><a th:href="@{/home}">Home</a></button>
+                </li>
+                <li th:each="sport : ${sports}">
+                    <button class="nav-button">
+                        <a th:href="@{/home/{s}(s=${sport})}" th:text="${sport}"></a>
+                    </button>
+                </li>
+            </menu>
+        </div>
+
+        <div class="content-container">
+            <div class="forum-container light-gray">
+                <div class="forum-title">
+                    <h1>Top threads</h1>
+                </div>
+                <div class="thread-table">
+                    <div class="thread-table-head gray">
+                        <div class="post-icon"></div>
+                        <div class="post-subject">Subject</div>
+                        <div class="post-comments">Comments</div>
+                        <div class="post-info">Information</div>
+                    </div>
+
+                    <div class="thread-table-row">
+                        <div class="post-icon"><i class="fa fa-cart-plus"></i></div>
+                        <div class="post-subject">
+                            <a href="">This is a random thread asdasdasdasdasdadasd</a>
+                        </div>
+                        <div class="post-comments">
+                            16 comments
+                        </div>
+                        <div class="post-info">
+                            September 8 2022 <br> Posted by: Username
+                        </div>
+                    </div>
+
+                    <div class="thread-table-row">
+                        <div class="post-icon"><i class="fa fa-compass"></i></div>
+                        <div class="post-subject">
+                            <a href="">This is a random thread</a>
+                        </div>
+                        <div class="post-comments">
+                            16 comments
+                        </div>
+                        <div class="post-info">
+                            September 8 2022 <br> Posted by: Username
+                        </div>
+                    </div>
+
+                    <div class="thread-table-row">
+                        <div class="post-icon"><i class="fa fa-cogs"></i></div>
+                        <div class="post-subject">
+                            <a href="">This is a random thread</a>
+                        </div>
+                        <div class="post-comments">
+                            16 comments
+                        </div>
+                        <div class="post-info">
+                            September 8 2022 <br> Posted by: Username
+                        </div>
+                    </div>
+
+                    <div class="thread-table-row">
+                        <div class="post-icon"><i class="fa fa-eye"></i></div>
+                        <div class="post-subject">
+                            <a href="">This is a random thread</a>
+                        </div>
+                        <div class="post-comments">
+                            16 comments
+                        </div>
+                        <div class="post-info">
+                            September 8 2022 <br> Posted by: Username
+                        </div>
+                    </div>
+
+                    <div class="thread-table-row">
+                        <div class="post-icon"><i class="fa fa-briefcase"></i></div>
+                        <div class="post-subject">
+                            <a href="">This is a random thread</a>
+                        </div>
+                        <div class="post-comments">
+                            16 comments
+                        </div>
+                        <div class="post-info">
+                            September 8 2022 <br> Posted by: Username
+                        </div>
+                    </div>
+
+                    <div class="thread-table-row">
+                        <div class="post-icon"><i class="fa fa-bullhorn"></i></div>
+                        <div class="post-subject">
+                            <a href="">This is a random thread</a>
+                        </div>
+                        <div class="post-comments">
+                            16 comments
+                        </div>
+                        <div class="post-info">
+                            September 8 2022 <br> Posted by: Username
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-right light-gray">
+            <div class="events">
+                <div class="events-title">
+                    <h1>Events</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--    <div class="left-sidebar">-->
+<!--        left-sidebar-->
+<!--    </div>-->
+<!--    <div class="main">-->
+<!--        <tr th:each="sport : ${sports}">-->
+<!--            <a th:href="@{/home/{s}(s=${sport})}"><p th:text="${sport}"></p></a>-->
+<!--        </tr>-->
+<!--    </div>-->
+<!--    <div class="right-sidebar">-->
+<!--        right-sidebar-->
+<!--    </div>-->
+
+    <footer class="footer">
+
+    </footer>
 </body>
 </html>

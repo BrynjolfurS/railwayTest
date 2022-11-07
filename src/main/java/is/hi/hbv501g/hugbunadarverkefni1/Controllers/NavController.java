@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -43,7 +44,7 @@ public class NavController {
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String goToHome(Model model) {
+    public String goToHome(HttpSession session, Model model, User user) {
         List<String> sports = sportService.findAllSports();
         model.addAttribute("sports", sports);
         return "home";
@@ -99,18 +100,5 @@ public class NavController {
         //add thred með {id} i model
         model.addAttribute("thread", threadService.findThreadById(id));
         return "thread";
-    }
-
-
-   @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String goToLogin() {
-        //done
-        return "login";
-    }
-
-    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
-    public String goToSignUp(Model model) {
-        model.addAttribute("user", new User());
-        return "signUp";
     }
 }

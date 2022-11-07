@@ -28,6 +28,12 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public User login(User user) {
+        User doesExist = findByUsername(user.getUsername());
+        if(doesExist != null) {
+            if(doesExist.getUserPassword().equals(user.getUserPassword())){
+                return doesExist;
+            }
+        }
         return null;
     }
 }
