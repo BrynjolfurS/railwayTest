@@ -1,9 +1,181 @@
-* {
-  font-size: 1rem;
+*{
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    font-family: 'Titillium web', sans-serif;
 }
 body {
-  color: red;
+    height: 90vh;
 }
-p {
-  color: red;
+
+menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    border: none;
+}
+
+.main {
+    display: flex;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.header>div {
+    flex: 20%;
+}
+
+.header>h1 {
+    flex: 60%;
+}
+
+.header>form {
+    flex: 20%;
+    justify-content: left;
+}
+
+/* Navigation */
+.nav-button {
+    width: 100%;
+    margin: 1em 0;
+    padding: 1em;
+    color: inherit;
+    background-color: inherit;
+    border-bottom-color: black;
+    border-bottom-width: 2px;
+}
+
+.nav-button:hover {
+    background-color: #D4D4D4;
+}
+
+.hide {
+    display:none!important;
+}
+
+.show {
+    display:block!important;
+}
+
+/* Left sidebar */
+.sidebar-left {
+    flex: 15%;
+    height: 100%;
+}
+
+/* Right sidebar */
+
+.sidebar-right {
+    flex: 15%;
+}
+
+.events-title {
+    text-align: center;
+}
+
+/* Page content */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 70%;
+    margin: 0 1em 0 1em;
+    padding: 20px;
+}
+
+/* Sport page */
+.sport-subpage-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+
+/* Forum/Thread */
+
+.forum-container {
+    flex: 60%;
+    width: 100%;
+}
+
+.forum-title {
+    text-align: center;
+}
+
+.thread-table-head {
+    display: flex;
+    text-align: center;
+}
+
+.thread-table-head div {
+    padding: 5px;
+    margin: 2px;
+    font-weight: bold;
+    background-color: gray;
+}
+
+.thread-table-head .post-icon {
+    background-color: inherit;
+}
+
+.thread-table-row {
+    display: flex;
+}
+
+.thread-table-row .post-icon, .thread-table-row .post-subject,
+.thread-table-row .post-comments, .thread-table-row .post-info {
+    padding: 5px;
+    margin: 2px;
+    background-color: #D4D4D4;
+}
+
+.post-icon {
+    flex: 5%;
+    text-align: center;
+}
+
+.post-subject {
+    flex: 70%;
+}
+
+.post-comments {
+    flex: 10%;
+}
+
+.post-info {
+    flex: 15%;
+}
+
+/* Color */
+.white {
+    background-color: #FFFFFF;
+}
+
+.light-gray {
+    background-color: #EDEDED;
+}
+
+.gray {
+    background-color: #D4D4D4;
+}
+
+.light-blue {
+    background-color: #6677FE;
+}
+
+.text-yellow {
+    color: #FFE200;
 }
