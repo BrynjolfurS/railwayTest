@@ -27,6 +27,7 @@
             <form action="#" th:action="@{logout}" method="post">
                 <input type="submit" value="Logout">
             </form>
+            <button th:hidden="${session.LoggedInUser.isAdmin} != true"><a th:href="@{admin}">Admin page</a></button>
         </div>
     </header>
 

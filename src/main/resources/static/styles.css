@@ -95,6 +95,10 @@ button {
     padding: 20px;
 }
 
+.content-row {
+    width: 100%;
+}
+
 /* Sport page */
 .sport-subpage-container {
     display: flex;

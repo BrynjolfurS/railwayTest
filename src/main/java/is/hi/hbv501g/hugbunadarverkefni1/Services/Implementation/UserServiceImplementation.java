@@ -6,6 +6,8 @@ import is.hi.hbv501g.hugbunadarverkefni1.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImplementation implements UserService {
 
@@ -14,11 +16,32 @@ public class UserServiceImplementation implements UserService {
     @Autowired
     public UserServiceImplementation(UserRepository userRepository) {
         this.userRepository = userRepository;
+
+    }
+
+    // Test/setup fyrir admin notanda
+    @Override
+    public void createAdmin() {
+        User admin = new User();
+        admin.setUsername("master");
+        admin.setUserPassword("master");
+        admin.setIsAdmin(true);
+        this.userRepository.save(admin);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public User findByID(long id) {
+        return userRepository.findByID(id);
     }
 
     @Override
@@ -36,4 +59,5 @@ public class UserServiceImplementation implements UserService {
         }
         return null;
     }
+
 }

@@ -11,7 +11,7 @@ public class User {
     private long ID;
     private String username;
     private String userPassword;
-//    private boolean isAdmin;
+    private boolean isAdmin;
     private List<Comment> comments;
 
     public User() {
@@ -47,17 +47,17 @@ public class User {
         this.username = username;
         this.userPassword = userPassword;
         this.comments = comments;
+        this.isAdmin = false;
     }
 
-//    public boolean isAdmin() {
-//        return isAdmin;
-//    }
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
 
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = true;
+    }
 
-//    public void setAdmin(boolean admin) {
-//        isAdmin = admin;
-//    }
-//
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     public List<Comment> getComments() {
         return comments;

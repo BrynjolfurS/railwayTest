@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -19,6 +22,33 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    // Setup/test to create a user with admin priviliges
+    @RequestMapping(value = "/createadmin", method = RequestMethod.GET)
+    public String createAdmin() {
+        userService.createAdmin();
+        return "redirect:/home";
+    }
+
+    // Page for users with admin priviliges
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String adminGet(Model model, HttpSession session) {
+        return "admin";
+    }
+
+    @RequestMapping(value = "/admin/getallusers")
+    public String adminFindAllUsers(Model model) {
+        model.addAttribute("userList", userService.findAll());
+        return "admin";
+    }
+
+    @RequestMapping(value = "admin/grantadmin/{id}", method = RequestMethod.GET)
+    public String grantAdminPriviliges(@PathVariable("id") long id, Model model) {
+        User userToElevate = userService.findByID(id);
+        userToElevate.setIsAdmin(true);
+        userService.save(userToElevate);
+        return "redirect:/admin";
     }
 
     @RequestMapping(value="/signUp", method= RequestMethod.POST)
