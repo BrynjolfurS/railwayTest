@@ -53,6 +53,12 @@ public class UserController {
         return "redirect:/";
     }
 
+    @RequestMapping(value="/logout", method = RequestMethod.POST)
+    public String logOut(HttpSession session) {
+        session.removeAttribute("LoggedInUser");
+        return "redirect:/";
+    }
+
     @RequestMapping(value="/loggedin", method = RequestMethod.GET)
     public String loggedinGET(HttpSession session, Model model) {
         User sessionUser = (User) session.getAttribute("LoggedInUser");
