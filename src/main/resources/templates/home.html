@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-    Halló heimur!
 <html xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -41,11 +39,11 @@
         <div class="sidebar-left light-gray">
             <menu class="nav">
                 <li class="nav-item nav-icon">
-                    <button class="nav-button"><a th:href="@{/home}">Home</a></button>
+                    <button class="nav-button">Home</a></button>
                 </li>
                 <li th:each="sport : ${sports}">
                     <button class="nav-button">
-                        <a th:href="@{/home/{s}(s=${sport})}" th:text="${sport}"></a>
+                        <a style="font-size: 1.1rem;" th:href="@{/home/{s}(s=${sport})}" th:text="${sport}"></a>
                     </button>
                 </li>
             </menu>
@@ -64,81 +62,17 @@
                         <div class="post-info">Information</div>
                     </div>
 
-                    <div class="thread-table-row">
+                    <div th:each="thread : ${threads}" class="thread-table-row">
                         <div class="post-icon"><i class="fa fa-cart-plus"></i></div>
                         <div class="post-subject">
-                            <a href="">This is a random thread asdasdasdasdasdadasd</a>
+                            <a th:href="@{/home/{s}/thread/{t}(s=${thread.getSport()}, t=${thread.getID()})}" th:text="${thread.getHeader()}"></a>
                         </div>
                         <div class="post-comments">
-                            16 comments
+                            <a href="" th:text="${thread.getComments()?.size()} ?: '0'"></a>
                         </div>
                         <div class="post-info">
-                            September 8 2022 <br> Posted by: Username
-                        </div>
-                    </div>
-
-                    <div class="thread-table-row">
-                        <div class="post-icon"><i class="fa fa-compass"></i></div>
-                        <div class="post-subject">
-                            <a href="">This is a random thread</a>
-                        </div>
-                        <div class="post-comments">
-                            16 comments
-                        </div>
-                        <div class="post-info">
-                            September 8 2022 <br> Posted by: Username
-                        </div>
-                    </div>
-
-                    <div class="thread-table-row">
-                        <div class="post-icon"><i class="fa fa-cogs"></i></div>
-                        <div class="post-subject">
-                            <a href="">This is a random thread</a>
-                        </div>
-                        <div class="post-comments">
-                            16 comments
-                        </div>
-                        <div class="post-info">
-                            September 8 2022 <br> Posted by: Username
-                        </div>
-                    </div>
-
-                    <div class="thread-table-row">
-                        <div class="post-icon"><i class="fa fa-eye"></i></div>
-                        <div class="post-subject">
-                            <a href="">This is a random thread</a>
-                        </div>
-                        <div class="post-comments">
-                            16 comments
-                        </div>
-                        <div class="post-info">
-                            September 8 2022 <br> Posted by: Username
-                        </div>
-                    </div>
-
-                    <div class="thread-table-row">
-                        <div class="post-icon"><i class="fa fa-briefcase"></i></div>
-                        <div class="post-subject">
-                            <a href="">This is a random thread</a>
-                        </div>
-                        <div class="post-comments">
-                            16 comments
-                        </div>
-                        <div class="post-info">
-                            September 8 2022 <br> Posted by: Username
-                        </div>
-                    </div>
-
-                    <div class="thread-table-row">
-                        <div class="post-icon"><i class="fa fa-bullhorn"></i></div>
-                        <div class="post-subject">
-                            <a href="">This is a random thread</a>
-                        </div>
-                        <div class="post-comments">
-                            16 comments
-                        </div>
-                        <div class="post-info">
-                            September 8 2022 <br> Posted by: Username
+                            <p style="margin: 0; padding: 0;" th:text="${thread.getDate()}"></p>
+                            <p style="margin: 0; padding: 0;">Posted by: <span th:text="${thread.getUser()}"></span></p>
                         </div>
                     </div>
                 </div>
@@ -148,25 +82,13 @@
         <div class="sidebar-right light-gray">
             <div class="events">
                 <div class="events-title">
-                    <h1>Events</h1>
+                    <h1>Upcoming Events</h1>
                 </div>
             </div>
         </div>
     </div>
 
-<!--    <div class="left-sidebar">-->
-<!--        left-sidebar-->
-<!--    </div>-->
-<!--    <div class="main">-->
-<!--        <tr th:each="sport : ${sports}">-->
-<!--            <a th:href="@{/home/{s}(s=${sport})}"><p th:text="${sport}"></p></a>-->
-<!--        </tr>-->
-<!--    </div>-->
-<!--    <div class="right-sidebar">-->
-<!--        right-sidebar-->
-<!--    </div>-->
-
-    <footer class="footer">
+    <footer class="footer light-blue text-yellow">
 
     </footer>
 </body>

@@ -17,10 +17,11 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(User user, String comment) {
+    public Comment(User user, String comment, Thread thread) {
         this.user = user;
-        //this.dateCommented = new LocalDate;
+        this.dateCommented = LocalDate.now();
         this.comment = comment;
+        this.thread = thread;
     }
 
     @Id
@@ -33,7 +34,7 @@ public class Comment {
         this.ID = id;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "UserID")
     public User getUser() {
         return user;
@@ -43,9 +44,10 @@ public class Comment {
         this.user = user;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "ThreadID")
     public Thread getThread() {return thread;}
+
     public void setThread(Thread thread) {this.thread = thread;}
 
     public LocalDate getDateCommented() {

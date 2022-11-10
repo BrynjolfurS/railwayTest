@@ -2,27 +2,64 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/styles.css}" />
   <title>Events</title>
 </head>
 
 <body>
-<header class="header" style="text-align: center; ">
-  <h1>Íþróttasíðan</h1>
+
+<header class="header light-blue text-yellow" style="text-align: center; ">
+  <h1 th:text="${#strings.capitalize(thread.getSport())}"></h1>
+  <div class="userInfo" th:if="${session.LoggedInUser != null}">
+    <p>User: <span th:text="*{session.LoggedInUser.username}"></span></p>
+    <form action="#" th:action="@{logout}" method="post">
+      <input type="submit" value="Logout">
+    </form>
+  </div>
 </header>
-
-<div class="left-sidebar">
-  left-sidebar
-</div>
-<div class="main">
-
+  <!--
   <h1 th:text="${thread.user}"></h1>
   <h2 th:text="${thread.header}"></h2>
   <p th:text="${thread.body}"></p>
+  -->
+  <div class="main">
+    <div class="sidebar-left light-gray">
+      <menu class="nav">
+        <li class="nav-item nav-icon">
+          <button class="nav-button">Home</a></button>
+        </li>
+        <li th:each="sport : ${sports}">
+          <button class="nav-button">
+            <a style="font-size: 1.1rem;" th:href="@{/home/{s}(s=${sport})}" th:text="${sport}"></a>
+          </button>
+        </li>
+      </menu>
+    </div>
 
+    <div class="content-container">
+      <div class="forum-container light-gray">
+        <h1 style="text-align:left; margin-left: 1em;" th:text="${thread.header}"></h1>
+        <div style="padding:10px; display: inline-block; padding 5px; text-align:left; margin-left: 2em; border: 1px solid gray; border-radius: 5px; background-color: white;" th:text="${thread.body}"></div>
+        <hr>
 
-      <tr th:each="comment : ${thread.comments}">
-        <p th:text="${comment.comment}"></p>
-      </tr>
+        <li style="list-style-type:none;" th:each="comment : ${comments}">
+          <p th:text="${comment.comment}"></p>
+        </li>
+        <form action="" method="post">
+          <label for="comment">Comment</label>
+          <input type="textarea" name="comment" id="comment" />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+
+    <div class="sidebar-right light-gray">
+      <div class="events">
+        <div class="events-title">
+          <h1>Upcoming Events</h1>
+        </div>
+      </div>
+    </div>
 
 
 

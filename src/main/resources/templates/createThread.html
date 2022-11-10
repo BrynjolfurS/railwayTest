@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <title>Title</title>
+</head>
+
+<body>
+<header class="header light-blue text-yellow" style="text-align: center; ">
+    <h1 th:text="${#strings.capitalize(sport)}"></h1>
+    <div class="userInfo" th:if="${session.LoggedInUser != null}">
+        <p>User: <span th:text="*{session.LoggedInUser.username}"></span></p>
+        <form action="#" th:action="@{logout}" method="post">
+            <input type="submit" value="Logout">
+        </form>
+    </div>
+</header>
+
+<div class="main">
+    <div class="sidebar-left light-gray">
+        <menu class="nav">
+            <li class="nav-item nav-icon">
+                <button class="nav-button"><a th:href="@{/home}">Home</a></button>
+            </li>
+            <li th:each="sport : ${sports}">
+                <button class="nav-button">
+                    <a th:href="@{/home/{s}(s=${sport})}" th:text="${sport}"></a>
+                </button>
+            </li>
+        </menu>
+    </div>
+
+    <div class="content-container">
+        <form action="" method="post" style="display:flex; flex-direction:column;">
+            <label>Title</label>
+            <input type="text" name="header" maxlength="63" />
+            <label>Text</label>
+            <input type="textarea" name="body" maxlength="500"/>
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+
+
+    <div class="sidebar-right light-gray">
+        <div class="events">
+            <div class="events-title">
+                <h1>Events</h1>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+
+</footer>
+</body>
+</html>
