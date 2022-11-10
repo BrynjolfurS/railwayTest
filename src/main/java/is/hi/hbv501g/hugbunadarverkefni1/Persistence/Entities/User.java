@@ -43,11 +43,11 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public User(String username, String userPassword, List<Comment> comments) {
+    public User(String username, String userPassword, boolean isAdmin, List<Comment> comments) {
         this.username = username;
         this.userPassword = userPassword;
         this.comments = comments;
-        this.isAdmin = false;
+        this.isAdmin = isAdmin;
     }
 
     public boolean getIsAdmin() {
@@ -55,7 +55,7 @@ public class User {
     }
 
     public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = true;
+        this.isAdmin = isAdmin;
     }
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

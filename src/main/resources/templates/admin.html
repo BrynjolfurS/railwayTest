@@ -28,7 +28,7 @@
             </menu>
         </div>
 
-        <div class="content-container">
+        <div class="content-container" th:if="${session.LoggedInUser.isAdmin} == true">
             <div class="content-row">
                 <h2>Edit users</h2>
 <!--                <form action="#" th:action="@{admin/getallusers}" method="get">-->
@@ -45,6 +45,10 @@
                     </tr>
                 </table>
             </div>
+        </div>
+
+        <div class="content-container" th:if="${session.LoggedInUser.isAdmin} != true">
+            <h1>You do not have admin priviliges</h1>
         </div>
 
         <div class="sidebar-right light-gray">

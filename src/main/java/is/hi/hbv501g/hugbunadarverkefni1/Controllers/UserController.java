@@ -78,15 +78,16 @@ public class UserController {
         if (exists != null) {
             session.setAttribute("LoggedInUser", exists);
             model.addAttribute("LoggedInUser", exists);
+            System.out.println(exists.getIsAdmin());
             return "redirect:/";
         }
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @RequestMapping(value="/logout", method = RequestMethod.POST)
     public String logOut(HttpSession session) {
         session.removeAttribute("LoggedInUser");
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @RequestMapping(value="/loggedin", method = RequestMethod.GET)
