@@ -3,6 +3,7 @@ package is.hi.hbv501g.hugbunadarverkefni1.Services.Implementation;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Club;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Comment;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Thread;
+import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.User;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.ThreadRepository;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.UserRepository;
 import is.hi.hbv501g.hugbunadarverkefni1.Services.ThreadService;
@@ -28,19 +29,20 @@ public class ThreadServiceImplementation implements ThreadService {
     public void dev(String sport) {
         List<Comment> a = new ArrayList<Comment>();
 
-        save(new Thread("mr stuff1",false,a,sport+" thread1",sport+sport+sport,sport));
+        save(new Thread("mr stuff1",sport+" thread1",sport+sport+sport,sport));
     }
 
     //----------------------------------------
 
-    @Override
-    public void addComment(String comment) {
 
+    @Override
+    public void addComment(String comment, Thread thread) {
+        threadRepository.save(new Comment(null, comment, thread));
     }
 
     @Override
-    public void save(Thread thread) {
-        threadRepository.save(thread);
+    public Thread save(Thread thread) {
+        return threadRepository.save(thread);
     }
 
     @Override
@@ -59,6 +61,11 @@ public class ThreadServiceImplementation implements ThreadService {
     }
 
     @Override
+    public void deleteAll() {
+        threadRepository.deleteAll();
+    }
+
+    @Override
     public void deleteComment(Comment comment) {
 
     }
@@ -68,5 +75,17 @@ public class ThreadServiceImplementation implements ThreadService {
         return  threadRepository.findByID(id);
     }
 
+    @Override
+    public List<Thread> findAllThreads() {
+        return threadRepository.findAll();
+    }
 
+    public void PopulateDummyData() {
+        threadRepository.deleteAll();
+        threadRepository.save(new Thread("user", "Badminton test þráður 1", "body", "badminton"));
+        threadRepository.save(new Thread("user", "Pílukast test þráður 1", "body", "pilukast"));
+        threadRepository.save(new Thread("user", "Pílukast test þráður 2", "body", "pilukast"));
+        threadRepository.save(new Thread("user", "Badminton test þráður 2", "body", "badminton"));
+        threadRepository.save(new Thread("user", "Pílukast test þráður 3", "body", "pilukast"));
+    }
 }

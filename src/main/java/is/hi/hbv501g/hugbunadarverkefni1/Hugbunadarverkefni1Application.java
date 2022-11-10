@@ -1,16 +1,22 @@
 package is.hi.hbv501g.hugbunadarverkefni1;
 
-// Jökull
-// Ólafur Pálsson - olp10@hi.is
-// Kristófer Darri
-// Brynjólfur Steingrímsson - brs26@hi.is
-
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+// Jökull
+// Ólafur Pálsson - olp10@hi.is
+// Kristófer Darri
+// Brynjólfur Steingrímsson - brs26@hi.is
+
 
 @SpringBootApplication
 @EnableJpaRepositories
@@ -24,5 +30,4 @@ public class Hugbunadarverkefni1Application extends SpringBootServletInitializer
     public static void main(String[] args) {
         SpringApplication.run(Hugbunadarverkefni1Application.class, args);
     }
-
 }

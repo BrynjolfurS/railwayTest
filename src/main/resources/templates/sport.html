@@ -2,42 +2,90 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/styles.css}" />
   <title>Title</title>
 </head>
 
 <body>
-<header class="header" style="text-align: center; ">
-  <h1 th:text="${sport}"></h1>
+<header class="header light-blue text-yellow" style="text-align: center; ">
+  <h1 th:text="${#strings.capitalize(sport)}"></h1>
+  <div class="userInfo" th:if="${session.LoggedInUser != null}">
+    <p>User: <span th:text="*{session.LoggedInUser.username}"></span></p>
+    <form action="#" th:action="@{logout}" method="post">
+      <input type="submit" value="Logout">
+    </form>
+  </div>
 </header>
 
-<div class="left-sidebar">
-  left-sidebar
-</div>
 <div class="main">
-  <p th:text="${sport}"></p>
-  <a th:href="@{/dev/{s}(s=${sport})}"><h1>dev</h1></a>
+    <div class="sidebar-left light-gray">
+      <menu class="nav">
+        <li class="nav-item nav-icon">
+          <button class="nav-button"><a th:href="@{/home}">Home</a></button>
+        </li>
+        <li th:each="sport : ${sports}">
+          <button class="nav-button">
+            <a th:href="@{/home/{s}(s=${sport})}" th:text="${sport}"></a>
+          </button>
+        </li>
+      </menu>
+    </div>
 
-  <a th:href="@{./{s}/events(s=${sport})}"><p>events</p></a>
-  <a th:href="@{./{s}/clubs(s=${sport})}"><p>clubs</p></a>
+  <div class="content-container">
 
-  <h2>Threads</h2>
-  <tr th:each="thread : ${threads}">
-    <td th:text="${thread.user}"></td>
-    <a th:href="@{./{s}/thread/{id}(s=${sport},id=${thread.ID})}">
-      <p th:text="${thread.header}"></p>
-    </a>
+    <div class="forum-title">
+      <h2>Threads</h2>
+    </div>
 
-  </tr>
+    <div class="thread-table">
+      <div class="thread-table-head gray">
+        <div class="post-icon"></div>
+        <div class="post-subject">Subject</div>
+        <div class="post-comments">Comments</div>
+        <div class="post-info">Information</div>
+      </div>
+    </div>
 
+    <div th:each="thread : ${threads}" class="thread-table-row">
+      <div class="post-icon"><i class="fa fa-cart-plus"></i></div>
+      <div class="post-subject">
+        <a th:href="@{/home/{s}/thread/{t}(s=${thread.getSport()}, t=${thread.getID()})}" th:text="${thread.getHeader()}"></a>
+      </div>
+      <div class="post-comments">
+        <a href="" th:text="${thread.getComments()?.size()} ?: '0'"></a>
+      </div>
+      <div class="post-info">
+        <p style="margin: 0; padding: 0;" th:text="${thread.getDate()}"></p>
+        <p style="margin: 0; padding: 0;">Posted by: <span th:text="${thread.getUser()}"></span></p>
+      </div>
+    </div>
+    <a th:href="@{/home/{s}/createThread(s=${sport})}">Create New Thread</a>
+  </div>
 
+  <div class="sidebar-right light-gray">
+    <div class="events">
+      <div class="events-title">
+        <h2>Upcoming Events</h2>
+        <p>Dummy Event</p>
+        <p>Dummy Event</p>
+        <p>Dummy Event</p>
+        <p>Dummy Event</p>
+      </div>
+    </div>
+    <div class="events">
+      <div class="events-title">
+        <h2>Top 5 Players</h2>
+        <p>Dummy Player</p>
+        <p>Dummy Player</p>
+        <p>Dummy Player</p>
+      </div>
+    </div>
+  </div>
 
 </div>
-<div class="right-sidebar">
-  right-sidebar
-</div>
 
-<footer class="footer">
-
+<footer class="footer light-blue text-yellow">
+  <h3>Allur réttur áskilinn</h3>
 </footer>
 </body>
 </html>
