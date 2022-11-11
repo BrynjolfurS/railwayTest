@@ -32,13 +32,12 @@
     </div>
 
 
-  <a th:href="@{/dev/{s}(s=${sport})}"><h1>dev</h1></a>
+  <!-- <a th:href="@{/dev/{s}(s=${sport})}"><h1>dev</h1></a> -->
 
   <div class="content-container">
+    <div style="display: flex; flex-direction: row;">
+    </div>
 
-
-
-  </tr>
     <div class="forum-title">
       <h2>Threads</h2>
     </div>
@@ -65,28 +64,24 @@
         <p style="margin: 0; padding: 0;">Posted by: <span th:text="${thread.getUser()}"></span></p>
       </div>
     </div>
-    <a th:href="@{/home/{s}/createThread(s=${sport})}">Create New Thread</a>
+
   </div>
 
   <div class="sidebar-right light-gray">
     <div class="events">
+      <a th:href="@{/home/{s}/createThread(s=${sport})}">Post New Thread</a>
       <div class="events-title">
         <h2>Upcoming Events</h2>
         <a th:href="@{/home/{s}/events(s=${sport})}"><p> events </p></a>
         <a th:href="@{/home/{s}/clubs(s=${sport})}"><p> clubs </p></a>
-        <p>Dummy Event</p>
-        <p>Dummy Event</p>
-        <p>Dummy Event</p>
-        <p>Dummy Event</p>
+        <p th:each="event : ${events}" th:text="${event.eventName}"></p>
       </div>
     </div>
     <div class="events">
       <div class="events-title">
         <h2>Top 5 Players</h2>
+        <p th:each="player : ${players}" th:text="${player.playerName}"></p>
         <a th:href="@{/home/{s}/players(s=${sport})}"><p> players </p></a>
-        <p>Dummy Player</p>
-        <p>Dummy Player</p>
-        <p>Dummy Player</p>
       </div>
     </div>
   </div>
@@ -94,7 +89,7 @@
 </div>
 
 <footer class="footer light-blue text-yellow">
-  <h3>Allur réttur áskilinn</h3>
+  <h3>&copy Allur réttur áskilinn</h3>
 </footer>
 </body>
 </html>
