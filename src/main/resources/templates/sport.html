@@ -2,38 +2,84 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <link rel="stylesheet" th:href="@{/styles.css}" />
+  <title th:text="${sport}">Title</title>
 </head>
 
 <body>
-<header class="header" style="text-align: center; ">
+<header class="header light-blue text-yellow" style="text-align: center; ">
   <h1 th:text="${sport}"></h1>
 </header>
 
-<div class="left-sidebar">
-  left-sidebar
-</div>
 <div class="main">
-  <p th:text="${sport}"></p>
-  <a th:href="@{/dev/{s}(s=${sport})}"><h1>dev</h1></a>
 
-  <a th:href="@{./{s}/events(s=${sport})}"><p>events</p></a>
-  <a th:href="@{./{s}/clubs(s=${sport})}"><p>clubs</p></a>
+  <div class="sidebar-left light-gray">
+    <menu class="nav">
+      <li class="nav-item nav-icon">
+        <button class="nav-button"><a th:href="@{/home}">Home</a></button>
+      </li>
+      <!--    <li th:each="sport : ${sports}">-->
+      <!--      <button class="nav-button">-->
+      <!--        <a th:href="@{/home/{s}(s=${sport})}" th:text="${sport}"></a>-->
+      <!--      </button>-->
+      <!--    </li>-->
+    </menu>
+  </div>
 
-  <h2>Threads</h2>
-  <tr th:each="thread : ${threads}">
-    <td th:text="${thread.user}"></td>
-    <a th:href="@{./{s}/thread/{id}(s=${sport},id=${thread.ID})}">
-      <p th:text="${thread.header}"></p>
-    </a>
+  <div class="content-container">
+    <div class="forum-container light-gray">
+      <div class="forum-title">
+        <h1 th:text="${sport} + ' discussions'">Top threads</h1>
+      </div>
+      <div class="thread-table">
+        <div class="thread-table-head gray">
+          <div class="post-icon"></div>
+          <div class="post-subject">Subject</div>
+          <div class="post-comments">Comments</div>
+          <div class="post-info">Information</div>
+        </div>
 
-  </tr>
+        <div th:each="thread : ${threads}" class="thread-table-row">
+          <div class="post-icon"><i class="fa fa-cart-plus"></i></div>
+          <div class="post-subject">
+            <a class="post-link" th:text="${thread.header}" href="@{./{s}/thread/{id}(s=${sport},id=${thread.ID})}"></a>
+          </div>
+          <div class="post-comments">
+            16 comments
+          </div>
+          <div class="post-info">
+            September 8 2022 <br> <div th:text="${thread.user}"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
 
 
-</div>
-<div class="right-sidebar">
-  right-sidebar
+    <p th:text="${sport}"></p>
+    <a th:href="@{/dev/{s}(s=${sport})}"><h1>dev</h1></a>
+
+    <a th:href="@{./{s}/events(s=${sport})}"><p>events</p></a>
+    <a th:href="@{./{s}/clubs(s=${sport})}"><p>clubs</p></a>
+
+    <h2>Threads</h2>
+    <tr th:each="thread : ${threads}">
+      <td th:text="${thread.user}"></td>
+      <a th:href="@{./{s}/thread/{id}(s=${sport},id=${thread.ID})}">
+        <p th:text="${thread.header}"></p>
+      </a>
+
+    </tr>
+  </div>
+
+  <div class="sidebar-right light-gray">
+    <div class="events">
+      <div class="events-title">
+        <h1>Events</h1>
+      </div>
+    </div>
+  </div>
 </div>
 
 <footer class="footer">

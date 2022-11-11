@@ -155,6 +155,10 @@ button {
     flex: 70%;
 }
 
+.post-link {
+    line-height: 10px;
+}
+
 .post-comments {
     flex: 10%;
 }
