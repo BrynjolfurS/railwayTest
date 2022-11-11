@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "players")
-public class Player {
+public class Player implements Comparable<Player> {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -57,7 +57,8 @@ public class Player {
         this.losses = losses;
     }
 
-    public String getSport(){return sport;}
+    @OneToOne(mappedBy = "player", fetch = FetchType.LAZY)
+    public String getSport() {return sport;}
     public void setSport(String sport){this.sport=sport;}
 
     public Player(String playerName, String playerInfo, int wins, int losses, String sport) {
@@ -66,5 +67,11 @@ public class Player {
         this.wins = wins;
         this.losses = losses;
         this.sport = sport;
+    }
+
+    public int compareTo(Player that) {
+        if (this.wins > that.wins) return 1;
+        if (this.wins == that.wins) return 0;
+        return -1;
     }
 }

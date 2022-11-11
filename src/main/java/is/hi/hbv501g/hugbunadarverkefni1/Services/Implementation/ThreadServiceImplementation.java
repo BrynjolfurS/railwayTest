@@ -79,13 +79,4 @@ public class ThreadServiceImplementation implements ThreadService {
     public List<Thread> findAllThreads() {
         return threadRepository.findAll();
     }
-
-    public void PopulateDummyData() {
-        threadRepository.deleteAll();
-        threadRepository.save(new Thread("user", "Badminton test þráður 1", "body", "badminton"));
-        threadRepository.save(new Thread("user", "Pílukast test þráður 1", "body", "pilukast"));
-        threadRepository.save(new Thread("user", "Pílukast test þráður 2", "body", "pilukast"));
-        threadRepository.save(new Thread("user", "Badminton test þráður 2", "body", "badminton"));
-        threadRepository.save(new Thread("user", "Pílukast test þráður 3", "body", "pilukast"));
-    }
 }

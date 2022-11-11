@@ -15,6 +15,5 @@ public interface ThreadService {
     public void deleteAll();
     public void deleteComment(Comment comment);
     public void dev(String sport);
-    public void PopulateDummyData();
     public Thread findThreadById(Long id);
 }

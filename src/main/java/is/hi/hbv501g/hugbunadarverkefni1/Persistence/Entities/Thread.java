@@ -63,7 +63,8 @@ public class Thread {
 
     @OneToMany(mappedBy = "thread", fetch = FetchType.LAZY)
     public List<Comment> getComments() {
-        return comments;
+        if (comments != null) return comments;
+        return new ArrayList<>();
     }
 
     public int getNumberOfComments() {

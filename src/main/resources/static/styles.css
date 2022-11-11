@@ -3,11 +3,11 @@
 }
 
 html {
+    padding: 0;
     font-size: 14px;
     font-family: 'Titillium web', sans-serif;
 }
 body {
-    height: 90vh;
     background-color: #F2F2F2;
     margin: 0;
 }
@@ -16,6 +16,7 @@ footer {
     height: 10%;
     text-align: center;
     padding:auto;
+    margin-bottom: 0;
 }
 
 menu {
@@ -149,6 +150,7 @@ a { text-decoration: none; }
 
 .thread-table-row {
     display: flex;
+    overflow: hidden;
 }
 
 .thread-table-row .post-icon, .thread-table-row .post-subject,
