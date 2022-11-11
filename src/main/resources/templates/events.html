@@ -18,8 +18,11 @@
   <tr th:each="event : ${events}">
       <h3 th:text="${event.eventName}"></h3>
       <p th:text="${event.eventDescription}"></p>
-
+      <p th:text="${event.eventDate}"></p>
+      <p>------------------------------------------------------------------------------------------</p>
   </tr>
+
+    <a href="./events/edit"><p>edit</p></a>
 
 </div>
 <div class="right-sidebar">

@@ -18,6 +18,13 @@ public class Player {
     public Player() {
     }
 
+    public long getID() {
+        return ID;
+    }
+    public void setID(long id) {
+        this.ID = id;
+    }
+
     public String getPlayerName() {
         return playerName;
     }

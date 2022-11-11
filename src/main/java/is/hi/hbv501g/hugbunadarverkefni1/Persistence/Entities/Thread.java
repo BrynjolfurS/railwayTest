@@ -14,7 +14,7 @@ public class Thread {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long ID;
     private String username;
-    private boolean isPinned;
+    private boolean isPinned = false;
 
     @OneToMany(mappedBy = "thread", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
@@ -25,25 +25,17 @@ public class Thread {
 
     private String sport;
 
-
-
-
-
     public Thread() {
     }
 
 
 
-    public Thread(String user, boolean isPinned, List<Comment> comments, String header, String body, String sport) {
-
-
+    public Thread(String user, String header, String body, String sport) {
         this.username = user;
-        this.isPinned = isPinned;
-        this.comments = comments;
         this.header = header;
         this.body = body;
         this.sport=sport;
-        //this.date = new LocalDate();
+        this.date = LocalDate.now();
     }
 
     public long getID() {
@@ -69,8 +61,13 @@ public class Thread {
         isPinned = pinned;
     }
 
+    @OneToMany(mappedBy = "thread", fetch = FetchType.LAZY)
     public List<Comment> getComments() {
         return comments;
+    }
+
+    public int getNumberOfComments() {
+        return getComments().size();
     }
 
     public void setComments(List<Comment> comments) {

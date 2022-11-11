@@ -42,7 +42,7 @@
         <div th:each="thread : ${threads}" class="thread-table-row">
           <div class="post-icon"><i class="fa fa-cart-plus"></i></div>
           <div class="post-subject">
-            <a class="post-link" th:text="${thread.header}" href="@{./{s}/thread/{id}(s=${sport},id=${thread.ID})}"></a>
+            <a class="post-link" th:text="${thread.header}" th:href="@{./{s}/thread/{id}(s=${sport},id=${thread.ID})}"></a>
           </div>
           <div class="post-comments">
             16 comments

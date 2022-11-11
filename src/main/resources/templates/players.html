@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<tr th:each="p : ${players}">
+    <h3 th:text="${p.playerName}"></h3>
+    <p th:text="${p.playerInfo}"></p>
+    <p th:text="${p.wins}"></p>
+    <p th:text="${p.losses}"></p>
+    <p>------------------------------------------------------------------------------------------</p>
+</tr>
+
+<a href="./players/edit"><p>edit</p></a>
+
+</body>
+</html>

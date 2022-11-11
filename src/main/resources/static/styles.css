@@ -8,6 +8,14 @@ html {
 }
 body {
     height: 90vh;
+    background-color: #F2F2F2;
+    margin: 0;
+}
+
+footer {
+    height: 10%;
+    text-align: center;
+    padding:auto;
 }
 
 menu {
@@ -49,13 +57,16 @@ button {
 /* Navigation */
 .nav-button {
     width: 100%;
-    margin: 1em 0;
-    padding: 1em;
+    margin: .3em 0;
+    padding: .7em;
     color: inherit;
     background-color: inherit;
+    border: 0 solid;
     border-bottom-color: black;
     border-bottom-width: 2px;
 }
+
+a { text-decoration: none; }
 
 .nav-button:hover {
     background-color: #D4D4D4;
@@ -72,7 +83,7 @@ button {
 /* Left sidebar */
 .sidebar-left {
     flex: 15%;
-    height: 100%;
+    padding-top: 4%;
 }
 
 /* Right sidebar */
@@ -92,7 +103,7 @@ button {
     height: 100%;
     width: 70%;
     margin: 0 1em 0 1em;
-    padding: 20px;
+    padding: 0 20px;
 }
 
 .content-row {
@@ -122,6 +133,7 @@ button {
 .thread-table-head {
     display: flex;
     text-align: center;
+    font-size: 1.3em;
 }
 
 .thread-table-head div {
@@ -152,7 +164,9 @@ button {
 }
 
 .post-subject {
+    display: flex;
     flex: 70%;
+    justify-content: flex-start;
 }
 
 .post-link {
@@ -160,11 +174,13 @@ button {
 }
 
 .post-comments {
+    text-align: center;
     flex: 10%;
 }
 
 .post-info {
     flex: 15%;
+    text-align: center;
 }
 
 /* Color */
