@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<h1>New Club</h1>
+
+<form action="#" th:action="@{./save}" th:object="${club}" method="post">
+  <table>
+    <tr>
+      <td>Club Name:</td>
+      <td><input type="text" th:field="*{clubName}"  /></td>
+    </tr>
+    <tr>
+      <td>Club Url:</td>
+      <td><input type="text" th:field="*{clubUrl}" /></td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td><input type="text" th:field="*{description}" /></td>
+    </tr>
+  </table>
+  <input type="submit" value="New Club" />
+</form>
+<p>------------------------------------------------------------------------------------------</p>
+
+
+<tr th:each="c : ${clubs}">
+  <h3 th:text="${c.clubName}"></h3>
+  <a th:href="@{${c.clubUrl}}"><p>    clubUrl   </p></a>
+  <p th:text="${c.description}"></p>
+
+
+  <form action="#" th:action="@{./edit/{id}(id=${c.ID})}" th:object="${c}" method="post">
+    <table>
+      <tr>
+        <td>Club Name:</td>
+        <td><input type="text" id="clubName" name="clubName" th:value="${c.clubName}"  /></td>
+      </tr>
+      <tr>
+        <td>Club Url:</td>
+        <td><input type="text" id="clubUrl" name="clubUrl" th:value="${c.clubUrl}" /></td>
+      </tr>
+      <tr>
+        <td>Description:</td>
+        <td><input type="text" id="description" name="description" th:value="${c.description}" /></td>
+      </tr>
+    </table>
+    <input type="submit" value="Edit" />
+    <a th:href="@{./delete/{id}(id=${c.ID})}">
+      <input type="button" value="Delete" />
+    </a>
+  </form>
+
+  <p>------------------------------------------------------------------------------------------</p>
+</tr>
+
+
+
+</body>
+</html>

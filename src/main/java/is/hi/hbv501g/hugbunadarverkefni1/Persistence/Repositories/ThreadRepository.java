@@ -10,6 +10,7 @@ public interface ThreadRepository extends JpaRepository<Thread, Long> {
     public Thread save(Thread thread);
     public Comment save(Comment comment);
     public void delete(Thread thread);
+
     public void deleteAll();
     public List<Thread> findAll();
     public List<Thread> findBySport(String sport);

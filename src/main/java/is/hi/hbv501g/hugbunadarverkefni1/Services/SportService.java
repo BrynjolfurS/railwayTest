@@ -12,10 +12,14 @@ public interface SportService {
     void dev(String sport);
     public List<String> findAllSports();
     List<Event> findAllEventsBySport(String sport);
-    public void editEntity(Object object);
-
+    Club saveClub(Club club);
+    void  deletClubById(long id);
+    Event saveEvent(Event event);
+    void  deletEventById(long id);
+    Player savePlayer(Player player);
+    void  deletPlayerById(long id);
     List<Player> findAllPlayersBySport(String sport);
-    public void createEntity(Object object);
+
 
 
     List<Club> findAllClubsBySport(String sport);

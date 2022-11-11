@@ -29,20 +29,22 @@ public class SportServiceImplementation implements SportService {
     }
 
 
+
+    //------------------------DEV START----------------------------------------------
+
     @Override
     public void dev(String sport) {
         eventRepository.save(new Event(sport+"---1---     ",sport,sport));
         eventRepository.save(new Event(sport+"---2---     ",sport,sport));
-        eventRepository.save(new Event(sport+"---3---     ",sport,sport));
 
 
         clubRepository.save(new Club(sport+"---1---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport,sport));
         clubRepository.save(new Club(sport+"---2---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport,sport));
-        clubRepository.save(new Club(sport+"---3---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport,sport));
-
-
 
     }
+
+
+    //------------------------DEV END----------------------------------------------
 
     @Override
     public List<String> findAllSports() {
@@ -50,38 +52,68 @@ public class SportServiceImplementation implements SportService {
         sport.add("badminton");
         sport.add("pilukast");
         sport.add("Extreme Ironing");
-
-
         return sport;
     }
 
-    @Override
-    public List<Event> findAllEventsBySport(String sport) {
-        return eventRepository.findBySport(sport);
-    }
 
+
+
+    //------------------------CLUB START----------------------------------------------
     @Override
-    public List<Player> findAllPlayersBySport(String sport) {
-        return playerRepository.findBySport(sport);
-    }
+    public List<Club> findAllClubsBySport(String sport) { return clubRepository.findBySport(sport); }
 
     @Override
-    public List<Club> findAllClubsBySport(String sport) {
-        return clubRepository.findBySport(sport);
-    }
-
-
+    public Club saveClub(Club club) { return clubRepository.save(club); }
 
     @Override
-    public void editEntity(Object object) { // Spurning hvort þetta virki sem einhvers konar Generic til að edita?
-        if(object.getClass().equals(User.class)) {
+    public void deletClubById(long id) { clubRepository.delete(clubRepository.findByID(id)); }
+    //------------------------CLUB END----------------------------------------------
 
-        }
-    }
+
+
+
+    //------------------------EVENT START----------------------------------------------
+    @Override
+    public List<Event> findAllEventsBySport(String sport) { return eventRepository.findBySport(sport); }
 
     @Override
-    public void createEntity(Object object) {
+    public Event saveEvent(Event event) { return eventRepository.save(event); }
 
-    }
+    @Override
+    public void deletEventById(long id) { eventRepository.delete(eventRepository.findByID(id)); }
+    //------------------------EVENT END----------------------------------------------
+
+
+
+
+
+    //------------------------PLAYER START----------------------------------------------
+    @Override
+    public List<Player> findAllPlayersBySport(String sport) { return playerRepository.findBySport(sport); }
+
+    @Override
+    public Player savePlayer(Player player) { return playerRepository.save(player); }
+
+    @Override
+    public void deletPlayerById(long id) { playerRepository.delete(playerRepository.findByID(id)); }
+    //------------------------PLAYER END----------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

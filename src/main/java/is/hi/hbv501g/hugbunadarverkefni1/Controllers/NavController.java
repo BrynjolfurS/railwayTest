@@ -1,5 +1,8 @@
 package is.hi.hbv501g.hugbunadarverkefni1.Controllers;
 
+import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Club;
+import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Event;
+import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Player;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Thread;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.User;
 import is.hi.hbv501g.hugbunadarverkefni1.Services.SportService;
@@ -85,29 +88,45 @@ public class NavController {
 
     @RequestMapping(value = "/home/{sport}/clubs", method = RequestMethod.GET)
     public String goToClubs(@PathVariable("sport") String sport, Model model) {
+
         model.addAttribute("clubs", sportService.findAllClubsBySport(sport));
         return "clubs";
     }
 
     @RequestMapping(value = "/home/{sport}/players", method = RequestMethod.GET)
-    public String goToTopPlayers(Model model) {
+    public String goToTopPlayers(@PathVariable("sport") String sport, Model model) {
         // add players from {sport} to model
+        model.addAttribute("players", sportService.findAllPlayersBySport(sport));
         return "players";
     }
 
-    @RequestMapping(value = "/home/{sport}/editInformation", method = RequestMethod.GET)
-    public String goToEditInformation(Model model) {
-        //duno
-        return "editInformation";
+    @RequestMapping(value = "/home/{sport}/players/edit", method = RequestMethod.GET)
+    public String goToEditPlayers(@PathVariable("sport") String sport, Model model) {
+        model.addAttribute("player", new Player());
+        model.addAttribute("players", sportService.findAllPlayersBySport(sport));
+        return "editPlayers";
+    }
+    @RequestMapping(value = "/home/{sport}/clubs/edit", method = RequestMethod.GET)
+    public String goToEditClubs(@PathVariable("sport") String sport, Model model) {
+        model.addAttribute("club", new Club());
+        model.addAttribute("clubs", sportService.findAllClubsBySport(sport));
+        return "editClubs";
+    }
+    @RequestMapping(value = "/home/{sport}/events/edit", method = RequestMethod.GET)
+    public String goToEditEvent(@PathVariable("sport") String sport, Model model) {
+        model.addAttribute("event", new Event());
+        model.addAttribute("events", sportService.findAllEventsBySport(sport));
+        return "editEvents";
     }
 
-    /*
     @RequestMapping(value = "/home/{sport}/createThread", method = RequestMethod.GET)
-    public String goToCreateThread(Model model) {
-        //done?
+    public String newThread(@PathVariable("sport") String sport, Model model) {
+        List<String> sports = sportService.findAllSports();
+        List<Event> events = sportService.findAllEventsBySport(sport);
+        model.addAttribute("events", events);
+        model.addAttribute("sports", sports);
         return "createThread";
     }
-     */
 
     @RequestMapping(value = "/home/{sport}/thread/{id}", method = RequestMethod.GET)
     public String goToThread(@PathVariable("id") Long id, Model model) {
@@ -118,5 +137,18 @@ public class NavController {
         model.addAttribute("comments", thread.getComments());
 
         return "thread";
+    }
+
+
+   @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String goToLogin() {
+        //done
+        return "login";
+    }
+
+    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
+    public String goToSignUp(Model model) {
+        model.addAttribute("user", new User());
+        return "signUp";
     }
 }

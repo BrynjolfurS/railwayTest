@@ -29,14 +29,7 @@ public class ThreadController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/home/{sport}/createThread", method = RequestMethod.GET)
-    public String newThread(@PathVariable("sport") String sport, Model model) {
-        List<String> sports = sportService.findAllSports();
-        List<Event> events = sportService.findAllEventsBySport(sport);
-        model.addAttribute("events", events);
-        model.addAttribute("sports", sports);
-        return "createThread";
-    }
+
 
     @RequestMapping(value = "/home/{sport}/createThread", method = RequestMethod.POST)
     public String addThread(@PathVariable("sport") String sport, String header, String body, User user, Model model) {

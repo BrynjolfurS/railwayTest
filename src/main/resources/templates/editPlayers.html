@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>New Player</h1>
+<form action="#" th:action="@{./save}" th:object="${player}" method="post">
+    <table>
+        <tr>
+            <td>Player Name:</td>
+            <td><input type="text" th:field="*{playerName}" /></td>
+        </tr>
+        <tr>
+            <td>Player Info:</td>
+            <td><input type="text" th:field="*{playerInfo}" /></td>
+        </tr>
+        <tr>
+            <td>Wins:</td>
+            <td><input type="number" th:field="*{wins}" /></td>
+        </tr>
+        <tr>
+            <td>Losses:</td>
+            <td><input type="number" th:field="*{losses}" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="New Player" />
+</form>
+<p>------------------------------------------------------------------------------------------</p>
+
+<tr th:each="p : ${players}">
+    <h3 th:text="${p.playerName}"></h3>
+    <p th:text="${p.playerInfo}"></p>
+    <p th:text="${p.wins}"></p>
+    <p th:text="${p.losses}"></p>
+
+
+    <form action="#" th:action="@{./edit/{id}(id=${p.ID})}" th:object="${player}" method="post">
+        <table>
+            <tr>
+                <td>Player Name:</td>
+                <td><input type="text" id="playerName" name="playerName" th:value="${p.playerName}" /></td>
+            </tr>
+            <tr>
+                <td>Player Info:</td>
+                <td><input type="text" id="playerInfo" name="playerInfo" th:value="${p.playerInfo}" /></td>
+            </tr>
+            <tr>
+                <td>Wins:</td>
+                <td><input type="number" id="wins" name="wins" th:value="${p.wins}" /></td>
+            </tr>
+            <tr>
+                <td>Losses:</td>
+                <td><input type="number" id="losses" name="losses" th:value="${p.losses}" /></td>
+            </tr>
+        </table>
+        <input type="submit" value="Edit" />
+        <a th:href="@{./delete/{id}(id=${p.ID})}">
+            <input type="button" value="Delete" />
+        </a>
+    </form>
+    <p>------------------------------------------------------------------------------------------</p>
+
+</tr>
+
+
+
+</body>
+</html>

@@ -31,8 +31,14 @@
       </menu>
     </div>
 
+
+  <a th:href="@{/dev/{s}(s=${sport})}"><h1>dev</h1></a>
+
   <div class="content-container">
 
+
+
+  </tr>
     <div class="forum-title">
       <h2>Threads</h2>
     </div>
@@ -66,6 +72,8 @@
     <div class="events">
       <div class="events-title">
         <h2>Upcoming Events</h2>
+        <a th:href="@{/home/{s}/events(s=${sport})}"><p> events </p></a>
+        <a th:href="@{/home/{s}/clubs(s=${sport})}"><p> clubs </p></a>
         <p>Dummy Event</p>
         <p>Dummy Event</p>
         <p>Dummy Event</p>
@@ -75,6 +83,7 @@
     <div class="events">
       <div class="events-title">
         <h2>Top 5 Players</h2>
+        <a th:href="@{/home/{s}/players(s=${sport})}"><p> players </p></a>
         <p>Dummy Player</p>
         <p>Dummy Player</p>
         <p>Dummy Player</p>

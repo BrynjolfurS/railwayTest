@@ -8,6 +8,7 @@ import java.util.List;
 public interface EventRepository extends JpaRepository<Event, Long> {
     public Event save(Event event);
     public void delete(Event event);
+    public  Event findByID(Long id);
     public List<Event> findAll();
     public List<Event> findBySport(String sport);
 }

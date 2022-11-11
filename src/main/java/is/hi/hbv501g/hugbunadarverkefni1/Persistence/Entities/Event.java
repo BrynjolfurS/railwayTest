@@ -13,7 +13,7 @@ public class Event {
     private long ID;
     private String eventName;
     private String eventDescription;
-    private LocalDate eventDate;
+    private String eventDate;
     private String sport;
 
     //------------------test-------------------------------
@@ -25,6 +25,13 @@ public class Event {
     //------------------test end-------------------------------
 
     public Event() {
+    }
+
+    public long getID() {
+        return ID;
+    }
+    public void setID(long id) {
+        this.ID = id;
     }
 
     public String getEventName() {
@@ -43,20 +50,16 @@ public class Event {
         this.eventDescription = eventDescription;
     }
 
-    public LocalDate getEventDate() {
+    public String getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(LocalDate eventDate) {
+    public void setEventDate(String string) {
         this.eventDate = eventDate;
     }
 
     public String getSport(){return sport;}
     public void setSport(String sport){this.sport=sport;}
 
-    public Event(String eventName, String eventDescription, LocalDate eventDate) {
-        this.eventName = eventName;
-        this.eventDescription = eventDescription;
-        this.eventDate = eventDate;
-    }
+
 }

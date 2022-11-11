@@ -23,6 +23,13 @@ public class Club {
         this.sport = sport;
     }
 
+    public long getID() {
+        return ID;
+    }
+    public void setID(long id) {
+        this.ID = id;
+    }
+
     public String getClubName() {
         return clubName;
     }
