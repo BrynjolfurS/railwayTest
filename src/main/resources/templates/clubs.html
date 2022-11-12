@@ -2,6 +2,7 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/styles.css}" />
   <title>Events</title>
 </head>
 
@@ -10,24 +11,36 @@
   <h1>Íþróttasíðan</h1>
 </header>
 
-<div class="left-sidebar">
-  left-sidebar
-</div>
 <div class="main">
+  <div class="sidebar-left light-gray">
+    <menu class="nav">
+      <li class="nav-item nav-icon">
+        <button class="nav-button"><a th:href="@{/home}">Home</a></button>
+      </li>
+      <li th:each="sport : ${sports}">
+        <button class="nav-button">
+          <a style="font-size: 1.1rem;" th:href="@{/home/{s}(s=${sport})}" th:text="${sport}"></a>
+        </button>
+      </li>
+    </menu>
+  </div>
 
-  <tr th:each="club : ${clubs}">
-    <h3 th:text="${club.clubName}"></h3>
-    <a th:href="@{${club.clubUrl}}"><p>    clubUrl   </p></a>
-    <p th:text="${club.description}"></p>
-    <p>------------------------------------------------------------------------------------------</p>
+  <div class="content-container">
+    <tr th:each="club : ${clubs}">
+      <h3 th:text="${club.clubName}"></h3>
+      <a th:href="@{${club.clubUrl}}"><p>    clubUrl   </p></a>
+      <p th:text="${club.clubEmail}"></p>
+      <p th:text="${club.clubLocation}"></p>
+      <p th:text="${club.description}"></p>
+      <p>------------------------------------------------------------------------------------------</p>
 
-  </tr>
+    </tr>
 
-  <a href="./clubs/edit"><p>edit</p></a>
+    <div th:if="${session.LoggedInUser != null}">
+      <a th:hidden="${session.LoggedInUser.isAdmin} != true" href="./clubs/edit"><p>edit</p></a>
+    </div>
+  </div>
 
-</div>
-<div class="right-sidebar">
-  right-sidebar
 </div>
 
 <footer class="footer">

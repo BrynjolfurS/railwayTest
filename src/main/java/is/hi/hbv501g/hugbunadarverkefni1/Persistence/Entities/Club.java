@@ -10,15 +10,21 @@ public class Club {
     private long ID;
     private String clubName;
     private String clubUrl;
+    private String clubEmail;
+    private String clubLocation;
+    @Lob
     private String description;
     private String sport;
 
     public Club() {
 
     }
-    public Club(String clubName, String clubUrl, String description,String sport) {
+    public Club(String clubName, String clubUrl, String clubEmail,
+                String clubLocation, String description,String sport) {
         this.clubName = clubName;
         this.clubUrl = clubUrl;
+        this.clubEmail = clubEmail;
+        this.clubLocation = clubLocation;
         this.description = description;
         this.sport = sport;
     }
@@ -56,4 +62,20 @@ public class Club {
 
     public String getSport(){return sport;}
     public void setSport(String sport){this.sport=sport;}
+
+    public String getClubLocation() {
+        return clubLocation;
+    }
+
+    public void setClubLocation(String clubLocation) {
+        this.clubLocation = clubLocation;
+    }
+
+    public String getClubEmail() {
+        return clubEmail;
+    }
+
+    public void setClubEmail(String clubEmail) {
+        this.clubEmail = clubEmail;
+    }
 }

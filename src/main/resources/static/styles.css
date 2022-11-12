@@ -112,11 +112,23 @@ a { text-decoration: none; }
 }
 
 /* Sport page */
-.sport-subpage-container {
+.sport-nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     margin-bottom: 1em;
+    border-bottom: 1px solid #CFCFCF;
+}
+
+.sport-nav>button {
+    width: 10em;
+    margin: 0 2em 0;
+}
+
+/* Club */
+.club-description {
+    width: 600px;
+    height: 300px;
 }
 
 
@@ -158,6 +170,11 @@ a { text-decoration: none; }
     padding: 5px;
     margin: 2px;
     background-color: #D4D4D4;
+}
+
+.thread-create-button {
+    width: 10em;
+    border: 1px solid #CFCFCF;
 }
 
 .thread-header {

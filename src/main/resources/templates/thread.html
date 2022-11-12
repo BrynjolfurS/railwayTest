@@ -45,7 +45,7 @@
         <li style="list-style-type:none;" th:each="comment : ${comments}">
           <p th:text="${comment.comment}"></p>
         </li>
-        <form th:hidden="${session.LoggedInUser != null}" action="" method="post">
+        <form th:hidden="${session.LoggedInUser} == null" action="" method="post">
           <label for="comment">Post comment</label>
           <input type="text" name="comment" id="comment" />
           <input type="submit" value="Submit" />
@@ -61,12 +61,6 @@
       </div>
     </div>
 
-
-
-
-</div>
-<div class="right-sidebar">
-  right-sidebar
 </div>
 
 <footer class="footer">

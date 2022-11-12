@@ -2,63 +2,91 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/styles.css}" />
   <title>Title</title>
 </head>
 <body>
+  <header class="header light-blue text-yellow" style="text-align: center; ">
+    <div> </div>
 
-<h1>New Club</h1>
+    <h1>Edit clubs</h1>
 
-<form action="#" th:action="@{./save}" th:object="${club}" method="post">
-  <table>
-    <tr>
-      <td>Club Name:</td>
-      <td><input type="text" th:field="*{clubName}"  /></td>
-    </tr>
-    <tr>
-      <td>Club Url:</td>
-      <td><input type="text" th:field="*{clubUrl}" /></td>
-    </tr>
-    <tr>
-      <td>Description:</td>
-      <td><input type="text" th:field="*{description}" /></td>
-    </tr>
-  </table>
-  <input type="submit" value="New Club" />
-</form>
-<p>------------------------------------------------------------------------------------------</p>
+    <div class="userInfo" th:if="${session.LoggedInUser != null}">
+      <p>User: <span th:text="*{session.LoggedInUser.username}"></span></p>
+      <form action="#" th:action="@{logout}" method="post">
+        <input type="submit" value="Logout">
+      </form>
+      <button th:hidden="${session.LoggedInUser.isAdmin} != true"><a th:href="@{admin}">Admin page</a></button>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="sidebar-left light-gray">
+      <menu class="nav">
+        <li class="nav-item nav-icon">
+          <button class="nav-button"><a th:href="@{/home}">Home</a></button>
+        </li>
+      </menu>
+    </div>
+
+    <div class="content-container" th:if="${session.LoggedInUser.isAdmin} == true">
+      <h1>New Club</h1>
+
+      <form action="#" th:action="@{./save}" th:object="${club}" method="post">
+        <table>
+          <tr>
+            <td>Club Name:</td>
+            <td><input type="text" th:field="*{clubName}"  /></td>
+          </tr>
+          <tr>
+            <td>Club Url:</td>
+            <td><input type="text" th:field="*{clubUrl}" /></td>
+          </tr>
+          <tr>
+            <td>Description:</td>
+            <td><input type="text" th:field="*{description}" /></td>
+          </tr>
+        </table>
+        <input type="submit" value="New Club" />
+      </form>
+      <p>------------------------------------------------------------------------------------------</p>
 
 
-<tr th:each="c : ${clubs}">
-  <h3 th:text="${c.clubName}"></h3>
-  <a th:href="@{${c.clubUrl}}"><p>    clubUrl   </p></a>
-  <p th:text="${c.description}"></p>
+      <tr th:each="c : ${clubs}">
+        <h3 th:text="${c.clubName}"></h3>
+        <a th:href="@{${c.clubUrl}}"><p>    clubUrl   </p></a>
+        <p th:text="${c.description}"></p>
 
 
-  <form action="#" th:action="@{./edit/{id}(id=${c.ID})}" th:object="${c}" method="post">
-    <table>
-      <tr>
-        <td>Club Name:</td>
-        <td><input type="text" id="clubName" name="clubName" th:value="${c.clubName}"  /></td>
+        <form action="#" th:action="@{./edit/{id}(id=${c.ID})}" th:object="${c}" method="post">
+          <table>
+            <tr>
+              <td>Club Name:</td>
+              <td><input type="text" id="clubName" name="clubName" th:value="${c.clubName}"  /></td>
+            </tr>
+            <tr>
+              <td>Club Url:</td>
+              <td><input type="text" id="clubUrl" name="clubUrl" th:value="${c.clubUrl}" /></td>
+            </tr>
+            <tr>
+              <td>Description:</td>
+              <td><input class="club-description" type="text" id="description" name="description" th:value="${c.description}" /></td>
+            </tr>
+          </table>
+          <input type="submit" value="Edit" />
+          <a th:href="@{./delete/{id}(id=${c.ID})}">
+            <input type="button" value="Delete" />
+          </a>
+        </form>
+
+        <p>------------------------------------------------------------------------------------------</p>
       </tr>
-      <tr>
-        <td>Club Url:</td>
-        <td><input type="text" id="clubUrl" name="clubUrl" th:value="${c.clubUrl}" /></td>
-      </tr>
-      <tr>
-        <td>Description:</td>
-        <td><input type="text" id="description" name="description" th:value="${c.description}" /></td>
-      </tr>
-    </table>
-    <input type="submit" value="Edit" />
-    <a th:href="@{./delete/{id}(id=${c.ID})}">
-      <input type="button" value="Delete" />
-    </a>
-  </form>
+    </div>
 
-  <p>------------------------------------------------------------------------------------------</p>
-</tr>
-
-
+    <div class="content-container" th:if="${session.LoggedInUser.isAdmin} != true">
+      <h1>You do not have admin priviliges</h1>
+    </div>
+  </div>
 
 </body>
 </html>

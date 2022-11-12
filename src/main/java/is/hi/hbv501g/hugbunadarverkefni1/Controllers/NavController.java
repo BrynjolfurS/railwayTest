@@ -54,15 +54,18 @@ public class NavController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String goToHome(HttpSession session, Model model, User user) {
 
-        // CreateDummyData();
-
-
         List<Thread> threads = threadService.findAllThreads();
         model.addAttribute("threads", threads);
         List<String> sports = sportService.findAllSports();
         model.addAttribute("sports", sports);
         model.addAttribute("user", user);
         return "home";
+    }
+
+    @RequestMapping(value = "/dummydata", method = RequestMethod.GET)
+    public String createDummyData() {
+        CreateDummyData();
+        return "redirect:/home";
     }
 
     @RequestMapping(value = "/home/{sport}", method = RequestMethod.GET)
@@ -167,5 +170,12 @@ public class NavController {
             sportService.saveEvent(new Event("Dummy Event " + i, "Dummy Description", "pilukast"));
             sportService.saveEvent(new Event("Dummy Event " + i, "Dummy Description", "Extreme Ironing"));
         }
+        sportService.saveClub(new Club("Badmintonfélag Hafnarfjarðar", "https://www.badmintonfelag.is/", "bh@bhbadminton.is",
+                "Strandgötu 53, 220 Hafnarfirði",
+                "Badmintonfélag Hafnarfjarðar var stofnað 7.október 1959. " +
+                        "Félagið hefur aðsetur í Íþróttahúsinu við Strandgötu í Hafnarfirði þar sem æfingar í badminton og borðtennis fara fram. " +
+                        "Einnig er hægt að iðka tennis hjá Badmintonfélagi Hafnarfjarðar en æfingar í tennis fara fram í Tennishöllinn í Kópavogi. " +
+                        "Boðið er uppá æfingar fyrir börn frá 5 ára aldri. Upplýsingar um badminton og borðtennis má finna á vefnum badmintonfelag.is " +
+                        "en upplýsingar um tennis hjá Tennishöllinni í Kópavogi.", "badminton"));
     }
 }

@@ -3,12 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" th:href="@{/styles.css}" />
-  <title th:text="${sport}">Title</title>
+  <title th:text="${#strings.capitalize(sport)}">Title</title>
 </head>
 
 <body>
 <header class="header light-blue text-yellow" style="text-align: center; ">
-  <h1 th:text="${sport}"></h1>
+  <h1 th:text="${#strings.capitalize(sport)}"></h1>
+  <div class="userInfo" th:if="${session.LoggedInUser != null}">
+    <p>User: <span th:text="*{session.LoggedInUser.username}"></span></p>
+    <form action="#" th:action="@{logout}" method="post">
+      <input type="submit" value="Logout">
+    </form>
+  </div>
 </header>
 
 <div class="main">
@@ -18,13 +24,34 @@
       <li class="nav-item nav-icon">
         <button class="nav-button"><a th:href="@{/home}">Home</a></button>
       </li>
+      <li th:each="sport : ${sports}">
+        <button class="nav-button">
+          <a th:href="@{/home/{s}(s=${sport})}" th:text="${sport}"></a>
+        </button>
+      </li>
     </menu>
   </div>
 
   <div class="content-container">
+
+    <div class="sport-nav">
+      <button class="light-gray">
+        <a th:href="@{./{s}/events(s=${sport})}"><p>Events</p></a>
+      </button>
+      <button class="light-gray">
+        <a th:href="@{./{s}/clubs(s=${sport})}"><p>Clubs</p></a>
+      </button>
+      <button class="light-gray">
+        <a th:href="@{/dev/{s}(s=${sport})}"><p>Dev</p></a>
+      </button>
+      <button class="light-gray">
+        <a th:href="@{/home/{s}/players(s=${sport})}"><p>Players</p></a>
+      </button>
+    </div>
+
     <div class="forum-container light-gray">
       <div class="forum-title">
-        <h1 th:text="${sport} + ' discussions'">Top threads</h1>
+        <h1 th:text="${#strings.capitalize(sport)} + ' discussions'">Top threads</h1>
       </div>
       <div class="thread-table">
         <div class="thread-table-head gray">
@@ -37,30 +64,37 @@
         <div th:each="thread : ${threads}" class="thread-table-row">
           <div class="post-icon"><i class="fa fa-cart-plus"></i></div>
           <div class="post-subject">
-            <a class="post-link" th:text="${thread.header}" th:href="@{./{s}/thread/{id}(s=${sport},id=${thread.ID})}"></a>
+            <a th:href="@{/home/{s}/thread/{t}(s=${thread.getSport()}, t=${thread.getID()})}" th:text="${thread.getHeader()}"></a>
           </div>
           <div class="post-comments">
-            16 comments
+            <a href="" th:text="${thread.getComments()?.size()} ?: '0'"></a>
           </div>
           <div class="post-info">
-            September 8 2022 <br> <div th:text="${thread.user}"></div>
+            <p style="margin: 0; padding: 0;" th:text="${thread.getDate()}"></p>
+            <p style="margin: 0; padding: 0;">Posted by: <span th:text="${thread.getUser()}"></span></p>
           </div>
         </div>
 
       </div>
     </div>
 
-    <p th:text="${sport}"></p>
-    <a th:href="@{/dev/{s}(s=${sport})}"><h1>dev</h1></a>
-
-    <a th:href="@{./{s}/events(s=${sport})}"><p>events</p></a>
-    <a th:href="@{./{s}/clubs(s=${sport})}"><p>clubs</p></a>
+    <button th:hidden="${session.LoggedInUser} == null" class="thread-create-button">
+      <a th:href="@{./{s}/createThread(s=${sport})}"><p>New thread</p></a>
+    </button>
   </div>
 
   <div class="sidebar-right light-gray">
     <div class="events">
       <div class="events-title">
-        <h1>Events</h1>
+        <h2>Upcoming Events</h2>
+        <p th:each="event : ${events}" th:text="${event.eventName}"></p>
+      </div>
+    </div>
+    <div class="events">
+      <div class="events-title">
+        <h2>Top 5 Players</h2>
+        <p th:each="player : ${players}" th:text="${player.playerName}"></p>
+        <a th:href="@{/home/{s}/players(s=${sport})}"><p> Players </p></a>
       </div>
     </div>
   </div>

@@ -38,8 +38,8 @@ public class SportServiceImplementation implements SportService {
         eventRepository.save(new Event(sport+"---2---     ",sport,sport));
 
 
-        clubRepository.save(new Club(sport+"---1---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport,sport));
-        clubRepository.save(new Club(sport+"---2---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport,sport));
+//        clubRepository.save(new Club(sport+"---1---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport,sport));
+//        clubRepository.save(new Club(sport+"---2---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport,sport));
 
     }
 
