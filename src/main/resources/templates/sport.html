@@ -18,11 +18,6 @@
       <li class="nav-item nav-icon">
         <button class="nav-button"><a th:href="@{/home}">Home</a></button>
       </li>
-      <!--    <li th:each="sport : ${sports}">-->
-      <!--      <button class="nav-button">-->
-      <!--        <a th:href="@{/home/{s}(s=${sport})}" th:text="${sport}"></a>-->
-      <!--      </button>-->
-      <!--    </li>-->
     </menu>
   </div>
 
@@ -55,22 +50,11 @@
       </div>
     </div>
 
-
-
     <p th:text="${sport}"></p>
     <a th:href="@{/dev/{s}(s=${sport})}"><h1>dev</h1></a>
 
     <a th:href="@{./{s}/events(s=${sport})}"><p>events</p></a>
     <a th:href="@{./{s}/clubs(s=${sport})}"><p>clubs</p></a>
-
-    <h2>Threads</h2>
-    <tr th:each="thread : ${threads}">
-      <td th:text="${thread.user}"></td>
-      <a th:href="@{./{s}/thread/{id}(s=${sport},id=${thread.ID})}">
-        <p th:text="${thread.header}"></p>
-      </a>
-
-    </tr>
   </div>
 
   <div class="sidebar-right light-gray">

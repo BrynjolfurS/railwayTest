@@ -20,13 +20,11 @@ import java.util.List;
 public class ThreadController {
     private final ThreadService threadService;
     private final SportService sportService;
-    private final UserService userService;
 
     @Autowired
     public ThreadController(ThreadService threadService, SportService sportService, UserService userService){
         this.threadService = threadService;
         this.sportService = sportService;
-        this.userService = userService;
     }
 
 
@@ -40,7 +38,7 @@ public class ThreadController {
     }
 
     @RequestMapping(value = "/home/{sport}/thread/{id}", method = RequestMethod.POST)
-    public String addComment(@PathVariable("id") Long id, String comment) {
+    public String addComment(@PathVariable("id") Long id, String comment, HttpSession session) {
         threadService.addComment(comment, threadService.findThreadById(id));
         return "redirect:/home/{sport}/thread/{id}/";
     }

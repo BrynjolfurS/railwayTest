@@ -31,10 +31,11 @@
         <div class="content-container" th:if="${session.LoggedInUser.isAdmin} == true">
             <div class="content-row">
                 <h2>Edit users</h2>
-<!--                <form action="#" th:action="@{admin/getallusers}" method="get">-->
-<!--                    <input type=""-->
-<!--                </form>-->
-                <button><a th:href="@{admin/getallusers}">Get all users</a></button>
+                <button><a th:href="@{/admin/getallusers}">Get all users</a></button>
+                <form action="#" th:action="@{admin/finduser}" method="get">
+                    <input type="text" name="findUser" id="findUser"/>
+                    <input type="submit" value="Find user"/>
+                </form>
                 <table th:if="${userList} != null">
                     <tr th:each="user : ${userList}">
                         <td>Username:</td><td th:text="${user.username}"></td>

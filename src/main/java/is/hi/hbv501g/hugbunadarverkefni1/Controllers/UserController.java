@@ -37,6 +37,12 @@ public class UserController {
         return "admin";
     }
 
+    @RequestMapping(value = "/admin/finduser", method = RequestMethod.GET)
+    public String adminFindUserByName(Model model, String findUser) {
+        model.addAttribute("userList", userService.findByUsername(findUser));
+        return "admin";
+    }
+
     @RequestMapping(value = "/admin/getallusers")
     public String adminFindAllUsers(Model model) {
         model.addAttribute("userList", userService.findAll());
@@ -73,7 +79,6 @@ public class UserController {
         if (exists != null) {
             session.setAttribute("LoggedInUser", exists);
             model.addAttribute("LoggedInUser", exists);
-            System.out.println(exists.getIsAdmin());
             return "redirect:/";
         }
         return "redirect:/home";
