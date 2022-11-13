@@ -10,15 +10,11 @@ import java.util.List;
 @Table(name = "threads")
 public class Thread {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+
     private long ID;
     private String username;
     private boolean isPinned = false;
-
-    @OneToMany(mappedBy = "thread", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
-
     private String header;
     private String body;
     private LocalDate date;
@@ -37,7 +33,9 @@ public class Thread {
         this.sport=sport;
         this.date = LocalDate.now();
     }
-
+    @Id
+    @Column(name = "threadId")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public long getID() {
         return ID;
     }
@@ -61,18 +59,18 @@ public class Thread {
         isPinned = pinned;
     }
 
-    @OneToMany(mappedBy = "thread", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "thread", cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Comment> getComments() {
         if (comments != null) return comments;
         return new ArrayList<>();
     }
 
-    public int getNumberOfComments() {
-        return getComments().size();
-    }
-
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public int NumberOfComments() {
+        return getComments().size();
     }
 
     public String getHeader() {

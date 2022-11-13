@@ -40,10 +40,17 @@
       <div class="forum-container light-gray">
         <h1 class="thread-header" th:text="${thread.header}"></h1>
         <div class="thread-body" th:text="${thread.body}"></div>
+        <div class="thread-info">
+          <p>Created by: <span th:text="${thread.getUser()}"></span></p>
+          <p>Date: <span th:text="${thread.date}"></span></p>
+        </div>
         <hr>
 
         <li style="list-style-type:none;" th:each="comment : ${comments}">
           <p th:text="${comment.comment}"></p>
+          <p>By: <span th:text="${comment.user.getUsername()}"></span></p>
+          <p>Date: <span th:text="${comment.getDateCommented()}"></span></p>
+          <hr>
         </li>
         <form th:hidden="${session.LoggedInUser} == null" action="" method="post">
           <label for="comment">Post comment</label>

@@ -57,6 +57,13 @@ public class UserController {
         return "redirect:/admin";
     }
 
+    @RequestMapping(value = "admin/deleteUser/{id}", method = RequestMethod.GET)
+    public String deleteUserAccount(@PathVariable("id") long id) {
+        User userToDelete = userService.findByID(id);
+        userService.delete(userToDelete);
+        return "redirect:/admin";
+    }
+
     @RequestMapping(value="/signUp", method= RequestMethod.POST)
     public String signupPOST(User user, BindingResult result, Model model) {
         if(result.hasErrors()) {

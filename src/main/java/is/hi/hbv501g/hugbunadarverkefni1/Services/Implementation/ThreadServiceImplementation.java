@@ -36,8 +36,9 @@ public class ThreadServiceImplementation implements ThreadService {
 
 
     @Override
-    public void addComment(String comment, Thread thread) {
-        threadRepository.save(new Comment(null, comment, thread));
+    public void addComment(Comment comment, Thread thread) {
+        threadRepository.save(comment);
+        threadRepository.save(thread);
     }
 
     @Override

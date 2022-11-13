@@ -6,7 +6,7 @@ import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Thread;
 import java.util.List;
 
 public interface ThreadService {
-    public void addComment(String comment, Thread thread);
+    public void addComment(Comment comment, Thread thread);
     public Thread save(Thread thread);
     public List<Thread> findAllThreadsBySport(String Sport);
     public List<Thread> findAllThreads();

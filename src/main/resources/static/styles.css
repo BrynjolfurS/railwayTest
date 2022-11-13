@@ -13,10 +13,15 @@ body {
 }
 
 footer {
-    height: 10%;
+    display: flex;
+    align-content: center;
     text-align: center;
     padding:auto;
     margin-bottom: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 5%;
 }
 
 menu {
@@ -165,8 +170,8 @@ a { text-decoration: none; }
     overflow: hidden;
 }
 
-.thread-table-row .post-icon, .thread-table-row .post-subject,
-.thread-table-row .post-comments, .thread-table-row .post-info {
+.post-icon, .post-subject,
+.post-comments, .post-info {
     padding: 5px;
     margin: 2px;
     background-color: #D4D4D4;
@@ -202,6 +207,15 @@ a { text-decoration: none; }
     display: flex;
     flex: 70%;
     justify-content: flex-start;
+}
+
+.post-subject-pinned {
+    display: flex;
+    flex: 70%;
+    justify-content: flex-start;
+    padding: 5px;
+    margin: 2px;
+    background-color: #FCCC89;
 }
 
 .post-link {

@@ -65,7 +65,7 @@
 
                     <div th:each="thread : ${threads}" class="thread-table-row">
                         <div class="post-icon"><i class="fa fa-cart-plus"></i></div>
-                        <div class="post-subject">
+                        <div th:class="${thread.isPinned()}? 'post-subject-pinned' : 'post-subject'">
                             <a th:href="@{/home/{s}/thread/{t}(s=${thread.getSport()}, t=${thread.getID()})}" th:text="${thread.getHeader()}"></a>
                         </div>
                         <div class="post-comments">
@@ -73,7 +73,8 @@
                         </div>
                         <div class="post-info">
                             <p style="margin: 0; padding: 0;" th:text="${thread.getDate()}"></p>
-                            <p style="margin: 0; padding: 0;">Posted by: <span th:text="${thread.getUser()}"></span></p>
+                            <p style="margin: 0; padding: 0;" th:text="${thread.isPinned()}? 'Pinned by: ' : 'Posted by: '"></p>
+                            <span th:text="${thread.getUser()}"></span>
                         </div>
                     </div>
                 </div>
@@ -90,7 +91,7 @@
     </div>
 
     <footer class="footer light-blue text-yellow">
-
+        <div class="contact-email">sportapp@sportapp.is</div>
     </footer>
 </body>
 </html>

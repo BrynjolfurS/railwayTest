@@ -1,10 +1,7 @@
 package is.hi.hbv501g.hugbunadarverkefni1.Controllers;
 
-import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Club;
-import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Event;
-import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Player;
+import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.*;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Thread;
-import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.User;
 import is.hi.hbv501g.hugbunadarverkefni1.Services.PlayerService;
 import is.hi.hbv501g.hugbunadarverkefni1.Services.SportService;
 import is.hi.hbv501g.hugbunadarverkefni1.Services.ThreadService;
@@ -63,8 +60,8 @@ public class NavController {
     }
 
     @RequestMapping(value = "/dummydata", method = RequestMethod.GET)
-    public String createDummyData() {
-        CreateDummyData();
+    public String createDummyData(HttpSession session) {
+        CreateDummyData(session);
         return "redirect:/home";
     }
 
@@ -135,9 +132,10 @@ public class NavController {
     }
 
     @RequestMapping(value = "/home/{sport}/thread/{id}", method = RequestMethod.GET)
-    public String goToThread(@PathVariable("id") Long id, Model model) {
+    public String goToThread(@PathVariable("id") Long id, Model model, HttpSession session) {
         //add thred með {id} i model
         Thread thread = threadService.findThreadById(id);
+        model.addAttribute("newComment", new Comment());
         model.addAttribute("thread", thread);
         model.addAttribute("sports", sportService.findAllSports());
         model.addAttribute("comments", thread.getComments());
@@ -158,7 +156,17 @@ public class NavController {
         return "signUp";
     }
 
-    public void CreateDummyData() {
+    public void CreateDummyData(HttpSession session) {
+        Thread tips1 = new Thread("Íþróttasíða", "Beginner tips & FAQ", "Here are some useful tips..", "badminton");
+        Thread tips2 = new Thread("Íþróttasíða", "Beginner tips & FAQ", "Here are some useful tips..", "pilukast");
+        Thread tips3 = new Thread("Íþróttasíða", "Beginner tips & FAQ", "Here are some useful tips..", "Extreme Ironing");
+        tips1.setPinned(true);
+        tips2.setPinned(true);
+        tips3.setPinned(true);
+        threadService.save(tips1);
+        threadService.save(tips2);
+        threadService.save(tips3);
+
         for (int i = 0; i < 10; i++) {
             threadService.save(new Thread("User", "Dummy Thread " + i, "Dummy Body", "badminton"));
             threadService.save(new Thread("User", "Dummy Thread " + i, "Dummy Body", "pilukast"));
@@ -177,5 +185,6 @@ public class NavController {
                         "Einnig er hægt að iðka tennis hjá Badmintonfélagi Hafnarfjarðar en æfingar í tennis fara fram í Tennishöllinn í Kópavogi. " +
                         "Boðið er uppá æfingar fyrir börn frá 5 ára aldri. Upplýsingar um badminton og borðtennis má finna á vefnum badmintonfelag.is " +
                         "en upplýsingar um tennis hjá Tennishöllinni í Kópavogi.", "badminton"));
+
     }
 }

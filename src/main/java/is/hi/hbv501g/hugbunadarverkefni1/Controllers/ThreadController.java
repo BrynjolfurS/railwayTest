@@ -20,11 +20,13 @@ import java.util.List;
 public class ThreadController {
     private final ThreadService threadService;
     private final SportService sportService;
+    private final UserService userService;
 
     @Autowired
     public ThreadController(ThreadService threadService, SportService sportService, UserService userService){
         this.threadService = threadService;
         this.sportService = sportService;
+        this.userService = userService;
     }
 
 
@@ -47,11 +49,23 @@ public class ThreadController {
     }
 
     @RequestMapping(value = "/home/{sport}/thread/{id}", method = RequestMethod.POST)
-    public String addComment(@PathVariable("id") Long id, String comment, HttpSession session) {
-        threadService.addComment(comment, threadService.findThreadById(id));
+    public String addComment(@PathVariable("id") Long id, String comment, HttpSession session, Model model) {
+        User poster = (User) session.getAttribute("LoggedInUser");
+        long posterID = poster.getID();
+        session.removeAttribute("LoggedInUser");
+        poster = userService.findByID(posterID);
+
+        Thread targetThread = threadService.findThreadById(id);
+        Comment newComment = new Comment(poster, comment, targetThread);
+        threadService.addComment(newComment, targetThread);
+        session.setAttribute("LoggedInUser", poster);
         return "redirect:/home/{sport}/thread/{id}/";
     }
-
+//    @RequestMapping(value = "/home/{sport}/thread/{id}", method = RequestMethod.POST)
+//    public String addComment(@PathVariable("id") Long id, Comment newComment, Model model) {
+//        threadService.addComment(newComment);
+//        return "redirect:/home/{sport}/thread/{id}/";
+//    }
 
     @RequestMapping(value = "/home/{sport}/thread/{id}/comment/stuff", method = RequestMethod.POST)
     public String deleteComment(Model model) {
