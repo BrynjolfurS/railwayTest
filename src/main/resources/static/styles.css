@@ -190,7 +190,7 @@ a { text-decoration: none; }
 .thread-body {
     padding:10px;
     display: inline-block;
-    padding 5px;
+    padding: 5px;
     text-align:left;
     margin-left: 2em;
     border: 1px solid gray;
