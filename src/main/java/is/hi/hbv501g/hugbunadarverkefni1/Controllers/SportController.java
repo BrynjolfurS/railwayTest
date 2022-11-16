@@ -4,7 +4,6 @@ import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Club;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Event;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Player;
 import is.hi.hbv501g.hugbunadarverkefni1.Services.SportService;
-import is.hi.hbv501g.hugbunadarverkefni1.Services.ThreadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,7 +66,7 @@ public class SportController {
     @RequestMapping(value = "/home/{sport}/events/save", method = RequestMethod.POST)
     public String saveEvent(Event event, Model model) {
         //takes in object and saves changes
-        System.out.println(event.getEventDate());
+        System.err.println("Today's date: " + event.getEventDate());
         sportService.saveEvent(event);
         return "redirect:/home/{sport}/events";
     }

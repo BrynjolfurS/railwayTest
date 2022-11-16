@@ -3,7 +3,6 @@ package is.hi.hbv501g.hugbunadarverkefni1.Services.Implementation;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Club;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Event;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Player;
-import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.User;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.ClubRepository;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.EventRepository;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.PlayerRepository;

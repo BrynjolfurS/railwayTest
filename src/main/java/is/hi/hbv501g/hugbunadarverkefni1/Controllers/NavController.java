@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -86,6 +85,8 @@ public class NavController {
     @RequestMapping(value = "/home/{sport}/events", method = RequestMethod.GET)
     public String goToEvents(@PathVariable("sport") String sport, Model model) {
         model.addAttribute("events", sportService.findAllEventsBySport(sport));
+        model.addAttribute("sports", sportService.findAllSports());
+        model.addAttribute("sport", sport);
         return "events";
     }
 

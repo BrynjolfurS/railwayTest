@@ -28,7 +28,7 @@
         </form>
 
         <div class="userInfo" th:if="${session.LoggedInUser != null}">
-            <p>User: <span th:text="*{session.LoggedInUser.username}"></span></p>
+            <p>Logged in as: <span th:text="*{session.LoggedInUser.username}"></span></p>
             <form action="#" th:action="@{logout}" method="post">
                 <input type="submit" value="Logout">
             </form>
@@ -44,7 +44,7 @@
                 </li>
                 <li th:each="sport : ${sports}">
                     <button class="nav-button">
-                        <a style="font-size: 1.1rem;" th:href="@{/home/{s}(s=${sport})}" th:text="${sport}"></a>
+                        <a style="font-size: 1.1rem;" th:href="@{/home/{s}(s=${sport})}" th:text="${#strings.capitalize(sport)}"></a>
                     </button>
                 </li>
             </menu>
@@ -69,7 +69,7 @@
                             <a th:href="@{/home/{s}/thread/{t}(s=${thread.getSport()}, t=${thread.getID()})}" th:text="${thread.getHeader()}"></a>
                         </div>
                         <div class="post-comments">
-                            <a href="" th:text="${thread.getComments()?.size()} ?: '0'"></a>
+                            <a th:href="@{/home/{s}/thread/{t}(s=${thread.getSport()}, t=${thread.getID()})}" th:text="${thread.getComments()?.size()} ?: '0'"></a>
                         </div>
                         <div class="post-info">
                             <p style="margin: 0; padding: 0;" th:text="${thread.getDate()}"></p>
