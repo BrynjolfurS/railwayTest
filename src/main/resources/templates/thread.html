@@ -30,7 +30,7 @@
         </li>
         <li th:each="sport : ${sports}">
           <button class="nav-button">
-            <a style="font-size: 1.1rem;" th:href="@{/home/{s}(s=${sport})}" th:text="${sport}"></a>
+            <a style="font-size: 1.1rem;" th:href="@{/home/{s}(s=${sport})}" th:text="${#strings.capitalize(sport)}"></a>
           </button>
         </li>
       </menu>
@@ -46,16 +46,19 @@
         </div>
         <hr>
 
-        <li style="list-style-type:none;" th:each="comment : ${comments}">
-          <p th:text="${comment.comment}"></p>
-          <p>By: <span th:text="${comment.user.getUsername()}"></span></p>
-          <p>Date: <span th:text="${comment.getDateCommented()}"></span></p>
-          <hr>
+        <li class="commentsSection" style="list-style-type:none;" th:each="comment : ${comments}">
+          <div class="comment-body">
+            <div class="user-info">
+              <h2 style="margin: 0;" th:text="${comment.user.getUsername()}"></h2>
+              <p style="margin-left: .3rem; color: #8a8a8a;">*</p>
+              <h5 style="margin: 0; color: #8a8a8a; margin-left: .3rem;" th:text="${comment.getDateCommented()}"></h5>
+            </div>
+            <p th:text="${comment.comment}"></p>
+          </div>
         </li>
-        <form th:hidden="${session.LoggedInUser} == null" action="" method="post">
-          <label for="comment">Post comment</label>
-          <input type="text" name="comment" id="comment" />
-          <input type="submit" value="Submit" />
+        <form style="display: flex; flex-direction: column; width: 30%; margin-left: 2rem;" th:hidden="${session.LoggedInUser} == null" action="" method="post">
+          <textarea maxlength="255" type="text" name="comment" id="comment"></textarea>
+          <input style="margin-top: 1em; width: 50%; word-wrap:break-word" type="submit" value="Post Comment" />
         </form>
       </div>
     </div>

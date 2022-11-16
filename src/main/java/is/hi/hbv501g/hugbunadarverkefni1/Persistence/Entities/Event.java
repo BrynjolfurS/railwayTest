@@ -2,6 +2,9 @@ package is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities;
 
 
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 @Entity
@@ -11,9 +14,12 @@ public class Event {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long ID;
+
     private String eventName;
     private String eventDescription;
-    private String eventDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate eventDate;
     private String sport;
 
     //------------------test-------------------------------
@@ -50,11 +56,11 @@ public class Event {
         this.eventDescription = eventDescription;
     }
 
-    public String getEventDate() {
+    public LocalDate getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(String string) {
+    public void setEventDate(LocalDate eventDate) {
         this.eventDate = eventDate;
     }
 

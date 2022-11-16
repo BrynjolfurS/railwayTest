@@ -116,6 +116,11 @@ a { text-decoration: none; }
     width: 100%;
 }
 
+.event-container {
+    display: flex;
+    flex-direction: column;
+}
+
 /* Sport page */
 .sport-nav {
     display: flex;
@@ -138,6 +143,31 @@ a { text-decoration: none; }
 
 
 /* Forum/Thread */
+
+.commentsSection {
+    padding: 10px;
+    margin-left: 2rem;
+}
+
+.comment-body {
+    display: inline-block;
+    padding: 5px;
+    text-align:left;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: white;
+    margin: 0;
+    word-break: break-all;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+p {margin: 0;}
+
 
 .forum-container {
     flex: 60%;
@@ -193,6 +223,7 @@ a { text-decoration: none; }
     padding: 5px;
     text-align:left;
     margin-left: 2em;
+    margin-bottom: 1em;
     border: 1px solid gray;
     border-radius: 5px;
     background-color: white;

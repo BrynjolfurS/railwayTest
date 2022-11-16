@@ -26,7 +26,7 @@
       </li>
       <li th:each="sport : ${sports}">
         <button class="nav-button">
-          <a th:href="@{/home/{s}(s=${sport})}" th:text="${sport}"></a>
+          <a th:href="@{/home/{s}(s=${sport})}" th:text="${#strings.capitalize(sport)}"></a>
         </button>
       </li>
     </menu>
@@ -67,7 +67,7 @@
             <a th:href="@{/home/{s}/thread/{t}(s=${thread.getSport()}, t=${thread.getID()})}" th:text="${thread.getHeader()}"></a>
           </div>
           <div class="post-comments">
-            <a href="" th:text="${thread.getComments()?.size()} ?: '0'"></a>
+            <a th:href="@{/home/{s}/thread/{t}(s=${thread.getSport()}, t=${thread.getID()})}" th:text="${thread.getComments()?.size()} ?: '0'"></a>
           </div>
           <div class="post-info">
             <p style="margin: 0; padding: 0;" th:text="${thread.getDate()}"></p>
@@ -88,7 +88,7 @@
     <div class="events">
       <div class="events-title">
         <h2>Upcoming Events</h2>
-        <p th:each="event : ${events}" th:text="${event.eventName}"></p>
+        <a th:href="@{./{s}/events(s=${sport})}" th:each="event : ${events}" th:text="${event.eventName}"></a>
       </div>
     </div>
     <div class="events">
