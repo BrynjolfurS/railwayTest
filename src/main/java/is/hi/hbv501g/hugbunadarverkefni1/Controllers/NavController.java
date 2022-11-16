@@ -140,6 +140,7 @@ public class NavController {
         model.addAttribute("thread", thread);
         model.addAttribute("sports", sportService.findAllSports());
         model.addAttribute("comments", thread.getComments());
+        model.addAttribute("id", id);
 
         return "thread";
     }
