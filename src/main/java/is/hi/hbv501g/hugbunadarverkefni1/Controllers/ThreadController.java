@@ -43,6 +43,19 @@ public class ThreadController {
         return "redirect:/home/{sport}/thread/"+id;
     }
 
+    @RequestMapping(value = "/home/{sport}/thread/{id}/editThread", method = RequestMethod.GET)
+    public String editThread(@PathVariable("id") String id, Model model) {
+        model.addAttribute("header", threadService.findThreadById(Long.parseLong(id)).getHeader());
+        model.addAttribute("body", threadService.findThreadById(Long.parseLong(id)).getBody());
+        return "editThread";
+    }
+
+    @RequestMapping(value = "/home/{sport}/thread/{id}/editThread", method = RequestMethod.POST)
+    public String postEditThread(@RequestParam String header, String body, @PathVariable Long id) {
+        
+        return "redirect:/home/{sport}/thread/"+id;
+    }
+
     @RequestMapping(value = "/home/{sport}/thread/{id}", method = RequestMethod.POST)
     public String addComment(@PathVariable("id") Long id, String comment, HttpSession session, Model model) {
         User poster = (User) session.getAttribute("LoggedInUser");

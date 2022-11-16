@@ -1,0 +1,25 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.header>div {
+    flex: 20%;
+}
+
+.header>h1 {
+    flex: 60%;
+}
+
+.header>form {
+    display: flex;
+    flex: 20%;
+    justify-content: left;
+}
+
+header .form {
+    display: flex;
+}

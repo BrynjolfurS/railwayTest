@@ -17,15 +17,22 @@
 
         <h1>Íþróttasíðan</h1>
 
-        <form th:hidden="${session.LoggedInUser != null}" action="#" th:action="@{login}" th:object="${user}"  method="post">
-            <table><tr>
-                <td>Username:</td><td><input type="text" th:field="*{username}" /></td>
-            </tr><tr>
-                <td>Password</td><td><input type="text" th:field="*{userPassword}" /></td>
-            </tr></table>
-            <input type="submit" value="Login" />
-            <a th:href="@{signUp}">Sign Up</a>
-        </form>
+        <div class="form">
+            <form th:hidden="${session.LoggedInUser != null}" action="#" th:action="@{login}" th:object="${user}"  method="post">
+                <table>
+                    <tr>
+                        <td><input placeholder="Username" type="text" th:field="*{username}" /></td>
+                    </tr>
+                    <tr>
+                        <td><input placeholder="Password" type="password" th:field="*{userPassword}" /></td>
+                    </tr>
+                </table>
+                <div style="text-align: right; padding-right: 5px; display: flex; margin-top: .3em;">
+                    <input style="margin-right: .5rem;" type="submit" value="Login" />
+                    <a th:href="@{signUp}">Sign Up</a>
+                </div>
+            </form>
+        </div>
 
         <div class="userInfo" th:if="${session.LoggedInUser != null}">
             <p>Logged in as: <span th:text="*{session.LoggedInUser.username}"></span></p>
@@ -44,7 +51,7 @@
                 </li>
                 <li th:each="sport : ${sports}">
                     <button class="nav-button">
-                        <a style="font-size: 1.1rem;" th:href="@{/home/{s}(s=${sport})}" th:text="${#strings.capitalize(sport)}"></a>
+                        <a th:href="@{/home/{s}(s=${sport})}" th:text="${#strings.capitalize(sport)}"></a>
                     </button>
                 </li>
             </menu>
@@ -63,7 +70,7 @@
                         <div class="post-info">Information</div>
                     </div>
 
-                    <div th:each="thread : ${threads}" class="thread-table-row">
+                    <div th:each="thread : ${threads}" class="thread-table-row" >
                         <div class="post-icon"><i class="fa fa-cart-plus"></i></div>
                         <div th:class="${thread.isPinned()}? 'post-subject-pinned' : 'post-subject'">
                             <a th:href="@{/home/{s}/thread/{t}(s=${thread.getSport()}, t=${thread.getID()})}" th:text="${thread.getHeader()}"></a>
@@ -84,7 +91,7 @@
         <div class="sidebar-right light-gray">
             <div class="events">
                 <div class="events-title">
-                    <h1>Upcoming Events</h1>
+                    <h2>Upcoming Events</h2>
                 </div>
             </div>
         </div>

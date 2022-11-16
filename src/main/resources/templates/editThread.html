@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <title>Edit Thread</title>
+</head>
+<body>
+    <form action="" method="post" style="display: flex; flex-direction:column; width: 30%; margin-left: 30%;">
+        <textarea name="header" th:text="${header}"></textarea>
+        <textarea name="body" th:text="${body}"></textarea>
+        <input type="submit" />
+    </form>
+</body>
+</html>

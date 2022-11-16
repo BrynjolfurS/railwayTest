@@ -43,6 +43,7 @@
         <div class="thread-info">
           <p>Created by: <span th:text="${thread.getUser()}"></span></p>
           <p>Date: <span th:text="${thread.date}"></span></p>
+          <a th:href="@{{id}/editThread(id=${id})}" th:if="${session.LoggedInUser != null and session.LoggedInUser.getUsername() == thread.getUser()}">Edit post</a>
         </div>
         <hr>
 

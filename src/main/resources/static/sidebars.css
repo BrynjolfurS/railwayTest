@@ -1,0 +1,11 @@
+/* Left sidebar */
+.sidebar-left {
+    flex: 15%;
+    padding-top: 4%;
+}
+
+/* Right sidebar */
+
+.sidebar-right {
+    flex: 15%;
+}
