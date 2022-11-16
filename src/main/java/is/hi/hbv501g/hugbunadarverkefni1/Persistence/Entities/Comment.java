@@ -2,7 +2,7 @@ package is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities;
 
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "comments")
@@ -10,8 +10,11 @@ public class Comment {
 
     private long ID;
     private User user;
-    private LocalDate dateCommented;
+    private LocalDateTime dateCommented;
+
+    @Column(columnDefinition="LONGVARCHAR")
     private String comment;
+
     private Thread thread; // Thread ID Betra? Dno
 
     public Comment() {
@@ -19,7 +22,7 @@ public class Comment {
 
     public Comment(User user, String comment, Thread thread) {
         this.user = user;
-        this.dateCommented = LocalDate.now();
+        this.dateCommented = LocalDateTime.now();
         this.comment = comment;
         this.thread = thread;
     }
@@ -50,11 +53,11 @@ public class Comment {
 
     public void setThread(Thread thread) {this.thread = thread;}
 
-    public LocalDate getDateCommented() {
+    public LocalDateTime getDateCommented() {
         return dateCommented;
     }
 
-    public void setDateCommented(LocalDate dateCommented) {
+    public void setDateCommented(LocalDateTime dateCommented) {
         this.dateCommented = dateCommented;
     }
 

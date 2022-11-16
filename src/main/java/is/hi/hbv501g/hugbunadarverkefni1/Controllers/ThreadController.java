@@ -1,7 +1,6 @@
 package is.hi.hbv501g.hugbunadarverkefni1.Controllers;
 
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Comment;
-import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Event;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Thread;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.User;
 import is.hi.hbv501g.hugbunadarverkefni1.Services.SportService;
@@ -13,19 +12,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.security.Principal;
-import java.util.List;
 
 @Controller
 public class ThreadController {
     private final ThreadService threadService;
-    private final SportService sportService;
     private final UserService userService;
 
     @Autowired
     public ThreadController(ThreadService threadService, SportService sportService, UserService userService){
         this.threadService = threadService;
-        this.sportService = sportService;
         this.userService = userService;
     }
 
