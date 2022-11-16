@@ -14,7 +14,7 @@
     <name>Hugbunadarverkefni1</name>
     <description>Hugbunadarverkefni1</description>
     <properties>
-        <java.version>8</java.version>
+        <java.version>18</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -43,7 +43,6 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
