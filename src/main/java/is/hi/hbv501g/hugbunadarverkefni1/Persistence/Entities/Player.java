@@ -2,6 +2,10 @@ package is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities;
 
 import javax.persistence.*;
 
+/**
+ * The Player class contains data about a notable athlete related to some sport or activity.
+ * The @Entity annotation marks it as an object that can be put in persistent storage via the Spring Data JPA to be accessed at a later date.
+ */
 @Entity
 @Table(name = "players")
 public class Player implements Comparable<Player> {
@@ -69,6 +73,12 @@ public class Player implements Comparable<Player> {
         this.sport = sport;
     }
 
+    /**
+     * This method is used to compare the performance of two athletes, the goal being to obtain a sorted list
+     * of athletes in descending order in terms of performance.
+     * @param that the object to be compared.
+     * @return
+     */
     public int compareTo(Player that) {
         if (this.wins > that.wins) return 1;
         if (this.wins == that.wins) return 0;

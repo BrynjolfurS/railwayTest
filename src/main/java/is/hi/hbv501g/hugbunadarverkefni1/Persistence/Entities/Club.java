@@ -2,6 +2,10 @@ package is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities;
 
 import javax.persistence.*;
 
+/**
+ * The Club class contains data about a specific club or organization related to some sport or activities.
+ * The @Entity annotation marks it as an object that can be put in persistent storage via the Spring Data JPA to be accessed at a later date.
+ */
 @Entity
 @Table(name = "clubs")
 public class Club {
@@ -12,6 +16,9 @@ public class Club {
     private String clubUrl;
     private String clubEmail;
     private String clubLocation;
+    /**
+     * The @Lob annotation indicates to JPA that the property may contain a large amount of data.
+     */
     @Lob
     private String description;
     private String sport;

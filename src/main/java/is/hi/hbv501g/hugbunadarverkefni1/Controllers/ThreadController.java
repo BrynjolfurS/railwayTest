@@ -69,11 +69,6 @@ public class ThreadController {
         session.setAttribute("LoggedInUser", poster);
         return "redirect:/home/{sport}/thread/{id}/";
     }
-//    @RequestMapping(value = "/home/{sport}/thread/{id}", method = RequestMethod.POST)
-//    public String addComment(@PathVariable("id") Long id, Comment newComment, Model model) {
-//        threadService.addComment(newComment);
-//        return "redirect:/home/{sport}/thread/{id}/";
-//    }
 
     @RequestMapping(value = "/home/{sport}/thread/{id}/comment/stuff", method = RequestMethod.POST)
     public String deleteComment(Model model) {

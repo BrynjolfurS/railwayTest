@@ -12,11 +12,14 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-// Jökull
-// Ólafur Pálsson - olp10@hi.is
-// Kristófer Darri
-// Brynjólfur Steingrímsson - brs26@hi.is
 
+/**
+ * This is the main class. It uses Spring Boot to launch the application and can be used to
+ * modify various settings and properties for it. Here the @EnableJpaRepositories
+ * annotation tells JPA to implement repository interfaces automatically.
+ *
+ * @author Jökull, Ólafur Pálsson, Kristófer Darri, Brynjólfur Steingrímsson
+ */
 
 @SpringBootApplication
 @EnableJpaRepositories

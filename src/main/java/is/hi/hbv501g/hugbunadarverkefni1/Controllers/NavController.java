@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * The NavController handles general navigation between the webpage's different sections.
+ * Therefore it exclusively handles HTTP requests of type 'GET' and constructs a response by asking the
+ * appropriate service for the data needed.
+ *
+ */
 @Controller
 public class NavController {
 

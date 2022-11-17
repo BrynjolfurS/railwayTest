@@ -4,6 +4,11 @@ package is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * The User class contains data related to a specific user of the application (i.e. a user account).
+ * The @Entity annotation marks it as an object that can be put in persistent storage via the Spring Data JPA to be accessed at a later date.
+ * This class has a One-to-Many relationship with the Comment class.
+ */
 @Entity
 @Table(name = "users")
 public class User {

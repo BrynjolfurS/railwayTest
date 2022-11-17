@@ -7,6 +7,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
+/**
+ * The Event class contains data about an event related to a specific sport or activity.
+ * The @Entity annotation marks it as an object that can be put in persistent storage via the Spring Data JPA to be accessed at a later date.
+ */
 @Entity
 @Table(name = "events")
 public class Event {

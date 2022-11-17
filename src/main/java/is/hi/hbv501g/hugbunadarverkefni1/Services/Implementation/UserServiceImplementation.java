@@ -19,7 +19,9 @@ public class UserServiceImplementation implements UserService {
 
     }
 
-    // Test/setup fyrir admin notanda
+    /**
+     * This method is used to create a new user account with admin priviliges for setup/testing.
+     */
     @Override
     public void createAdmin() {
         User admin = new User();

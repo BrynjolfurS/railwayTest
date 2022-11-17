@@ -4,6 +4,11 @@ package is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * The Comment class contains data related to a comment posted in a specific thread by a specific user.
+ * The @Entity annotation marks it as an object that can be put in persistent storage via the Spring Data JPA to be accessed at a later date.
+ * This class has a Many-To-One relationship with both the Thread class and the User class.
+ */
 @Entity
 @Table(name = "comments")
 public class Comment {
@@ -12,6 +17,9 @@ public class Comment {
     private User user;
     private LocalDateTime dateCommented;
 
+    /**
+     * The columnDefinition property is changed to allow for longer comments.
+     */
     @Column(columnDefinition="LONGVARCHAR")
     private String comment;
 

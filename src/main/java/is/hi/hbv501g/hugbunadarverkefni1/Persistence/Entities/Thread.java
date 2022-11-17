@@ -6,6 +6,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Thread class contains data related to a forum thread posted by a specific user.
+ * The @Entity annotation marks it as an object that can be put in persistent storage via the Spring Data JPA to be accessed at a later date.
+ * This class a One-To-Many relationship with the Comment class.
+ */
 @Entity
 @Table(name = "threads")
 public class Thread {
