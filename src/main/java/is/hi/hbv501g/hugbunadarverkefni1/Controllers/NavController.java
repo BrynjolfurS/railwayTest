@@ -71,7 +71,8 @@ public class NavController {
     }
 
     @RequestMapping(value = "/home/{sport}", method = RequestMethod.GET)
-    public String goToSport(@PathVariable("sport") String sport, Model model) {
+    public String goToSport(@PathVariable("sport") String sport, Model model, HttpSession session) {
+
         //add threads from {sport} to model
         model.addAttribute("threads", threadService.findAllThreadsBySport(sport));
         model.addAttribute("sport", sport);
@@ -83,9 +84,9 @@ public class NavController {
     }
 
     @RequestMapping(value = "/home/{sport}/about", method = RequestMethod.GET)
-    public String goToAboutSport(@PathVariable("sport") String sport) {
-        //done
-        return "about"+sport;
+    public String goToAboutSport(@PathVariable("sport") String sport, Model model) {
+        model.addAttribute("sport", sport);
+        return "about";
     }
 
     @RequestMapping(value = "/home/{sport}/events", method = RequestMethod.GET)
@@ -127,6 +128,12 @@ public class NavController {
         model.addAttribute("event", new Event());
         model.addAttribute("events", sportService.findAllEventsBySport(sport));
         return "editEvents";
+    }
+
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public String error404(Model model) {
+        model.addAttribute("sports", sportService.findAllSports());
+        return "error";
     }
 
     @RequestMapping(value = "/home/{sport}/createThread", method = RequestMethod.GET)

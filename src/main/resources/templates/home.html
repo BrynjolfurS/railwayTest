@@ -17,7 +17,7 @@
 
         <h1>Íþróttasíðan</h1>
 
-        <div class="form">
+        <div th:style="${session.LoggedInUser != null ? 'display: none' : 'display: block'}" class="form">
             <form th:hidden="${session.LoggedInUser != null}" action="#" th:action="@{login}" th:object="${user}"  method="post">
                 <table>
                     <tr>
@@ -57,7 +57,7 @@
             </menu>
         </div>
 
-        <div class="content-container">
+        <div class="content-container" style="flex: 80%">
             <div class="forum-container light-gray">
                 <div class="forum-title">
                     <h1>Top threads</h1>
@@ -87,18 +87,10 @@
                 </div>
             </div>
         </div>
-
-        <div class="sidebar-right light-gray">
-            <div class="events">
-                <div class="events-title">
-                    <h2>Upcoming Events</h2>
-                </div>
-            </div>
-        </div>
     </div>
 
     <footer class="footer light-blue text-yellow">
-        <div class="contact-email">sportapp@sportapp.is</div>
+        <div style="margin: auto;" class="contact-email">sportapp@sportapp.is</div>
     </footer>
 </body>
 </html>

@@ -8,7 +8,9 @@
 
 <body>
 <header class="header light-blue text-yellow" style="text-align: center; ">
+  <div> </div>
   <h1 th:text="${#strings.capitalize(sport)}"></h1>
+  
   <div class="userInfo" th:if="${session.LoggedInUser != null}">
     <p>User: <span th:text="*{session.LoggedInUser.username}"></span></p>
     <form action="#" th:action="@{logout}" method="post">
@@ -88,10 +90,12 @@
     <div class="events">
       <div class="events-title">
         <h2>Upcoming Events</h2>
-        <a th:href="@{./{s}/events(s=${sport})}" th:each="event : ${events}" th:text="${event.eventName}"></a>
+        <div style="padding: 5px; background-color: rgb(194, 194, 194); width: 80%; margin: 5px auto;" th:each="event : ${events}">
+          <p style="font-size: .8rem; padding: 0; margin: 0;" th:text="${event.eventDate}"></p>
+          <a th:href="@{./{s}/events(s=${sport})}"><p style="margin: 0; margin-bottom: .5rem;" th:text="${event.eventName}"></p></a>
+        </div>
       </div>
-    </div>
-    <div class="events">
+
       <div class="events-title">
         <h2>Top 5 Players</h2>
         <p th:each="player : ${players}" th:text="${player.playerName}"></p>

@@ -3,6 +3,7 @@
 @import url('colors.css');
 @import url('sidebars.css');
 @import url('header.css');
+@import url('footer.css');
 
 .main {
     display: flex;

@@ -35,6 +35,7 @@ public class PlayerServiceImplementation implements PlayerService {
     public List<Player> findTopPlayersBySport(String sport) {
         List<Player> players = playerRepository.findBySport(sport);
         Collections.sort(players);
+        Collections.reverse(players);
         List<Player> topPlayers = new ArrayList<>();
 
         try {

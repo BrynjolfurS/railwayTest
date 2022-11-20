@@ -7,10 +7,10 @@
 <body>
 
 <tr th:each="p : ${players}">
-    <h3 th:text="${p.playerName}"></h3>
-    <p th:text="${p.playerInfo}"></p>
-    <p th:text="${p.wins}"></p>
-    <p th:text="${p.losses}"></p>
+    <h3 th:text="'Name: ' + ${p.playerName}"></h3>
+    <p th:text="'Description: ' + ${p.playerInfo}"></p>
+    <p th:text="'Wins: ' + ${p.wins}"></p>
+    <p th:text="'Losses ' + ${p.losses}"></p>
     <p>------------------------------------------------------------------------------------------</p>
 </tr>
 

@@ -2,6 +2,7 @@ package is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -14,7 +15,11 @@ import java.util.List;
 public class User {
 
     private long ID;
+
+
+    @Size(min = 5, message = "{validation.name.size.too_short}")
     private String username;
+    
     private String userPassword;
     private boolean isAdmin;
     private List<Comment> comments;
