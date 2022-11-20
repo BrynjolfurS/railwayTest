@@ -1,25 +1,53 @@
 /* Forum/Thread */
 
+/* Comments on threads */
+
 .commentsSection {
-    padding: 10px;
     margin-left: 2rem;
+    padding: 10px;
 }
 
 .comment-body {
-    display: inline-block;
-    padding: 5px;
-    text-align:left;
+    background-color: white;
     border: 1px solid gray;
     border-radius: 5px;
-    background-color: white;
+    display: inline-block;
     margin: 0;
+    padding: 5px;
+    text-align:left;
     word-break: break-all;
+}
+
+.comment-body p {
+    margin: 0;
+    margin-top: 3px;
+}
+
+
+.postComment {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    padding-left: 10px;
+    width: 30%;
+}
+
+.postComment input {
+    margin: 1em 0;
+    width: 40%; 
+    word-wrap: break-word;
+    height: 2rem;
 }
 
 .user-info {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+}
+
+.user-info h3, h5 {
+    margin: 0;
+    color: #8a8a8a;
 }
 
 .forum-container {
@@ -31,17 +59,21 @@
     text-align: center;
 }
 
+.thread-info {
+    padding-left: 2em;
+}
+
 .thread-table-head {
     display: flex;
-    text-align: center;
     font-size: 1.3em;
+    text-align: center;
 }
 
 .thread-table-head div {
-    padding: 5px;
-    margin: 2px;
-    font-weight: bold;
     background-color: gray;
+    font-weight: bold;
+    margin: 2px;
+    padding: 5px;
 }
 
 .thread-table-head .post-icon {
@@ -55,31 +87,30 @@
 
 .post-icon, .post-subject,
 .post-comments, .post-info {
-    padding: 5px;
-    margin: 2px;
     background-color: #D4D4D4;
+    margin: 2px;
+    padding: 5px;
 }
 
 .thread-create-button {
-    width: 10em;
     border: 1px solid #CFCFCF;
+    width: 10em;
 }
 
 .thread-header {
+    margin-left: 1.4em;
     text-align:left;
-    margin-left: 1em;
 }
 
 .thread-body {
-    padding:10px;
-    display: inline-block;
-    padding: 5px;
-    text-align:left;
-    margin-left: 2em;
-    margin-bottom: 1em;
+    background-color: white;
     border: 1px solid gray;
     border-radius: 5px;
-    background-color: white;
+    display: inline-block;
+    margin-left: 2em;
+    margin-right: 2em;
+    padding: 5px;
+    text-align:left;
 }
 
 .post-icon {
@@ -94,24 +125,19 @@
 }
 
 .post-subject-pinned {
+    background-color: #FCCC89;
     display: flex;
     flex: 70%;
     justify-content: flex-start;
-    padding: 5px;
     margin: 2px;
-    background-color: #FCCC89;
+    padding: 5px;
 }
 
 .post-link {
     line-height: 10px;
 }
 
-.post-comments {
-    text-align: center;
-    flex: 10%;
-}
-
-.post-info {
+.post-info, .post-comments {
     flex: 15%;
     text-align: center;
 }

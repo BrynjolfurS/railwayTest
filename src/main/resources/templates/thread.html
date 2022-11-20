@@ -9,19 +9,16 @@
 <body>
 
 <header class="header light-blue text-yellow" style="text-align: center; ">
+  <div></div>
   <h1 th:text="${#strings.capitalize(thread.getSport())}"></h1>
   <div class="userInfo" th:if="${session.LoggedInUser != null}">
-    <p>User: <span th:text="*{session.LoggedInUser.username}"></span></p>
+    <p>Logged in as: <span th:text="*{session.LoggedInUser.username}"></span></p>
     <form action="#" th:action="@{logout}" method="post">
       <input type="submit" value="Logout">
     </form>
   </div>
 </header>
-  <!--
-  <h1 th:text="${thread.user}"></h1>
-  <h2 th:text="${thread.header}"></h2>
-  <p th:text="${thread.body}"></p>
-  -->
+
   <div class="main">
     <div class="sidebar-left light-gray">
       <menu class="nav">
@@ -38,10 +35,10 @@
 
     <div class="content-container">
       <div class="forum-container light-gray">
-        <h1 class="thread-header" th:text="${thread.header}"></h1>
+        <h2 class="thread-header" th:text="${thread.header}"></h2>
         <div class="thread-body" th:text="${thread.body}"></div>
         <div class="thread-info">
-          <p>Created by: <span th:text="${thread.getUser()}"></span></p>
+          <p>Posted by: <strong th:text="${thread.getUser()}"></strong></p>
           <p>Date: <span th:text="${thread.date}"></span></p>
           <a th:href="@{{id}/editThread(id=${id})}" th:if="${session.LoggedInUser != null and session.LoggedInUser.getUsername() == thread.getUser()}">Edit post</a>
         </div>
@@ -50,19 +47,20 @@
         <li class="commentsSection" style="list-style-type:none;" th:each="comment : ${comments}">
           <div class="comment-body">
             <div class="user-info">
-              <h2 style="margin: 0;" th:text="${comment.user.getUsername()}"></h2>
-              <p style="margin-left: .3rem; color: #8a8a8a;">*</p>
-              <h5 style="margin: 0; color: #8a8a8a; margin-left: .3rem;" th:text="${comment.getDateCommented()}"></h5>
+              <h3 th:text="${comment.user.getUsername()}"></h3>
+              <h5 th:text="${comment.dateCommented + ' - ' + comment.timeCommented }"></h5>
             </div>
             <p th:text="${comment.comment}"></p>
           </div>
         </li>
-        <form style="display: flex; flex-direction: column; width: 30%; margin-left: 2rem;" th:hidden="${session.LoggedInUser} == null" action="" method="post">
-          <textarea maxlength="255" type="text" name="comment" id="comment"></textarea>
-          <input style="margin-top: 1em; width: 50%; word-wrap:break-word" type="submit" value="Post Comment" />
+        <form class="postComment" th:style="${session.LoggedInUser == null ? 'display: none' : 'display:flex'}" action="" method="post">
+          <textarea placeholder="Write your message" cols="20" rows="5" maxlength="255" type="text" name="comment" id="comment"></textarea>
+          <input type="submit" value="Post Comment" />
         </form>
       </div>
     </div>
+
+    
 
     <div class="sidebar-right light-gray">
       <div class="events">
@@ -74,8 +72,8 @@
 
 </div>
 
-<footer class="footer">
-
+<footer class="footer light-blue text-yellow">
+  <div style="margin: auto;" class="contact-email">sportapp@sportapp.is</div>
 </footer>
 </body>
 </html>

@@ -2,7 +2,10 @@ package is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities;
 
 
 import javax.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * The Comment class contains data related to a comment posted in a specific thread by a specific user.
@@ -15,7 +18,9 @@ public class Comment {
 
     private long ID;
     private User user;
-    private LocalDateTime dateCommented;
+    private LocalDate dateCommented;
+
+    private LocalTime timeCommented;
 
     /**
      * The columnDefinition property is changed to allow for longer comments.
@@ -30,7 +35,8 @@ public class Comment {
 
     public Comment(User user, String comment, Thread thread) {
         this.user = user;
-        this.dateCommented = LocalDateTime.now();
+        this.dateCommented = LocalDate.now();
+        this.timeCommented = LocalTime.now();
         this.comment = comment;
         this.thread = thread;
     }
@@ -61,13 +67,22 @@ public class Comment {
 
     public void setThread(Thread thread) {this.thread = thread;}
 
-    public LocalDateTime getDateCommented() {
+    public LocalDate getDateCommented() {
         return dateCommented;
     }
 
-    public void setDateCommented(LocalDateTime dateCommented) {
+    public void setDateCommented(LocalDate dateCommented) {
         this.dateCommented = dateCommented;
     }
+
+    public LocalTime getTimeCommented() {
+        return timeCommented;
+    }
+
+    public void setTimeCommented(LocalTime timeCommented) {
+        this.timeCommented = timeCommented;
+    }
+    
 
     public String getComment() {
         return comment;

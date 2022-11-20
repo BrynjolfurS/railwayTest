@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 /**
  * The UserController handles all requests that have to do with a user's account.
@@ -100,7 +99,7 @@ public class UserController {
      * @return Redirect back to the home page.
      */
     @RequestMapping(value="/signUp", method= RequestMethod.POST)
-    public String signupPOST(User user, BindingResult result) {
+    public String signupPOST(@Valid User user, BindingResult result) {
         if(result.hasErrors()) {
             return "redirect:/signUp";
         }
