@@ -35,11 +35,11 @@
       <p>------------------------------------------------------------------------------------------</p>
 
     </tr>
-
+  </div>
     <div th:if="${session.LoggedInUser != null}">
       <a th:hidden="${session.LoggedInUser.isAdmin} != true" href="./clubs/edit"><p>edit</p></a>
     </div>
-  </div>
+
 
 </div>
 

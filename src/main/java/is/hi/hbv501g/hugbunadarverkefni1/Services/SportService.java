@@ -8,10 +8,11 @@ import java.util.List;
 
 public interface SportService {
 
-    void dev(String sport);
+
     public List<String> findAllSports();
     List<Event> findAllEventsBySport(String sport);
     Club saveClub(Club club);
+    public  Boolean isSport(String sport);
     void  deletClubById(long id);
     Event saveEvent(Event event);
     void  deletEventById(long id);

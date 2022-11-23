@@ -22,14 +22,6 @@ public class ThreadServiceImplementation implements ThreadService {
 
 //--------------------------------------------------------------
 
-    @Override
-    public void dev(String sport) {
-        List<Comment> a = new ArrayList<Comment>();
-
-        save(new Thread("mr stuff1",sport+" thread1",sport+sport+sport,sport));
-    }
-
-    //----------------------------------------
 
 
     @Override

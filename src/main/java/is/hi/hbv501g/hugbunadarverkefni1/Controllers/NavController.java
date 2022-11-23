@@ -36,15 +36,6 @@ public class NavController {
         this.playerService = playerService;
     }
 
-    //----------------Test stuff----------------------------------------------------
-    @RequestMapping(value = "/dev/{sport}", method = RequestMethod.GET)
-    public String dev(@PathVariable("sport") String sport, Model model) {
-        sportService.dev(sport);
-        threadService.dev(sport);
-        return "redirect:/home/"+sport;
-    }
-
-//-------------------------------------------------
 
 
 
@@ -74,6 +65,9 @@ public class NavController {
     public String goToSport(@PathVariable("sport") String sport, Model model, HttpSession session) {
 
         //add threads from {sport} to model
+        if(!sportService.isSport(sport))
+            return "redirect:/home";
+
         model.addAttribute("threads", threadService.findAllThreadsBySport(sport));
         model.addAttribute("sport", sport);
         model.addAttribute("sports", sportService.findAllSports());
@@ -84,13 +78,18 @@ public class NavController {
     }
 
     @RequestMapping(value = "/home/{sport}/about", method = RequestMethod.GET)
-    public String goToAboutSport(@PathVariable("sport") String sport, Model model) {
-        model.addAttribute("sport", sport);
-        return "about";
+    public String goToAboutSport(@PathVariable("sport") String sport) {
+        //done
+        if(!sportService.isSport(sport))
+            return "redirect:/home";
+        return "about"+sport;
     }
 
     @RequestMapping(value = "/home/{sport}/events", method = RequestMethod.GET)
     public String goToEvents(@PathVariable("sport") String sport, Model model) {
+        if(!sportService.isSport(sport))
+            return "redirect:/home";
+
         model.addAttribute("events", sportService.findAllEventsBySport(sport));
         model.addAttribute("sports", sportService.findAllSports());
         model.addAttribute("sport", sport);
@@ -99,6 +98,8 @@ public class NavController {
 
     @RequestMapping(value = "/home/{sport}/clubs", method = RequestMethod.GET)
     public String goToClubs(@PathVariable("sport") String sport, Model model) {
+        if(!sportService.isSport(sport))
+            return "redirect:/home";
 
         model.addAttribute("clubs", sportService.findAllClubsBySport(sport));
         return "clubs";
@@ -107,24 +108,36 @@ public class NavController {
     @RequestMapping(value = "/home/{sport}/players", method = RequestMethod.GET)
     public String goToTopPlayers(@PathVariable("sport") String sport, Model model) {
         // add players from {sport} to model
+        if(!sportService.isSport(sport))
+            return "redirect:/home";
+
         model.addAttribute("players", sportService.findAllPlayersBySport(sport));
         return "players";
     }
 
     @RequestMapping(value = "/home/{sport}/players/edit", method = RequestMethod.GET)
     public String goToEditPlayers(@PathVariable("sport") String sport, Model model) {
+        if(!sportService.isSport(sport))
+            return "redirect:/home";
+
         model.addAttribute("player", new Player());
         model.addAttribute("players", sportService.findAllPlayersBySport(sport));
         return "editPlayers";
     }
     @RequestMapping(value = "/home/{sport}/clubs/edit", method = RequestMethod.GET)
     public String goToEditClubs(@PathVariable("sport") String sport, Model model) {
+        if(!sportService.isSport(sport))
+            return "redirect:/home";
+
         model.addAttribute("club", new Club());
         model.addAttribute("clubs", sportService.findAllClubsBySport(sport));
         return "editClubs";
     }
     @RequestMapping(value = "/home/{sport}/events/edit", method = RequestMethod.GET)
     public String goToEditEvent(@PathVariable("sport") String sport, Model model) {
+        if(!sportService.isSport(sport))
+            return "redirect:/home";
+
         model.addAttribute("event", new Event());
         model.addAttribute("events", sportService.findAllEventsBySport(sport));
         return "editEvents";
@@ -138,6 +151,9 @@ public class NavController {
 
     @RequestMapping(value = "/home/{sport}/createThread", method = RequestMethod.GET)
     public String newThread(@PathVariable("sport") String sport, Model model) {
+        if(!sportService.isSport(sport))
+            return "redirect:/home";
+
         List<String> sports = sportService.findAllSports();
         List<Event> events = sportService.findAllEventsBySport(sport);
         model.addAttribute("events", events);

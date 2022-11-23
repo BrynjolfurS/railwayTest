@@ -418,5 +418,3 @@ $RECYCLE.BIN/
 *_REMOTE_*.txt
 
 
-#database stuff
-src/main/resources/application.properties
