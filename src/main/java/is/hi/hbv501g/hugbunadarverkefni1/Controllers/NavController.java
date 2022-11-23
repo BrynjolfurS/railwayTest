@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -47,8 +48,9 @@ public class NavController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String goToHome(HttpSession session, Model model, User user) {
 
-        List<Thread> threads = threadService.findAllThreads();
-        model.addAttribute("threads", threads);
+        List<Thread> allThreads = threadService.findAllThreads();
+        Collections.sort(allThreads, Collections.reverseOrder());
+        model.addAttribute("threads", allThreads);
         List<String> sports = sportService.findAllSports();
         model.addAttribute("sports", sports);
         model.addAttribute("user", user);
@@ -68,8 +70,9 @@ public class NavController {
         if(!sportService.isSport(sport))
             return "redirect:/home";
 
-        model.addAttribute("threads", threadService.findAllThreadsBySport(sport));
-        model.addAttribute("sport", sport);
+        List<Thread> sportThreads = threadService.findAllThreadsBySport(sport);
+        Collections.sort(sportThreads, Collections.reverseOrder());
+        model.addAttribute("threads", sportThreads);
         model.addAttribute("sports", sportService.findAllSports());
         model.addAttribute("players", playerService.findTopPlayersBySport(sport));
         model.addAttribute("events", sportService.findAllEventsBySport(sport));
