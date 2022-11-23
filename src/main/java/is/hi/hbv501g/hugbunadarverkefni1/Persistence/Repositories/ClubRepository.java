@@ -8,6 +8,7 @@ import java.util.List;
 public interface ClubRepository extends JpaRepository<Club, Long> {
     public Club save(Club club);
     public void delete(Club club);
+    public Club findByID(Long id);
     public List<Club> findAll();
     public List<Club> findBySport(String sport);
 }

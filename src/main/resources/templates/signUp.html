@@ -5,13 +5,13 @@
   <title>Title</title>
 </head>
 <body>
-  <form action="#" th:action="@{signUp}" th:object="${user}" method="post">
-    <table><tr>
-      <td>Username:</td><td><input type="text" th:field="*{username}" /></td>
-    </tr><tr>
-      <td>Password</td><td><input type="text" th:field="*{userPassword}" /></td>
-    </tr></table>
-    <input type="submit" value="Sign up" />
-  </form>
+<form action="#" th:action="@{/signUp}" th:object="${user}" method="post">
+  <table><tr>
+    <td>Username:</td><td><input type="text" th:field="*{username}" /></td>
+  </tr><tr>
+    <td>Password</td><td><input type="password" th:field="*{userPassword}" /></td>
+  </tr></table>
+  <input type="submit" value="Sign up" />
+</form>
 </body>
 </html>

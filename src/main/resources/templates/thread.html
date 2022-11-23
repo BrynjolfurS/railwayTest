@@ -2,38 +2,78 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/styles.css}" />
   <title>Events</title>
 </head>
 
 <body>
-<header class="header" style="text-align: center; ">
-  <h1>Íþróttasíðan</h1>
+
+<header class="header light-blue text-yellow" style="text-align: center; ">
+  <div></div>
+  <h1 th:text="${#strings.capitalize(thread.getSport())}"></h1>
+  <div class="userInfo" th:if="${session.LoggedInUser != null}">
+    <p>Logged in as: <span th:text="*{session.LoggedInUser.username}"></span></p>
+    <form action="#" th:action="@{logout}" method="post">
+      <input type="submit" value="Logout">
+    </form>
+  </div>
 </header>
 
-<div class="left-sidebar">
-  left-sidebar
+  <div class="main">
+    <div class="sidebar-left light-gray">
+      <menu class="nav">
+        <li class="nav-item nav-icon">
+          <button class="nav-button"><a th:href="@{/home}">Home</a></button>
+        </li>
+        <li th:each="sport : ${sports}">
+          <button class="nav-button">
+            <a style="font-size: 1.1rem;" th:href="@{/home/{s}(s=${sport})}" th:text="${#strings.capitalize(sport)}"></a>
+          </button>
+        </li>
+      </menu>
+    </div>
+
+    <div class="content-container">
+      <div class="forum-container light-gray">
+        <h2 class="thread-header" th:text="${thread.header}"></h2>
+        <div class="thread-body" th:text="${thread.body}"></div>
+        <div class="thread-info">
+          <p>Posted by: <strong th:text="${thread.getUser()}"></strong></p>
+          <p>Date: <span th:text="${thread.date}"></span></p>
+          <a th:href="@{{id}/editThread(id=${id})}" th:if="${session.LoggedInUser != null and session.LoggedInUser.getUsername() == thread.getUser()}">Edit post</a>
+        </div>
+        <hr>
+
+        <li class="commentsSection" style="list-style-type:none;" th:each="comment : ${comments}">
+          <div class="comment-body">
+            <div class="user-info">
+              <h3 th:text="${comment.user.getUsername()}"></h3>
+              <h5 th:text="${comment.dateCommented + ' - ' + comment.timeCommented }"></h5>
+            </div>
+            <p th:text="${comment.comment}"></p>
+          </div>
+        </li>
+        <form class="postComment" th:style="${session.LoggedInUser == null ? 'display: none' : 'display:flex'}" action="" method="post">
+          <textarea placeholder="Write your message" cols="20" rows="5" maxlength="255" type="text" name="comment" id="comment"></textarea>
+          <input type="submit" value="Post Comment" />
+        </form>
+      </div>
+    </div>
+
+    
+
+    <div class="sidebar-right light-gray">
+      <div class="events">
+        <div class="events-title">
+          <h1>Upcoming Events</h1>
+        </div>
+      </div>
+    </div>
+
 </div>
-<div class="main">
 
-  <h1 th:text="${thread.user}"></h1>
-  <h2 th:text="${thread.header}"></h2>
-  <p th:text="${thread.body}"></p>
-
-
-      <tr th:each="comment : ${thread.comments}">
-        <p th:text="${comment.comment}"></p>
-      </tr>
-
-
-
-
-</div>
-<div class="right-sidebar">
-  right-sidebar
-</div>
-
-<footer class="footer">
-
+<footer class="footer light-blue text-yellow">
+  <div style="margin: auto;" class="contact-email">sportapp@sportapp.is</div>
 </footer>
 </body>
 </html>

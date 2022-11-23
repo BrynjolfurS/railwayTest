@@ -3,7 +3,6 @@ package is.hi.hbv501g.hugbunadarverkefni1.Services.Implementation;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Club;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Event;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Player;
-import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.User;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.ClubRepository;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.EventRepository;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.PlayerRepository;
@@ -21,28 +20,16 @@ public class SportServiceImplementation implements SportService {
     private PlayerRepository playerRepository;
     private EventRepository eventRepository;
     private ClubRepository clubRepository;
+
     @Autowired
-    public SportServiceImplementation(PlayerRepository playerRepository,EventRepository eventRepository,ClubRepository clubRepository) {
+    public SportServiceImplementation(PlayerRepository playerRepository, EventRepository eventRepository, ClubRepository clubRepository) {
         this.playerRepository = playerRepository;
         this.clubRepository = clubRepository;
         this.eventRepository = eventRepository;
     }
 
 
-    @Override
-    public void dev(String sport) {
-        eventRepository.save(new Event(sport+"---1---     ",sport,sport));
-        eventRepository.save(new Event(sport+"---2---     ",sport,sport));
-        eventRepository.save(new Event(sport+"---3---     ",sport,sport));
 
-
-        clubRepository.save(new Club(sport+"---1---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport,sport));
-        clubRepository.save(new Club(sport+"---2---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport,sport));
-        clubRepository.save(new Club(sport+"---3---     ","https://www.youtube.com/watch?v=dQw4w9WgXcQ",sport+sport+sport+sport,sport));
-
-
-
-    }
 
     @Override
     public List<String> findAllSports() {
@@ -50,38 +37,66 @@ public class SportServiceImplementation implements SportService {
         sport.add("badminton");
         sport.add("pilukast");
         sport.add("Extreme Ironing");
-
-
         return sport;
     }
 
+    public  Boolean isSport(String sport){
+        return findAllSports().contains(sport);
+    }
+
+
+    //------------------------CLUB START----------------------------------------------
+    @Override
+    public List<Club> findAllClubsBySport(String sport) {
+        return clubRepository.findBySport(sport);
+    }
+
+    @Override
+    public Club saveClub(Club club) {
+        return clubRepository.save(club);
+    }
+
+    @Override
+    public void deletClubById(long id) {
+        clubRepository.delete(clubRepository.findByID(id));
+    }
+    //------------------------CLUB END----------------------------------------------
+
+
+    //------------------------EVENT START----------------------------------------------
     @Override
     public List<Event> findAllEventsBySport(String sport) {
         return eventRepository.findBySport(sport);
     }
 
     @Override
+    public Event saveEvent(Event event) {
+        return eventRepository.save(event);
+    }
+
+    @Override
+    public void deletEventById(long id) {
+        eventRepository.delete(eventRepository.findByID(id));
+    }
+    //------------------------EVENT END----------------------------------------------
+
+
+    //------------------------PLAYER START----------------------------------------------
+    @Override
     public List<Player> findAllPlayersBySport(String sport) {
         return playerRepository.findBySport(sport);
     }
 
     @Override
-    public List<Club> findAllClubsBySport(String sport) {
-        return clubRepository.findBySport(sport);
-    }
-
-
-
-    @Override
-    public void editEntity(Object object) { // Spurning hvort þetta virki sem einhvers konar Generic til að edita?
-        if(object.getClass().equals(User.class)) {
-
-        }
+    public Player savePlayer(Player player) {
+        return playerRepository.save(player);
     }
 
     @Override
-    public void createEntity(Object object) {
-
+    public void deletPlayerById(long id) {
+        playerRepository.delete(playerRepository.findByID(id));
     }
+    //------------------------PLAYER END----------------------------------------------
+
 
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <title>Íþróttasíðan</title>
+</head>
+
+<body>
+    <header class="header light-blue text-yellow" style="text-align: center; ">
+                <h1>Íþróttasíðan</h1>
+    </header>
+    
+    <h1 style="text-align: center;">404 Page Not Found</h1>
+    <div class="main">
+        <div class="sidebar-left light-gray">
+            <menu class="nav">
+                <li class="nav-item nav-icon">
+                    <button class="nav-button"><a th:href="@{/home}">Home</a></button>
+                </li>
+                <li th:each="sport : ${sports}">
+                    <button class="nav-button">
+                        <a th:href="@{/home/{s}(s=${sport})}" th:text="${#strings.capitalize(sport)}"></a>
+                    </button>
+                </li>
+            </menu>
+        </div>
+        <div style="flex: 80%;" class="content-container"></div>
+    
+        
+    </div>
+
+    <footer class="footer light-blue text-yellow">
+        <div class="contact-email">sportapp@sportapp.is</div>
+    </footer>
+</body>
+</html>

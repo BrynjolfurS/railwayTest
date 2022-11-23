@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <title>Admin</title>
+</head>
+<body>
+    <header class="header light-blue text-yellow" style="text-align: center; ">
+        <div> </div>
+
+        <h1>Íþróttasíðan</h1>
+
+        <div class="userInfo" th:if="${session.LoggedInUser != null}">
+            <p>User: <span th:text="*{session.LoggedInUser.username}"></span></p>
+            <form action="#" th:action="@{logout}" method="post">
+                <input type="submit" value="Logout">
+            </form>
+        </div>
+    </header>
+
+    <div class="main">
+        <div class="sidebar-left light-gray">
+            <menu class="nav">
+                <li class="nav-item nav-icon">
+                    <button class="nav-button"><a th:href="@{/home}">Home</a></button>
+                </li>
+            </menu>
+        </div>
+
+        <div class="content-container" th:if="${session.LoggedInUser.isAdmin} == true">
+            <div class="content-row">
+                <h2>Edit users</h2>
+                <button><a th:href="@{/admin/getallusers}">Get all users</a></button>
+                <form action="#" th:action="@{admin/finduser}" method="get">
+                    <input type="text" name="findUser" id="findUser"/>
+                    <input type="submit" value="Find user"/>
+                </form>
+                <table th:if="${userList} != null">
+                    <tr th:each="user : ${userList}">
+                        <td>Username:</td><td th:text="${user.username}"></td>
+                        <td>Role:</td><td th:text="${user.isAdmin}? 'Admin' : 'User'"></td>
+                        <td>
+                            <a th:href="@{grantadmin/{id}(id=${user.ID})}">Grant admin</a>
+                        </td>
+                        <td>
+                            <a th:href="@{deleteUser/{id}(id=${user.ID})}">Delete user</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="content-container" th:if="${session.LoggedInUser.isAdmin} != true">
+            <h1>You do not have admin priviliges</h1>
+        </div>
+
+        <div class="sidebar-right light-gray">
+            <div class="events">
+                <div class="events-title">
+                    <h1>Events</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+
+    </footer>
+</body>
+</html>

@@ -1,10 +1,8 @@
 package is.hi.hbv501g.hugbunadarverkefni1.Services.Implementation;
 
-import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Club;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Comment;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities.Thread;
 import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.ThreadRepository;
-import is.hi.hbv501g.hugbunadarverkefni1.Persistence.Repositories.UserRepository;
 import is.hi.hbv501g.hugbunadarverkefni1.Services.ThreadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,23 +22,17 @@ public class ThreadServiceImplementation implements ThreadService {
 
 //--------------------------------------------------------------
 
-    @Override
-    public void dev(String sport) {
-        List<Comment> a = new ArrayList<Comment>();
 
-        save(new Thread("mr stuff1",false,a,sport+" thread1",sport+sport+sport,sport));
-    }
-
-    //----------------------------------------
 
     @Override
-    public void addComment(String comment) {
-
-    }
-
-    @Override
-    public void save(Thread thread) {
+    public void addComment(Comment comment, Thread thread) {
+        threadRepository.save(comment);
         threadRepository.save(thread);
+    }
+
+    @Override
+    public Thread save(Thread thread) {
+        return threadRepository.save(thread);
     }
 
     @Override
@@ -59,6 +51,11 @@ public class ThreadServiceImplementation implements ThreadService {
     }
 
     @Override
+    public void deleteAll() {
+        threadRepository.deleteAll();
+    }
+
+    @Override
     public void deleteComment(Comment comment) {
 
     }
@@ -68,5 +65,8 @@ public class ThreadServiceImplementation implements ThreadService {
         return  threadRepository.findByID(id);
     }
 
-
+    @Override
+    public List<Thread> findAllThreads() {
+        return threadRepository.findAll();
+    }
 }

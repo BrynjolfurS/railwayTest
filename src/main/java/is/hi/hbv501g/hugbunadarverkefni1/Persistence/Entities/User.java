@@ -2,16 +2,26 @@ package is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
+/**
+ * The User class contains data related to a specific user of the application (i.e. a user account).
+ * The @Entity annotation marks it as an object that can be put in persistent storage via the Spring Data JPA to be accessed at a later date.
+ * This class has a One-to-Many relationship with the Comment class.
+ */
 @Entity
 @Table(name = "users")
 public class User {
 
     private long ID;
+
+
+    @Size(min = 5, message = "{validation.name.size.too_short}")
     private String username;
+    
     private String userPassword;
-//    private boolean isAdmin;
+    private boolean isAdmin;
     private List<Comment> comments;
 
     public User() {
@@ -43,21 +53,21 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public User(String username, String userPassword, List<Comment> comments) {
+    public User(String username, String userPassword, boolean isAdmin, List<Comment> comments) {
         this.username = username;
         this.userPassword = userPassword;
         this.comments = comments;
+        this.isAdmin = isAdmin;
     }
 
-//    public boolean isAdmin() {
-//        return isAdmin;
-//    }
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
 
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
-//    public void setAdmin(boolean admin) {
-//        isAdmin = admin;
-//    }
-//
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     public List<Comment> getComments() {
         return comments;
@@ -67,10 +77,4 @@ public class User {
         this.comments = comments;
     }
 
-//    public User(String username, String userPassword, boolean isAdmin, List<Comment> comments) {
-//        this.username = username;
-//        this.userPassword = userPassword;
-//        this.isAdmin = isAdmin;
-//        this.comments = comments;
-//    }
 }

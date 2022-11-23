@@ -2,28 +2,59 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/styles.css}" />
   <title>Events</title>
 </head>
 
 <body>
-<header class="header" style="text-align: center; ">
-  <h1>Íþróttasíðan</h1>
+
+<header class="header light-blue text-yellow" style="text-align: center; ">
+  <h1 th:text="${#strings.capitalize(sport)} + ' Events'">Events</h1>
+  <div class="userInfo" th:if="${session.LoggedInUser != null}">
+    <p>User: <span th:text="*{session.LoggedInUser.username}"></span></p>
+    <form action="#" th:action="@{logout}" method="post">
+      <input type="submit" value="Logout">
+    </form>
+  </div>
 </header>
 
-<div class="left-sidebar">
-  left-sidebar
-</div>
 <div class="main">
+  <div class="sidebar-left light-gray">
+    <menu class="nav">
+      <li class="nav-item nav-icon">
+        <button class="nav-button"><a th:href="@{/home}">Home</a></button>
+      </li>
+      <li th:each="sport : ${sports}">
+        <button class="nav-button">
+          <a style="font-size: 1.1rem;" th:href="@{/home/{s}(s=${sport})}" th:text="${#strings.capitalize(sport)}"></a>
+        </button>
+      </li>
+    </menu>
+  </div>
 
-  <tr th:each="event : ${events}">
-      <h3 th:text="${event.eventName}"></h3>
-      <p th:text="${event.eventDescription}"></p>
+  
 
-  </tr>
+  <div class="content-container">
+    <h1 style="text-align: center;" th:if="${events.empty}">There are no upcoming events</h1>
+    <h2 style="text-align: center;" th:if="${events.empty} and ${session.LoggedInUser != null}">If you know about an upcoming event, add it by clicking 'New Event'</h2>
+    <a th:if="${session.LoggedInUser != null}" style="text-align: center;" href="./events/edit"><p>New Event</p></a>
+    <td th:each="event : ${events}">
+        <h3 th:text="${event.eventName}"></h3>
+        <p th:text="${event.eventDescription}"></p>
+        <p th:text="${event.eventDate}"></p>
+        <p>------------------------------------------------------------------------------------------</p>
+    </td>
+  </div>
 
-</div>
-<div class="right-sidebar">
-  right-sidebar
+
+    <div class="sidebar-right light-gray">
+      <div class="events">
+        <div class="events-title">
+          <h1>Upcoming Events</h1>
+        </div>
+      </div>
+    </div>
+
 </div>
 
 <footer class="footer">

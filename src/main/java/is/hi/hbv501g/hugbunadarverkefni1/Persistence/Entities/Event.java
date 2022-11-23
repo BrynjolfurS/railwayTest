@@ -2,8 +2,15 @@ package is.hi.hbv501g.hugbunadarverkefni1.Persistence.Entities;
 
 
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
+/**
+ * The Event class contains data about an event related to a specific sport or activity.
+ * The @Entity annotation marks it as an object that can be put in persistent storage via the Spring Data JPA to be accessed at a later date.
+ */
 @Entity
 @Table(name = "events")
 public class Event {
@@ -11,8 +18,11 @@ public class Event {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long ID;
+
     private String eventName;
     private String eventDescription;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate eventDate;
     private String sport;
 
@@ -25,6 +35,13 @@ public class Event {
     //------------------test end-------------------------------
 
     public Event() {
+    }
+
+    public long getID() {
+        return ID;
+    }
+    public void setID(long id) {
+        this.ID = id;
     }
 
     public String getEventName() {
@@ -54,9 +71,5 @@ public class Event {
     public String getSport(){return sport;}
     public void setSport(String sport){this.sport=sport;}
 
-    public Event(String eventName, String eventDescription, LocalDate eventDate) {
-        this.eventName = eventName;
-        this.eventDescription = eventDescription;
-        this.eventDate = eventDate;
-    }
+
 }

@@ -6,46 +6,41 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Thread class contains data related to a forum thread posted by a specific user.
+ * The @Entity annotation marks it as an object that can be put in persistent storage via the Spring Data JPA to be accessed at a later date.
+ * This class a One-To-Many relationship with the Comment class.
+ */
 @Entity
 @Table(name = "threads")
 public class Thread {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+
     private long ID;
     private String username;
-    private boolean isPinned;
-
-    @OneToMany(mappedBy = "thread", cascade = CascadeType.ALL, orphanRemoval = true)
+    private boolean isPinned = false;
     private List<Comment> comments = new ArrayList<>();
-
     private String header;
     private String body;
     private LocalDate date;
 
     private String sport;
 
-
-
-
-
     public Thread() {
     }
 
 
 
-    public Thread(String user, boolean isPinned, List<Comment> comments, String header, String body, String sport) {
-
-
+    public Thread(String user, String header, String body, String sport) {
         this.username = user;
-        this.isPinned = isPinned;
-        this.comments = comments;
         this.header = header;
         this.body = body;
         this.sport=sport;
-        //this.date = new LocalDate();
+        this.date = LocalDate.now();
     }
-
+    @Id
+    @Column(name = "threadId")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public long getID() {
         return ID;
     }
@@ -69,12 +64,18 @@ public class Thread {
         isPinned = pinned;
     }
 
+    @OneToMany(mappedBy = "thread", cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Comment> getComments() {
-        return comments;
+        if (comments != null) return comments;
+        return new ArrayList<>();
     }
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public int NumberOfComments() {
+        return getComments().size();
     }
 
     public String getHeader() {

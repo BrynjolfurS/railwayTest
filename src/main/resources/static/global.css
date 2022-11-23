@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+}
+
+html {
+    padding: 0;
+    font-size: 14px;
+    font-family: 'Titillium web', sans-serif;
+}
+body {
+    background-color: #F2F2F2;
+    margin: 0;
+}
+
+menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+button { border: none; }
+
+a { text-decoration: none; }

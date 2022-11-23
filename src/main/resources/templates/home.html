@@ -1,33 +1,96 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<html xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/styles.css}" />
-    <title>Title</title>
+    <title>Íþróttasíðan</title>
 </head>
 
 <body>
-<header class="header" style="text-align: center; ">
-    <h1>Heimasíða</h1>
-    <a th:href="@{login}">Login</a>
-    <a th:href="@{signUp}">Sign Up</a>
+    <header class="header light-blue text-yellow" style="text-align: center; ">
+        <div> </div>
 
-</header>
+        <h1>Íþróttasíðan</h1>
 
-<div class="left-sidebar">
-    left-sidebar
-</div>
-<div class="main">
-    <tr th:each="sport : ${sports}">
-        <a th:href="@{/home/{s}(s=${sport})}"><p th:text="${sport}"></p></a>
-    </tr>
-</div>
-<div class="right-sidebar">
-    right-sidebar
-</div>
+        <div th:style="${session.LoggedInUser != null ? 'display: none' : 'display: block'}" class="form">
+            <form th:hidden="${session.LoggedInUser != null}" action="#" th:action="@{login}" th:object="${user}"  method="post">
+                <table>
+                    <tr>
+                        <td><input placeholder="Username" type="text" th:field="*{username}" /></td>
+                    </tr>
+                    <tr>
+                        <td><input placeholder="Password" type="password" th:field="*{userPassword}" /></td>
+                    </tr>
+                </table>
+                <div style="text-align: right; padding-right: 5px; display: flex; margin-top: .3em;">
+                    <input style="margin-right: .5rem;" type="submit" value="Login" />
+                    <a th:href="@{signUp}">Sign Up</a>
+                </div>
+            </form>
+        </div>
 
-<footer class="footer">
+        <div class="userInfo" th:if="${session.LoggedInUser != null}">
+            <p>Logged in as: <span th:text="*{session.LoggedInUser.username}"></span></p>
+            <form action="#" th:action="@{logout}" method="post">
+                <input type="submit" value="Logout">
+            </form>
+            <button th:hidden="${session.LoggedInUser.isAdmin} != true"><a th:href="@{admin}">Admin page</a></button>
+        </div>
+    </header>
 
-</footer>
+    <div class="main">
+        <div class="sidebar-left light-gray">
+            <menu class="nav">
+                <li class="nav-item nav-icon">
+                    <button class="nav-button"><a th:href="@{/home}">Home</a></button>
+                </li>
+                <li th:each="sport : ${sports}">
+                    <button class="nav-button">
+                        <a th:href="@{/home/{s}(s=${sport})}" th:text="${#strings.capitalize(sport)}"></a>
+                    </button>
+                </li>
+            </menu>
+        </div>
+
+        <div class="content-container" style="flex: 80%">
+            <div class="forum-container light-gray">
+                <div class="forum-title">
+                    <h1>Top threads</h1>
+                </div>
+                <div class="thread-table">
+                    <div class="thread-table-head gray">
+                        <div class="post-icon"></div>
+                        <div class="post-subject">Subject</div>
+                        <div class="post-comments">Comments</div>
+                        <div class="post-info">Information</div>
+                    </div>
+
+                    <div th:each="thread : ${threads}" class="thread-table-row" >
+                        <div class="post-icon"><i class="fa fa-cart-plus"></i></div>
+                        <div th:class="${thread.isPinned()}? 'post-subject-pinned' : 'post-subject'">
+                            <a th:href="@{/home/{s}/thread/{t}(s=${thread.getSport()}, t=${thread.getID()})}" th:text="${thread.getHeader()}"></a>
+                        </div>
+                        <div class="post-comments">
+                            <a th:href="@{/home/{s}/thread/{t}(s=${thread.getSport()}, t=${thread.getID()})}" th:text="${thread.getComments()?.size()} ?: '0'"></a>
+                        </div>
+                        <div class="post-info">
+                            <p style="margin: 0; padding: 0;" th:text="${thread.getDate()}"></p>
+                            <p style="margin: 0; padding: 0;" th:text="${thread.isPinned()}? 'Pinned by: ' : 'Posted by: '"></p>
+                            <span th:text="${thread.getUser()}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer light-blue text-yellow">
+        <div style="margin: auto;" class="contact-email">sportapp@sportapp.is</div>
+    </footer>
 </body>
 </html>

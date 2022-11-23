@@ -2,38 +2,104 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <link rel="stylesheet" th:href="@{/styles.css}" />
+  <title th:text="${#strings.capitalize(sport)}">Title</title>
 </head>
 
 <body>
-<header class="header" style="text-align: center; ">
-  <h1 th:text="${sport}"></h1>
+<header class="header light-blue text-yellow" style="text-align: center; ">
+  <div> </div>
+  <h1 th:text="${#strings.capitalize(sport)}"></h1>
+  
+  <div class="userInfo" th:if="${session.LoggedInUser != null}">
+    <p>User: <span th:text="*{session.LoggedInUser.username}"></span></p>
+    <form action="#" th:action="@{logout}" method="post">
+      <input type="submit" value="Logout">
+    </form>
+  </div>
 </header>
 
-<div class="left-sidebar">
-  left-sidebar
-</div>
 <div class="main">
-  <p th:text="${sport}"></p>
-  <a th:href="@{/dev/{s}(s=${sport})}"><h1>dev</h1></a>
 
-  <a th:href="@{./{s}/events(s=${sport})}"><p>events</p></a>
-  <a th:href="@{./{s}/clubs(s=${sport})}"><p>clubs</p></a>
+  <div class="sidebar-left light-gray">
+    <menu class="nav">
+      <li class="nav-item nav-icon">
+        <button class="nav-button"><a th:href="@{/home}">Home</a></button>
+      </li>
+      <li th:each="sport : ${sports}">
+        <button class="nav-button">
+          <a th:href="@{/home/{s}(s=${sport})}" th:text="${#strings.capitalize(sport)}"></a>
+        </button>
+      </li>
+    </menu>
+  </div>
 
-  <h2>Threads</h2>
-  <tr th:each="thread : ${threads}">
-    <td th:text="${thread.user}"></td>
-    <a th:href="@{./{s}/thread/{id}(s=${sport},id=${thread.ID})}">
-      <p th:text="${thread.header}"></p>
-    </a>
+  <div class="content-container">
 
-  </tr>
+    <div class="sport-nav">
+      <button class="light-gray">
+        <a th:href="@{./{s}/events(s=${sport})}"><p>Events</p></a>
+      </button>
+      <button class="light-gray">
+        <a th:href="@{./{s}/clubs(s=${sport})}"><p>Clubs</p></a>
+      </button>
+      <button class="light-gray">
+        <a th:href="@{/home/{s}/players(s=${sport})}"><p>Players</p></a>
+      </button>
+    </div>
 
+    <div class="forum-container light-gray">
+      <div class="forum-title">
+        <h1 th:text="${#strings.capitalize(sport)} + ' discussions'">Top threads</h1>
+      </div>
+      <div class="thread-table">
+        <div class="thread-table-head gray">
+          <div class="post-icon"></div>
+          <div class="post-subject">Subject</div>
+          <div class="post-comments">Comments</div>
+          <div class="post-info">Information</div>
+        </div>
 
+        <div th:each="thread : ${threads}" class="thread-table-row">
+          <div class="post-icon"><i class="fa fa-cart-plus"></i></div>
+          <div th:class="${thread.isPinned()}? 'post-subject-pinned' : 'post-subject'">
+            <a th:href="@{/home/{s}/thread/{t}(s=${thread.getSport()}, t=${thread.getID()})}" th:text="${thread.getHeader()}"></a>
+          </div>
+          <div class="post-comments">
+            <a th:href="@{/home/{s}/thread/{t}(s=${thread.getSport()}, t=${thread.getID()})}" th:text="${thread.getComments()?.size()} ?: '0'"></a>
+          </div>
+          <div class="post-info">
+            <p style="margin: 0; padding: 0;" th:text="${thread.getDate()}"></p>
+            <p style="margin: 0; padding: 0;" th:text="${thread.isPinned()}? 'Pinned by: ' : 'Posted by: '"></p>
+            <span th:text="${thread.getUser()}"></span>
+          </div>
+        </div>
 
-</div>
-<div class="right-sidebar">
-  right-sidebar
+      </div>
+    </div>
+
+    <button th:hidden="${session.LoggedInUser} == null" class="thread-create-button">
+      <a th:href="@{./{s}/createThread(s=${sport})}"><p>New thread</p></a>
+    </button>
+  </div>
+
+  <div class="sidebar-right light-gray">
+    <div class="events">
+      <div class="events-title">
+        <h2>Upcoming Events</h2>
+        <div style="padding: 5px; background-color: rgb(194, 194, 194); width: 80%; margin: 5px auto;" th:each="event : ${events}">
+          <p style="font-size: .8rem; padding: 0; margin: 0;" th:text="${event.eventDate}"></p>
+          <a th:href="@{./{s}/events(s=${sport})}"><p style="margin: 0; margin-bottom: .5rem;" th:text="${event.eventName}"></p></a>
+        </div>
+      </div>
+
+      <div class="events-title">
+        <h2>Top 5 Players</h2>
+        <p th:each="player : ${players}" th:text="${player.playerName}"></p>
+        <a th:href="@{/home/{s}/players(s=${sport})}"><p> Players </p></a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <footer class="footer">

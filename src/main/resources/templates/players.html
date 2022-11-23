@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<tr th:each="p : ${players}">
+    <h3 th:text="'Name: ' + ${p.playerName}"></h3>
+    <p th:text="'Description: ' + ${p.playerInfo}"></p>
+    <p th:text="'Wins: ' + ${p.wins}"></p>
+    <p th:text="'Losses ' + ${p.losses}"></p>
+    <p>------------------------------------------------------------------------------------------</p>
+</tr>
+
+<div th:if="${session.LoggedInUser != null}">
+    <a th:hidden="${session.LoggedInUser.isAdmin} != true" href="./players/edit"><p>edit</p></a>
+</div>
+
+</body>
+</html>
